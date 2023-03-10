@@ -1,0 +1,10 @@
+.login__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+
+  .svg__icon {
+    border-radius: 10px;
+  }
+}
