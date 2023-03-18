@@ -5,9 +5,19 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      redirect: '/login'
+    },
+    {
+      path: '/login',
       name: 'login',
       meta: { layout: 'public' },
       component: () => import('../views/login.vue')
+    },
+    {
+      path: '/register',
+      name: 'resgister',
+      meta: { layout: 'public' },
+      component: () => import('../views/register.vue')
     },
   ]
 })

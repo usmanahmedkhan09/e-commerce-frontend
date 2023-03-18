@@ -7,8 +7,12 @@
                         :src="require('@/assets/svg/logo.svg')"></inline-svg>
         </div>
         <div class="header__buttons">
-            <button class="btn btn__login">Log In</button>
-            <button class="btn btn__register">Register</button>
+            <RouterLink to="/login"
+                        class="btn btn__login">Log In</RouterLink>
+            <RouterLink to="/register"
+                        class="btn btn__register">Register</RouterLink>
+            <!-- <button class="btn btn__login"></button>
+            <button class="btn btn__register">Register</button> -->
         </div>
     </header>
     <main class="content">
@@ -17,11 +21,14 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { RouterLink } from 'vue-router';
 
 export default defineComponent({
     setup()
     {
-        return {}
+        return {
+            RouterLink
+        }
     },
 })
 </script>
