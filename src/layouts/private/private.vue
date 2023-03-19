@@ -6,26 +6,23 @@
             <inline-svg class="logo__icon"
                         :src="require('@/assets/svg/logo.svg')"></inline-svg>
         </div>
-        <div class="header__buttons">
-            <RouterLink to="/login"
-                        class="btn btn__login">Log In</RouterLink>
-            <RouterLink to="/register"
-                        class="btn btn__register">Register</RouterLink>
-        </div>
     </header>
     <main class="content">
-        <router-view></router-view>
+        <section class="container">
+            <sidebar></sidebar>
+            <RouterView></RouterView>
+        </section>
     </main>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { RouterLink } from 'vue-router';
-
+import sidebar from './sidebar.vue';
 export default defineComponent({
+    components: { sidebar },
     setup()
     {
         return {
-            RouterLink
+
         }
     },
 })

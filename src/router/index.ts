@@ -8,6 +8,12 @@ const router = createRouter({
       redirect: '/login'
     },
     {
+      path: '/dashboard',
+      name: 'dashboard',
+      meta: { layout: 'private' },
+      component: () => import('../views/dashboard.vue')
+    },
+    {
       path: '/login',
       name: 'login',
       meta: { layout: 'public' },

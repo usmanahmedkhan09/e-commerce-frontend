@@ -21,6 +21,7 @@ export const useAuthStore = defineStore('auth', {
                 let { _id, email, name, token } = response.data
                 storageService.setProperty('token', token)
                 storageService.setProperty('user', { _id: _id, email: email, name: name })
+                router.push('/dashboard')
             }
         },
 

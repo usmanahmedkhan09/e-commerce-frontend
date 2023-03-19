@@ -1,33 +1,38 @@
 <template>
-  <component :is="layout">
-  </component>
+  <component :is="layout"> </component>
 </template>
 <script lang="ts">
-import { defineComponent, watch, ref, markRaw } from 'vue'
+import { defineComponent, watch, ref, markRaw, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import publicLayout from './layouts/public.vue'
+import privateLayout from './layouts/private/private.vue'
 
 export default defineComponent({
-  components: { publicLayout },
+  components: { publicLayout, privateLayout },
   setup()
   {
     const route = useRoute()
-    const layout = markRaw(publicLayout)
-    watch(
-      () => route.meta,
-      async meta =>
-      {
-        try
-        {
-          const component = await import(`@/layouts/${meta.layout}.vue`)
-          layout.value = component?.default || publicLayout
-        } catch (error)
-        {
-          layout.value = publicLayout
-        }
-      },
-      { immediate: true }
-    )
+    const layout = computed(() =>
+    {
+      let { meta } = route
+      return meta.layout == 'private' ? markRaw(privateLayout) : markRaw(publicLayout)
+    })
+    // watch(
+    //   () => route.meta,
+    //   async meta =>
+    //   {
+    //     try
+    //     {
+    //       const component = await import(`@/layouts/${meta.layout}.vue`)
+    //       layout.value = component.default ?? publicLayout
+    //       console.log(layout.value)
+    //     } catch (error)
+    //     {
+    //       layout.value = publicLayout
+    //     }
+    //   },
+    //   { immediate: true }
+    // )
     return {
       layout
     }
