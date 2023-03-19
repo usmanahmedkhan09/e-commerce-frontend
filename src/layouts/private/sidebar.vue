@@ -13,6 +13,7 @@
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
+    components: {},
     setup()
     {
         const routes = ref(

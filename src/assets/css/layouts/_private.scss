@@ -42,6 +42,13 @@
       background-color: var(--color-primary-blue);
       position: absolute;
       top: 0;
+      transform: translateX(-400px);
+      z-index: 2;
+
+      &.open {
+        transform: translateX(0px);
+        transition: all 1s;
+      }
 
       .nav {
         flex-direction: column;
