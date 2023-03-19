@@ -58,12 +58,12 @@ export default defineComponent({
     setup()
     {
         const { handleSubmit, isSubmitting } = useForm();
-        const { login } = useAuthStore()
+        const { register } = useAuthStore()
         const user = ref(new User())
 
         const onSubmit = handleSubmit(values =>
         {
-            login(values)
+            register(values as User)
         })
 
 

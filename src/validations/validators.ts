@@ -1,4 +1,8 @@
 import { defineRule } from 'vee-validate'
+import { alpha_num } from '@vee-validate/rules';
+
+
+defineRule('alpha_num', alpha_num);
 
 defineRule('required', (value: string, [name], ctx) =>
 {
@@ -34,7 +38,7 @@ defineRule('minLength', (value: any, [limit]) =>
     }
     if (value.length < limit)
     {
-        return `This field must be at least ${limit} characters`;
+        return `Password must be at least ${limit} characters`;
     }
     return true;
 });

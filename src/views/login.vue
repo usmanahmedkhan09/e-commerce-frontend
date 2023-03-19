@@ -22,6 +22,8 @@
                            class="input"
                            placeholder="Enter your password"
                            type="password" />
+                    <ErrorMessage class="error__message"
+                                  name="password" />
                     <button class="btn btn__primary"
                             type="submit"
                             :disabled="isSubmitting">Countinue to Login</button>
@@ -47,7 +49,7 @@ export default defineComponent({
 
         const onSubmit = handleSubmit(values =>
         {
-            login(values)
+            login(values as User)
         })
 
 
