@@ -70,6 +70,18 @@ export default defineComponent({
                     icon: 'fa-solid fa-store',
                     isActive: false,
                     showChild: false,
+                    children: [
+                        {
+                            name: "categories list",
+                            path: "/categories/categories-list",
+                            icon: "fa-solid fa-list",
+                        },
+                        {
+                            name: "add categories",
+                            path: "/categories/add-categories",
+                            icon: "fa-solid fa-add",
+                        },
+                    ]
                 },
                 {
                     name: "brand",
@@ -78,6 +90,18 @@ export default defineComponent({
                     icon: 'fa-solid fa-store',
                     isActive: false,
                     showChild: false,
+                    children: [
+                        {
+                            name: "brands list",
+                            path: "/brands/brands-list",
+                            icon: "fa-solid fa-list",
+                        },
+                        {
+                            name: "add brand",
+                            path: "/brands/add-brands",
+                            icon: "fa-solid fa-add",
+                        },
+                    ]
                 },
                 {
                     name: "series",
@@ -86,6 +110,18 @@ export default defineComponent({
                     icon: 'fa-solid fa-store',
                     isActive: false,
                     showChild: false,
+                    children: [
+                        {
+                            name: "series list",
+                            path: "/series/series-list",
+                            icon: "fa-solid fa-list",
+                        },
+                        {
+                            name: "add series",
+                            path: "/series/add-series",
+                            icon: "fa-solid fa-add",
+                        },
+                    ]
                 },
             ]
         )
