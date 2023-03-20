@@ -1,7 +1,7 @@
 class Storage
 {
-    private token: string | undefined
-    private user: string | undefined
+    // private token: string | undefined
+    // private user: string | undefined
 
     setProperty(key: string, value: any, jsonParse = true)
     {

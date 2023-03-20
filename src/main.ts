@@ -15,14 +15,18 @@ import "vue-toastification/dist/index.css";
 import './assets/css/_index.scss'
 import './validations/validators'
 
+import routerGuard from './router/router-guard';
+
 const app = createApp(App)
 
 
-library.add(fas)
 
+
+library.add(fas)
 app.use(createPinia())
-app.use(router)
 app.use(Toast)
+app.use(router)
+
 app.component("font-awesome-icon", FontAwesomeIcon)
 app.component('inline-svg', InlineSvg);
 

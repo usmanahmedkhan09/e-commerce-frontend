@@ -148,7 +148,6 @@ export default defineComponent({
                 if (r.path == route.path)
                 {
                     r.showChild = !r.showChild;
-                    context.emit('close')
                 } else
                 {
                     r.showChild = false;
