@@ -8,10 +8,21 @@ const router = createRouter({
       redirect: '/login'
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
+      path: '/products',
+      name: 'products',
       meta: { layout: 'private' },
-      component: () => import('../views/dashboard.vue')
+      children: [
+        {
+          path: '/products/products-list',
+          component: () => import('../views/products/products-list.vue'),
+          meta: { layout: 'private' },
+        },
+        {
+          path: '/products/add-products',
+          component: () => import('../views/products/add-product.vue'),
+          meta: { layout: 'private' },
+        }
+      ]
     },
     {
       path: '/login',

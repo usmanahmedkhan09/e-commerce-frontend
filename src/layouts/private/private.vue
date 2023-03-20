@@ -12,7 +12,8 @@
         <section class="container">
             <backdropComponent :class="{ 'open': showSidebar }"
                                @close="showSidebar = false" />
-            <sidebar :class="{ 'open': showSidebar }"></sidebar>
+            <sidebar :class="{ 'open': showSidebar }"
+                     @close="showSidebar = false"></sidebar>
             <RouterView></RouterView>
         </section>
     </main>
