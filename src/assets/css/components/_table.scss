@@ -1,0 +1,110 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  &.bordered {
+    border: 1px solid black;
+    thead tr th {
+      vertical-align: bottom;
+      border: 2px solid #dee2e6 !important;
+    }
+
+    tbody {
+      tr td {
+        border: 2px solid #dee2e6 !important;
+      }
+    }
+  }
+
+  &__header {
+    tr th {
+      font-weight: 500;
+      font-size: 1.6rem;
+      text-align: left;
+      padding: 10px 16px;
+    }
+  }
+
+  &__body {
+    tr {
+      &:nth-child(odd) {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      &.removeBackground {
+        background-color: unset;
+      }
+    }
+    tr td {
+      font-weight: 1.6rem;
+      padding: 16px 16px;
+
+      .link {
+        color: var(--color-primary-green);
+        // text-decoration: none;
+      }
+
+      .badges {
+        display: inline-block;
+        width: fit-content;
+        border-radius: 10px;
+        font-size: 1rem;
+        color: var(--white);
+        background-color: var(--color-secondary-green);
+        padding: 2px 5px;
+      }
+
+      .image {
+        max-width: 70px;
+        max-height: 70px;
+      }
+
+      .rounded__icons {
+        height: 30px;
+        min-width: unset;
+        width: 20px !important;
+        border-radius: 5px;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin: 0px 5px;
+
+        &.success {
+          background-image: linear-gradient(
+            to right,
+            rgba(49, 192, 44, 1) 0%,
+            rgba(87, 222, 83, 1) 100%
+          );
+        }
+
+        &.primary {
+          background-image: linear-gradient(
+            to right,
+            rgba(8, 155, 171, 1) 0%,
+            rgba(13, 181, 200, 1) 100%
+          );
+        }
+
+        &.danger {
+          background-image: linear-gradient(
+            to right,
+            rgba(216, 74, 69, 1) 0%,
+            rgba(242, 99, 97, 1) 100%
+          );
+        }
+
+        &.warning {
+          background-image: linear-gradient(
+            to right,
+            rgba(252, 158, 91, 1) 0%,
+            rgba(255, 182, 126, 1) 100%
+          );
+        }
+
+        &.icon {
+          width: 30px !important;
+        }
+      }
+    }
+  }
+}

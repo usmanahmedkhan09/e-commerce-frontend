@@ -13,24 +13,54 @@
                     <button class="btn"
                             @click="open">Add Category</button>
                 </div>
-                <div class="card__body"></div>
+                <div class="card__body">
+                    <table class="table">
+                        <thead class="table__header">
+                            <tr>
+                                <th>S No</th>
+                                <th>Name</th>
+                                <th>Created At</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table__body">
+                            <tr v-for="(category, index) in categories"
+                                :key="index">
+                                <td>{{ index + 1 }}</td>
+                                <td>{{ category.name }}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, onMounted } from 'vue'
 import { openModal } from "jenesius-vue-modal";
 import addCategory from './add-category.vue';
+import { useCategoryStore } from '@/stores/category'
+
 
 export default defineComponent({
     setup()
     {
-        const open = async () =>
+        const categoryStore = useCategoryStore()
+        const { getCategories } = categoryStore
+        const open = () => openModal(addCategory)
+
+        const categories = computed(() => categoryStore.get)
+
+        onMounted(async () =>
         {
-            await openModal(addCategory)
-        }
+            await getCategories()
+        })
+
         return {
+            categories,
             open
         }
     },

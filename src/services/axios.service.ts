@@ -1,6 +1,8 @@
 import axios from 'axios';
 import utilService from './util.service';
 import { TYPE } from 'vue-toastification'
+import storageService from './storage.service';
+
 const baseURL = '/api'
 const instance = axios.create({
     baseURL: baseURL,
@@ -8,9 +10,32 @@ const instance = axios.create({
         "Content-Type": "application/json",
     },
 });
+
+instance.interceptors.request.use(function (config: any)
+{
+    if (config.headers == undefined)
+    {
+        config.headers = {}
+    }
+
+    const token = storageService.getProperty('token')
+    if (token)
+    {
+        config.headers.Authorization = `Bearer ${token}`
+        // config.headers = { ...config.headers } as AxiosHeaders;
+        // config.headers.set('Authorization', `Bearer ${token}`)
+    }
+    return config
+}, (error) =>
+{
+    return Promise.reject(error);
+}
+
+)
+
 instance.interceptors.response.use(function (response)
 {
-    if (response.data.isSuccess)
+    if (response.data.isSuccess && response.status == 201)
     {
         utilService.showToast(response.data.message);
     }
