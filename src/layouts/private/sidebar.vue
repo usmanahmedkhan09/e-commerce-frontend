@@ -13,14 +13,23 @@
                 :key="index"
                 @click="handleActiveRoute(route)">
                 <router-link to=""
-                             v-if="route.children?.length"></router-link>
-                <font-awesome-icon class="icon"
-                                   :icon="route.icon" />
-                <span class="">
-                    {{ route.name }}
-                </span>
+                             v-if="route.children?.length">
+                    <font-awesome-icon class="icon"
+                                       :icon="route.icon" />
+                    <span class="">
+                        {{ route.name }}
+                    </span>
+                </router-link>
+                <router-link v-else
+                             :to="route.path">
+                    <font-awesome-icon class="icon"
+                                       :icon="route.icon" />
+                    <span class="">
+                        {{ route.name }}
+                    </span>
+                </router-link>
                 <ul class="nav__link__subMenu"
-                    v-if="route.children?.length && route.isActive">
+                    v-if="route.children?.length && route.isActive && route.showChild">
                     <li class="nav__link__subMenu--link"
                         v-for="(children, index) in route.children"
                         :key="index"
@@ -73,62 +82,26 @@ export default defineComponent({
                 {
                     name: "categories",
                     value: "categories",
-                    path: "/categories",
-                    icon: 'fa-solid fa-store',
+                    path: "/categories/categories-list",
+                    icon: 'fa-solid fa-list-alt',
                     isActive: false,
                     showChild: false,
-                    children: [
-                        {
-                            name: "categories list",
-                            path: "/categories/categories-list",
-                            icon: "fa-solid fa-list",
-                        },
-                        {
-                            name: "add categories",
-                            path: "/categories/add-categories",
-                            icon: "fa-solid fa-add",
-                        },
-                    ]
                 },
                 {
                     name: "brand",
                     value: "brand",
-                    path: "/brand",
-                    icon: 'fa-solid fa-store',
+                    path: "/brands/brands-list",
+                    icon: 'fa-solid fa-copyright',
                     isActive: false,
                     showChild: false,
-                    children: [
-                        {
-                            name: "brands list",
-                            path: "/brands/brands-list",
-                            icon: "fa-solid fa-list",
-                        },
-                        {
-                            name: "add brand",
-                            path: "/brands/add-brands",
-                            icon: "fa-solid fa-add",
-                        },
-                    ]
                 },
                 {
                     name: "series",
                     value: "series",
-                    path: "/series",
-                    icon: 'fa-solid fa-store',
+                    path: "/series/series-list",
+                    icon: 'fa-solid fa-link',
                     isActive: false,
                     showChild: false,
-                    children: [
-                        {
-                            name: "series list",
-                            path: "/series/series-list",
-                            icon: "fa-solid fa-list",
-                        },
-                        {
-                            name: "add series",
-                            path: "/series/add-series",
-                            icon: "fa-solid fa-add",
-                        },
-                    ]
                 },
             ]
         )
