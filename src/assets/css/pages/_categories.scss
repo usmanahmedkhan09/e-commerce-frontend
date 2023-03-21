@@ -1,0 +1,20 @@
+.categories {
+  &__content {
+    margin-top: 24px;
+    padding: 24px;
+  }
+
+  .categoryCard {
+    min-width: 500px;
+
+    &__body {
+      padding: 24px 16px;
+
+      .category__form {
+        .btn {
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,26 @@
 .card {
   background-color: var(--color-white);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 5px;
+  box-shadow: 0 3px 10px rgba(11, 134, 229, 0.27);
+  transition: 0.2s;
+  border-radius: 10px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+
+    &.border-bottom {
+      border-bottom: 1px solid #eeeeee;
+    }
+    h4 {
+      font-size: 2.4rem;
+    }
+  }
+
+  &__body {
+  }
 
   &:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 10px rgba(11, 134, 229, 0.27);
   }
 }

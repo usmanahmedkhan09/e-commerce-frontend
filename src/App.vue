@@ -1,4 +1,5 @@
 <template>
+  <widget-container-modal />
   <component :is="layout"> </component>
 </template>
 <script lang="ts">
@@ -7,9 +8,11 @@ import { useRoute } from 'vue-router'
 import publicLayout from './layouts/public.vue'
 import privateLayout from './layouts/private/private.vue'
 import storageService from './services/storage.service'
+import { container } from "jenesius-vue-modal";
+
 
 export default defineComponent({
-  components: { publicLayout, privateLayout },
+  components: { publicLayout, privateLayout, WidgetContainerModal: container },
   setup()
   {
     const route = useRoute()
