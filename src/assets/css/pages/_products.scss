@@ -1,0 +1,24 @@
+.products {
+  .product__form {
+    padding: 16px 24px;
+
+    .input__wrapper {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+
+      .input {
+        flex: calc(100% / 2);
+      }
+    }
+
+    .button__wrapper {
+      text-align: end;
+      margin-top: 24px;
+
+      .btn {
+        margin-left: auto;
+      }
+    }
+  }
+}
