@@ -1,22 +1,14 @@
 <template>
-    <header class="header">
-        <div class="header__icons">
-            <inline-svg class="bar__icon"
-                        :src="require('@/assets/svg/bar.svg')"
-                        @click="showSidebar = true"></inline-svg>
-            <inline-svg class="logo__icon"
-                        :src="require('@/assets/svg/logo.svg')"></inline-svg>
-        </div>
-    </header>
-    <main class="content">
-        <section class="container">
-            <backdropComponent :class="{ 'open': showSidebar }"
-                               @close="showSidebar = false" />
-            <sidebar :class="{ 'open': showSidebar }"
-                     @close="showSidebar = false"></sidebar>
-            <RouterView></RouterView>
-        </section>
-    </main>
+    <div class="container">
+        <sidebar :class="{ 'open': showSidebar }"
+                 @close="showSidebar = false"></sidebar>
+        <main class="container__content">
+            <div class="topbar"></div>
+            <div class="page__content">
+                <RouterView></RouterView>
+            </div>
+        </main>
+    </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'

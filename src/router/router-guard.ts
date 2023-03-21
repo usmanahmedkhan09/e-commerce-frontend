@@ -19,7 +19,6 @@ function routerGuard(router: any)
         } else if (to.matched.some((record: any) => record.meta.requireAuth))
         {
             let token = storageService.getProperty('token');
-            console.log(token);
             if (token)
             {
                 next()

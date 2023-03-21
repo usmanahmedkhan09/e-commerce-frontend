@@ -17,25 +17,8 @@ export default defineComponent({
     const layout = computed(() =>
     {
       let { meta } = route
-      console.log(meta)
       return meta.layout == 'private' || token.value ? markRaw(privateLayout) : markRaw(publicLayout)
     })
-    // watch(
-    //   () => route.meta,
-    //   async meta =>
-    //   {
-    //     try
-    //     {
-    //       const component = await import(`@/layouts/${meta.layout}.vue`)
-    //       layout.value = component.default ?? publicLayout
-    //       console.log(layout.value)
-    //     } catch (error)
-    //     {
-    //       layout.value = publicLayout
-    //     }
-    //   },
-    //   { immediate: true }
-    // )
     onMounted(() =>
     {
       token.value = storageService.getProperty('token')

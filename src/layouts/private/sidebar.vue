@@ -1,5 +1,11 @@
 <template>
     <section class="sidebar">
+        <header class="header">
+            <div class="header__icons">
+                <inline-svg class="logo__icon"
+                            :src="require('@/assets/svg/logo.svg')"></inline-svg>
+            </div>
+        </header>
         <ul class="nav">
             <li class="nav__link"
                 :class="route.isActive ? 'nav__link--active' : ''"
@@ -34,8 +40,9 @@
     </section>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+
 export default defineComponent({
     components: {},
     setup(props, context)
@@ -162,7 +169,7 @@ export default defineComponent({
             {
                 if (
                     route.path == useRoute().path ||
-                    useRoute().path.includes(route.path)
+                    useRoute().path.includes(route.path) || window.location.pathname.includes(route.path)
                 )
                 {
                     route.isActive = true;
@@ -172,10 +179,13 @@ export default defineComponent({
             });
         };
 
+
         onMounted(() =>
         {
             setInitialRoute()
         })
+
+
         return { routes, handleActiveRoute }
     },
 })
