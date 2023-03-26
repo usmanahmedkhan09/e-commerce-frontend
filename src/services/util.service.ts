@@ -1,4 +1,5 @@
 import { useToast, TYPE } from 'vue-toastification'
+import axios from '@/services/axios.service'
 class Util
 {
     public baseUrl = 'http://localhost:3000/api/'
@@ -32,6 +33,18 @@ class Util
             });
         }
         return { toast };
+    }
+
+    async uploadFileOnServer(file: any)
+    {
+        try
+        {
+            let response = await axios.post('/images/single', file)
+            return response
+        } catch (error)
+        {
+            console.log(error);
+        }
     }
 }
 

@@ -36,7 +36,8 @@
                                 <td>{{ category.name }}</td>
                                 <td>{{ moment(category.createdAt).format("MMM Do YY") }}</td>
                                 <td>
-                                    <button class="btn rounded__icons">
+                                    <button class="btn rounded__icons"
+                                            @click="handleEditCategory(category)">
                                         <font-awesome-icon icon="fa-solid fa-pen-to-square" />
                                     </button>
                                     <button class="btn rounded__icons danger">
@@ -69,6 +70,11 @@ export default defineComponent({
 
         const categories = computed(() => categoryStore.get)
 
+        const handleEditCategory = (category: any) =>
+        {
+            openModal(addCategory, { isCreate: false, category: category })
+        }
+
         onMounted(async () =>
         {
             await getCategories()
@@ -78,7 +84,8 @@ export default defineComponent({
             categories,
             moment,
             utilService,
-            open
+            open,
+            handleEditCategory
         }
     },
 })

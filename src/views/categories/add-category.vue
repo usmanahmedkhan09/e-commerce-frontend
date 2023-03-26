@@ -11,6 +11,9 @@
                            v-model="category.name"
                            class="input"
                            placeholder="Enter a category name">
+                    <input @change="handleImage($event)"
+                           type="file"
+                           class="input">
                     <button class="btn w-100"
                             type="submit">
                         Add Category
@@ -22,15 +25,27 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import Category from '@/models/category.model';
 import { useCategoryStore } from '@/stores/category'
 import { popModal } from "jenesius-vue-modal";
+import utilService from '@/services/util.service';
 
 export default defineComponent({
+    props: {
+        isCreate: {
+            type: Boolean,
+            default: true,
+        },
+        category: {
+            type: Category,
+            default: null
+        }
+
+    },
     setup(props, context)
     {
-        const category = ref(new Category())
+        const category = ref<Category>(new Category())
         const { addCategory } = useCategoryStore()
 
         const sendStateToServer = () =>
@@ -38,7 +53,25 @@ export default defineComponent({
             addCategory(category.value)
             popModal()
         }
-        return { category, sendStateToServer }
+
+        const setInitialState = () =>
+        {
+            if (props.category)
+                category.value = props.category
+        }
+
+        const handleImage = async (event: any) =>
+        {
+            let res = await utilService.uploadFileOnServer(event.target.file)
+            console.log(res)
+        }
+
+        onMounted(() =>
+        {
+            setInitialState()
+        })
+
+        return { category, sendStateToServer, handleImage }
     },
 })
 </script>

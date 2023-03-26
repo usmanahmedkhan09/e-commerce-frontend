@@ -38,11 +38,10 @@
     tr td {
       font-weight: 1.6rem;
       padding: 16px 16px;
-      // display: flex;
+      text-transform: capitalize;
 
       .link {
         color: var(--color-primary-green);
-        // text-decoration: none;
       }
 
       .badges {
