@@ -1,6 +1,7 @@
 import { useToast, TYPE } from 'vue-toastification'
 class Util
 {
+    public baseUrl = 'http://localhost:3000/api/'
     showToast(
         message: string,
         type: TYPE = TYPE.SUCCESS,

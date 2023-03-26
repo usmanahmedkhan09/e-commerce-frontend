@@ -18,6 +18,7 @@
                         <thead class="table__header">
                             <tr>
                                 <th>S No</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Created At</th>
                                 <th>Actions</th>
@@ -27,9 +28,21 @@
                             <tr v-for="(category, index) in categories"
                                 :key="index">
                                 <td>{{ index + 1 }}</td>
+                                <td>
+                                    <img class="image"
+                                         :src="`${utilService.baseUrl}` + category.image"
+                                         alt="">
+                                </td>
                                 <td>{{ category.name }}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ moment(category.createdAt).format("MMM Do YY") }}</td>
+                                <td>
+                                    <button class="btn rounded__icons">
+                                        <font-awesome-icon icon="fa-solid fa-pen-to-square" />
+                                    </button>
+                                    <button class="btn rounded__icons danger">
+                                        <font-awesome-icon icon="fa-solid fa-trash" />
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -43,6 +56,8 @@ import { computed, defineComponent, onMounted } from 'vue'
 import { openModal } from "jenesius-vue-modal";
 import addCategory from './add-category.vue';
 import { useCategoryStore } from '@/stores/category'
+import moment from 'moment'
+import utilService from '@/services/util.service';
 
 
 export default defineComponent({
@@ -61,6 +76,8 @@ export default defineComponent({
 
         return {
             categories,
+            moment,
+            utilService,
             open
         }
     },
