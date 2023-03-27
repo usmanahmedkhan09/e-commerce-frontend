@@ -37,9 +37,11 @@ class Util
 
     async uploadFileOnServer(file: any)
     {
+        let form = new FormData()
+        form.append('image', file[0])
         try
         {
-            let response = await axios.post('/images/single', file)
+            let response = await axios.post(`/image/single`, form, { headers: { 'Content-Type': 'multipart/form-data' } })
             return response
         } catch (error)
         {

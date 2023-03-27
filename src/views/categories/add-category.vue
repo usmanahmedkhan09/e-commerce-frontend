@@ -2,7 +2,7 @@
     <div class="categories">
         <div class="card categoryCard">
             <div class="card__header border-bottom">
-                <h4>Add Category</h4>
+                <h4> {{ isCreate ? 'Add' : 'Update' }} Category</h4>
             </div>
             <div class="categoryCard__body">
                 <form class="category__form"
@@ -16,7 +16,7 @@
                            class="input">
                     <button class="btn w-100"
                             type="submit">
-                        Add Category
+                        {{ isCreate ? 'Add' : 'Update' }} Category
                     </button>
                 </form>
 
@@ -46,11 +46,15 @@ export default defineComponent({
     setup(props, context)
     {
         const category = ref<Category>(new Category())
-        const { addCategory } = useCategoryStore()
+        const { addCategory, updateCategory } = useCategoryStore()
 
         const sendStateToServer = () =>
         {
-            addCategory(category.value)
+            if (props.isCreate)
+                addCategory(category.value)
+            else
+                updateCategory(category.value)
+
             popModal()
         }
 
@@ -62,8 +66,9 @@ export default defineComponent({
 
         const handleImage = async (event: any) =>
         {
-            let res = await utilService.uploadFileOnServer(event.target.file)
-            console.log(res)
+
+            let res: any = await utilService.uploadFileOnServer(event.target.files)
+            category.value.image = res.data.path
         }
 
         onMounted(() =>

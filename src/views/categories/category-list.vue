@@ -40,7 +40,8 @@
                                             @click="handleEditCategory(category)">
                                         <font-awesome-icon icon="fa-solid fa-pen-to-square" />
                                     </button>
-                                    <button class="btn rounded__icons danger">
+                                    <button class="btn rounded__icons danger"
+                                            @click="deleteCategory(category._id)">
                                         <font-awesome-icon icon="fa-solid fa-trash" />
                                     </button>
                                 </td>
@@ -59,16 +60,17 @@ import addCategory from './add-category.vue';
 import { useCategoryStore } from '@/stores/category'
 import moment from 'moment'
 import utilService from '@/services/util.service';
+import type Category from '@/models/category.model';
 
 
 export default defineComponent({
     setup()
     {
         const categoryStore = useCategoryStore()
-        const { getCategories } = categoryStore
+        const { getCategories, deleteCategory } = categoryStore
         const open = () => openModal(addCategory)
 
-        const categories = computed(() => categoryStore.get)
+        const categories = computed<Category[]>(() => categoryStore.get)
 
         const handleEditCategory = (category: any) =>
         {
@@ -85,7 +87,8 @@ export default defineComponent({
             moment,
             utilService,
             open,
-            handleEditCategory
+            handleEditCategory,
+            deleteCategory
         }
     },
 })
