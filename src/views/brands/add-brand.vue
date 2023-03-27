@@ -9,13 +9,13 @@
                     <input type="text"
                            class="input"
                            placeholder="Enter a brand name">
-                    <select class="input"
-                            name="categoryId"
-                            id="categoryId">
-                        <option value=""
-                                selected
-                                disabled>Select a category</option>
-                    </select>
+                    <multiselect v-model="brand.categories"
+                                 :options="categories"
+                                 :multiple="true"
+                                 track-by="name"
+                                 placeholder="Select a category"
+                                 label="name"
+                                 value="_id"></multiselect>
                     <button class="btn w-100">
                         Add Brand
                     </button>
@@ -26,12 +26,33 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
+import { useBrandStore } from '@/stores/brand.store'
+import { useCategoryStore } from '@/stores/category'
+import type Category from '@/models/category.model'
+import Brand from '@/models/brand.model'
+
 
 export default defineComponent({
     setup()
     {
-        return {}
+        const brand = ref(new Brand())
+        const brandStore = useBrandStore()
+        const { get, getBrands } = brandStore
+
+        const categoryStore = useCategoryStore()
+        const { getCategories } = categoryStore
+
+        const categories = computed<Category[]>(() => categoryStore.get)
+        onMounted(async () =>
+        {
+            await getCategories()
+        })
+
+        return {
+            categories,
+            brand
+        }
     },
 })
 </script>

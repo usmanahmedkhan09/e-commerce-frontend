@@ -29,6 +29,7 @@
     "vite-plugin-require": "^1.1.10",
     "vue": "^3.2.47",
     "vue-inline-svg": "^3.1.2",
+    "vue-multiselect": "^3.0.0-beta.1",
     "vue-router": "^4.1.6",
     "vue-toastification": "^2.0.0-rc.5"
   },

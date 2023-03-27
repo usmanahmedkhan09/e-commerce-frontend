@@ -22,3 +22,42 @@
     min-height: 150px;
   }
 }
+
+.multiselect {
+  .multiselect__tags {
+    border: 0.1rem solid #d1d1d1;
+    border-radius: 0.4rem;
+    height: 3.8rem;
+    padding: 0.6rem 1rem;
+    font-size: 1.6rem;
+    border-left-color: #d6d6d6;
+    border-left-width: thick;
+    color: var(--color-grey);
+
+    .multiselect__tag {
+      background: var(--color-primary-blue);
+
+      .multiselect__tag-icon {
+        &:hover {
+          background: var(--color-primary-blue);
+        }
+      }
+    }
+  }
+
+  &.multiselect--active {
+    .multiselect__tags {
+      border: 1px solid var(--color-primary-blue);
+      outline: 1px solid var(--color-primary-blue);
+      border-left: 3px solid var(--color-primary-blue);
+    }
+  }
+
+  .multiselect__option--highlight {
+    background: var(--color-primary-blue);
+
+    &::after {
+      background: var(--color-primary-blue);
+    }
+  }
+}

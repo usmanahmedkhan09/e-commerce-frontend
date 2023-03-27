@@ -16,6 +16,7 @@ import './assets/css/_index.scss'
 import './validations/validators'
 
 import routerGuard from './router/router-guard';
+import Multiselect from 'vue-multiselect'
 
 const app = createApp(App)
 
@@ -26,7 +27,7 @@ library.add(fas)
 app.use(createPinia())
 app.use(Toast)
 app.use(router)
-
+app.component('multiselect', Multiselect)
 app.component("font-awesome-icon", FontAwesomeIcon)
 app.component('inline-svg', InlineSvg);
 
