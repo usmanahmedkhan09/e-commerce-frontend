@@ -68,12 +68,12 @@ export default defineComponent({
                     showChild: false,
                     children: [
                         {
-                            name: "product list",
+                            name: "Product List",
                             path: "/products/products-list",
                             icon: "fa-solid fa-list",
                         },
                         {
-                            name: "product list",
+                            name: "Add Product",
                             path: "/products/add-products",
                             icon: "fa-solid fa-add",
                         },

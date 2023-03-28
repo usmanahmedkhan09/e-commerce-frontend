@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from '@/services/axios.service'
 import type Brand from '@/models/brand.model'
-import utilService from '@/services/util.service'
-import { TYPE } from 'vue-toastification'
+
 
 export const useBrandStore = defineStore('brand', {
     state: () =>
@@ -12,7 +11,18 @@ export const useBrandStore = defineStore('brand', {
         }
     },
     getters: {
-        get: (state) => state.brands as Brand[]
+        get: (state) => state.brands as Brand[],
+
+        getBrandByCategory(state) 
+        {
+            return (id: string) => state.brands.filter((brand: any) =>
+            {
+                if (brand.categories.some((x: any) => x._id == id))
+                {
+                    return brand
+                }
+            })
+        }
     },
     actions: {
         async addBrand(brand: Brand)
