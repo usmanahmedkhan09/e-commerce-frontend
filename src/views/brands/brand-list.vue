@@ -48,7 +48,8 @@
                                             @click="addBrandModal(false, brand)">
                                         <font-awesome-icon icon="fa-solid fa-pen-to-square" />
                                     </button>
-                                    <button class="btn rounded__icons danger">
+                                    <button class="btn rounded__icons danger"
+                                            @click="deleteBrand(brand._id)">
                                         <font-awesome-icon icon="fa-solid fa-trash" />
                                     </button>
                                 </td>
@@ -71,7 +72,7 @@ export default defineComponent({
     setup()
     {
         const brandStore = useBrandStore()
-        const { getBrands } = brandStore
+        const { getBrands, deleteBrand } = brandStore
 
         const brands = computed<any[]>(() => brandStore.get)
 
@@ -92,7 +93,8 @@ export default defineComponent({
         return {
             addBrandModal,
             brands,
-            moment
+            moment,
+            deleteBrand
         }
     },
 })

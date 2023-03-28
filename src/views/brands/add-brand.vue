@@ -2,7 +2,7 @@
     <div class="categories">
         <div class="card categoryCard">
             <div class="card__header border-bottom">
-                <h4>Add Brand</h4>
+                <h4>{{ isCreate ? 'Add' : 'Update' }} Brand</h4>
             </div>
             <div class="categoryCard__body">
                 <form class="category__form"
@@ -21,7 +21,7 @@
                     <button type="submit"
                             class="btn w-100"
                             @click="sendStateToServer">
-                        Add Brand
+                        {{ isCreate ? 'Add' : 'Update' }} Brand
                     </button>
                 </form>
 
@@ -53,7 +53,7 @@ export default defineComponent({
     {
         const brand = ref(new Brand())
         const brandStore = useBrandStore()
-        const { get, getBrands, updateBrand } = brandStore
+        const { get, getBrands, updateBrand, addBrand } = brandStore
 
         const categoryStore = useCategoryStore()
         const { getCategories } = categoryStore
@@ -71,7 +71,7 @@ export default defineComponent({
         {
             if (props.isCreate)
             {
-
+                addBrand(brand.value)
             } else
             {
                 updateBrand(brand.value)

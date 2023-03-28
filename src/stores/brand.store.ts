@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 import axios from '@/services/axios.service'
 import type Brand from '@/models/brand.model'
+import utilService from '@/services/util.service'
+import { TYPE } from 'vue-toastification'
 
 export const useBrandStore = defineStore('brand', {
     state: () =>
@@ -13,14 +15,14 @@ export const useBrandStore = defineStore('brand', {
         get: (state) => state.brands as Brand[]
     },
     actions: {
-        // async addCategory(category: Category)
-        // {
-        //     let response: any = await axios.post('category/addCategory', category)
-        //     if (response.isSuccess)
-        //     {
-        //         this.categories.unshift({ ...response.data })
-        //     }
-        // },
+        async addBrand(brand: Brand)
+        {
+            let response: any = await axios.post('brand/addBrand', brand)
+            if (response.isSuccess)
+            {
+                this.brands.unshift({ ...response.data })
+            }
+        },
 
         async updateBrand(brand: Brand)
         {
@@ -42,14 +44,17 @@ export const useBrandStore = defineStore('brand', {
             }
         },
 
-        // async deleteCategory(categoryId: Category)
-        // {
-        //     let response: any = await axios.delete('category/deleteCategory', { data: { categoryId: categoryId } })
-        //     let index = this.categories.findIndex((x: any) => x._id == response.data._id)
-        //     if (index != -1)
-        //     {
-        //         this.categories.splice(index, 1)
-        //     }
-        // }
+        async deleteBrand(brandId: Brand)
+        {
+            let response: any = await axios.delete('brand/deleteBrand', { data: { brandId: brandId } })
+            if (response.isSuccess)
+            {
+                let index = this.brands.findIndex((x: any) => x._id == brandId)
+                if (index != -1)
+                    this.brands.splice(index, 1)
+
+            }
+
+        }
     }
 })
