@@ -24,6 +24,7 @@ export const useBrandStore = defineStore('brand', {
 
         async updateBrand(brand: Brand)
         {
+            brand.categories = brand.categories.map((x: any) => x._id) as any
             let response: any = await axios.put(`brand/updateBrand/${brand._id}`, brand)
             let index = this.brands.findIndex((x: any) => x._id == response.data._id)
             if (index != -1)

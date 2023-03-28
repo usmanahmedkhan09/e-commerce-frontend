@@ -11,7 +11,7 @@
                 <div class="card__header border-bottom">
                     <h4>All Brands</h4>
                     <button class="btn"
-                            @click="open">Add Brand</button>
+                            @click="addBrandModal">Add Brand</button>
                 </div>
                 <div class="card__body">
                     <table class="table">
@@ -44,7 +44,8 @@
                                 </td>
                                 <td>{{ moment(brand.createdAt).format("MMM Do YY") }}</td>
                                 <td>
-                                    <button class="btn rounded__icons">
+                                    <button class="btn rounded__icons"
+                                            @click="addBrandModal(false, brand)">
                                         <font-awesome-icon icon="fa-solid fa-pen-to-square" />
                                     </button>
                                     <button class="btn rounded__icons danger">
@@ -72,11 +73,16 @@ export default defineComponent({
         const brandStore = useBrandStore()
         const { getBrands } = brandStore
 
-        const brands = computed(() => brandStore.get)
-        const open = async () =>
+        const brands = computed<any[]>(() => brandStore.get)
+
+        const addBrandModal = async (isCreate: Boolean = true, brand = null) =>
         {
-            await openModal(addBrand)
+            if (isCreate)
+                await openModal(addBrand)
+            else
+                await openModal(addBrand, { brand: brand, isCreate: isCreate })
         }
+
 
         onMounted(async () =>
         {
@@ -84,7 +90,7 @@ export default defineComponent({
         })
 
         return {
-            open,
+            addBrandModal,
             brands,
             moment
         }

@@ -35,7 +35,7 @@ instance.interceptors.request.use(function (config: any)
 
 instance.interceptors.response.use(function (response)
 {
-    if (response.data.isSuccess && response.status == 201 || response.status == 200)
+    if (response.data.isSuccess && response.data.message && (response.status == 201 || response.status == 200))
     {
         utilService.showToast(response.data.message);
     }
