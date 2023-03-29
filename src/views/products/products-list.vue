@@ -31,7 +31,7 @@
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ product.name }}</td>
                                 <td>{{ product.price }}</td>
-                                <td>{{ product.brand!.name }}</td>
+                                <td>{{ product.brand.name }}</td>
                                 <td>{{ product.quantity }}</td>
                                 <td>{{ moment(product.createdAt).format("MMM Do YY") }}</td>
                                 <td>
@@ -42,7 +42,8 @@
                                             @click="router.push(`/products/edit-products/${product._id}`)">
                                         <font-awesome-icon icon="fa-solid fa-pen-to-square" />
                                     </button>
-                                    <button class="btn rounded__icons danger">
+                                    <button class="btn rounded__icons danger"
+                                            @click="deleteProduct(product._id)">
                                         <font-awesome-icon icon="fa-solid fa-trash" />
                                     </button>
                                 </td>
@@ -67,16 +68,16 @@ export default defineComponent({
     {
         const router = useRouter()
         const productStore = useproductStore()
-        const { getProducts } = productStore
+        const { getProducts, deleteProduct } = productStore
 
-        const products = computed(() => productStore.get)
+        const products = computed<any>(() => productStore.get)
 
         onMounted(async () =>
         {
             await getProducts()
         })
 
-        return { products, moment, router }
+        return { products, moment, router, deleteProduct }
     },
 })
 </script>

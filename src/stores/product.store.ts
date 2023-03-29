@@ -23,16 +23,15 @@ export const useproductStore = defineStore('product', {
             }
         },
 
-        // async updateBrand(brand: Brand)
-        // {
-        //     brand.categories = brand.categories.map((x: any) => x._id) as any
-        //     let response: any = await axios.put(`brand/updateBrand/${brand._id}`, brand)
-        //     let index = this.brands.findIndex((x: any) => x._id == response.data._id)
-        //     if (index != -1)
-        //     {
-        //         this.brands.splice(index, 1, { ...response.data })
-        //     }
-        // },
+        async updateProduct(product: Product)
+        {
+            let response: any = await axios.put(`product/update`, product)
+            let index = this.products.findIndex((x: any) => x._id == response.data._id)
+            if (index != -1)
+            {
+                this.products.splice(index, 1, { ...response.data })
+            }
+        },
 
         async getProducts()
         {
@@ -50,19 +49,19 @@ export const useproductStore = defineStore('product', {
             {
                 return response.data
             }
+        },
+
+        async deleteProduct(productId: Product)
+        {
+            let response: any = await axios.delete(`product/deleteProduct`, { data: { productId: productId } })
+            if (response.isSuccess)
+            {
+                let index = this.products.findIndex((x: any) => x._id == productId)
+                if (index != -1)
+                    this.products.splice(index, 1)
+
+            }
+
         }
-
-        // async deleteBrand(brandId: Brand)
-        // {
-        //     let response: any = await axios.delete('brand/deleteBrand', { data: { brandId: brandId } })
-        //     if (response.isSuccess)
-        //     {
-        //         let index = this.brands.findIndex((x: any) => x._id == brandId)
-        //         if (index != -1)
-        //             this.brands.splice(index, 1)
-
-        //     }
-
-        // }
     }
 })

@@ -10,6 +10,7 @@ class Product
     categoryId: string | undefined
     brandId: string | undefined
     seriesId: string | undefined
+    productId?: string | undefined
 }
 
 export default Product

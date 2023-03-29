@@ -110,7 +110,7 @@ export default defineComponent({
         const isEdit = ref(false)
         const product = ref(new Product())
         const productStore = useproductStore()
-        const { addProduct, getProducts, getProductById } = productStore
+        const { addProduct, getProducts, getProductById, updateProduct } = productStore
 
         const categoryStore = useCategoryStore()
         const { getCategories } = categoryStore
@@ -131,7 +131,17 @@ export default defineComponent({
 
         const sendStateToServer = () =>
         {
-            addProduct(product.value)
+            if (!isEdit.value)
+            {
+                addProduct(product.value)
+            }
+            else
+            {
+                product.value["productId"] = product.value._id
+                updateProduct(product.value)
+            }
+
+
         }
 
         const setInitialState = async () =>
