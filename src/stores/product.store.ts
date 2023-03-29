@@ -33,14 +33,14 @@ export const useproductStore = defineStore('product', {
         //     }
         // },
 
-        // async getBrands()
-        // {
-        //     let response: any = await axios.get('brand')
-        //     if (response.isSuccess)
-        //     {
-        //         this.brands = [...response.data]
-        //     }
-        // },
+        async getProducts()
+        {
+            let response: any = await axios.get('product')
+            if (response.isSuccess)
+            {
+                this.products = [...response.data]
+            }
+        },
 
         // async deleteBrand(brandId: Brand)
         // {
