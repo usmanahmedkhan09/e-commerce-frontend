@@ -38,7 +38,8 @@
                                     <button class="btn rounded__icons">
                                         <font-awesome-icon icon="fa-solid fa-eye" />
                                     </button>
-                                    <button class="btn rounded__icons">
+                                    <button class="btn rounded__icons"
+                                            @click="router.push(`/products/edit-products/${product._id}`)">
                                         <font-awesome-icon icon="fa-solid fa-pen-to-square" />
                                     </button>
                                     <button class="btn rounded__icons danger">
@@ -58,22 +59,24 @@ import { computed, defineComponent, onMounted } from 'vue'
 import moment from 'moment'
 import utilService from '@/services/util.service';
 import { useproductStore } from '@/stores/product.store'
-
+import { useRouter } from 'vue-router'
 
 
 export default defineComponent({
     setup()
     {
+        const router = useRouter()
         const productStore = useproductStore()
         const { getProducts } = productStore
 
         const products = computed(() => productStore.get)
+
         onMounted(async () =>
         {
             await getProducts()
         })
 
-        return { products, moment }
+        return { products, moment, router }
     },
 })
 </script>

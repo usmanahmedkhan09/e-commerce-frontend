@@ -23,6 +23,11 @@ const router = createRouter({
           path: '/products/add-products',
           component: () => import('../views/products/add-product.vue'),
           meta: { layout: 'private', requireAuth: true },
+        },
+        {
+          path: '/products/edit-products/:id',
+          component: () => import('../views/products/add-product.vue'),
+          meta: { layout: 'private', requireAuth: true },
         }
       ]
     },

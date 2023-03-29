@@ -48,13 +48,16 @@ instance.interceptors.response.use(function (response)
     if (!response.data.isSuccess)
     {
         let { errorsData } = response.data
-        if (errorsData.length > 0)
+        if (errorsData && errorsData.length > 0)
         {
             errorsData.forEach((item: any) =>
             {
                 utilService.showToast(item.msg, TYPE.ERROR)
             })
         }
+        utilService.showToast(response.data.message ?? response.message, TYPE.ERROR);
+    } else
+    {
         utilService.showToast(response.data.message, TYPE.ERROR);
     }
     return response.data

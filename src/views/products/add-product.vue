@@ -2,7 +2,7 @@
     <div class="products">
         <div class="card">
             <div class="card__header border-bottom">
-                <h4>Add Product</h4>
+                <h4>{{ isEdit ? 'Update' : 'Add' }} Product</h4>
                 <button class="btn">Back To Products</button>
             </div>
             <div class="card__body">
@@ -86,7 +86,7 @@
                     </div>
                     <div class="button__wrapper">
                         <button class="btn"
-                                type="submit">Add Product</button>
+                                type="submit">{{ isEdit ? 'Update' : 'Add' }} Product</button>
                     </div>
                 </form>
             </div>
@@ -100,14 +100,17 @@ import { useproductStore } from '@/stores/product.store'
 import { useCategoryStore } from '@/stores/category'
 import { useBrandStore } from '@/stores/brand.store'
 import utilService from '@/services/util.service';
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
     setup()
     {
+        const route = useRoute()
         const color = ref('')
+        const isEdit = ref(false)
         const product = ref(new Product())
         const productStore = useproductStore()
-        const { addProduct } = productStore
+        const { addProduct, getProducts, getProductById } = productStore
 
         const categoryStore = useCategoryStore()
         const { getCategories } = categoryStore
@@ -131,13 +134,27 @@ export default defineComponent({
             addProduct(product.value)
         }
 
+        const setInitialState = async () =>
+        {
+            if (route.params.id)
+            {
+                isEdit.value = true
+                let res: any = await getProductById(route.params.id) as Product
+                product.value = res
+                product.value["categoryId"] = res.category
+                product.value.brandId = res.brand
+            }
+        }
+
         onMounted(async () =>
         {
+            await getProducts()
             await getCategories()
             await getBrands()
+            setInitialState()
         })
 
-        return { product, categories, brands, utilService, color, sendStateToServer, uploadImages }
+        return { product, categories, brands, utilService, color, isEdit, sendStateToServer, uploadImages }
     },
 })
 </script>

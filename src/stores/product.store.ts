@@ -10,7 +10,8 @@ export const useproductStore = defineStore('product', {
         }
     },
     getters: {
-        get: (state) => state.products as Product[]
+        get: (state) => state.products as Product[],
+
     },
     actions: {
         async addProduct(product: Product)
@@ -41,6 +42,15 @@ export const useproductStore = defineStore('product', {
                 this.products = [...response.data]
             }
         },
+
+        async getProductById(productId: any)
+        {
+            let response: any = await axios.get(`product/${productId}`)
+            if (response.isSuccess)
+            {
+                return response.data
+            }
+        }
 
         // async deleteBrand(brandId: Brand)
         // {
