@@ -77,11 +77,15 @@
 
                     <div class="imagesContainer">
                         <div class="images"
-                             v-for="image in product.productImages"
-                             :key="image.name">
+                             v-for="(image, index) in product.productImages"
+                             :key="index">
                             <img class="image"
                                  :src="`${utilService.baseUrl}` + image.path"
                                  alt="">
+                            <div class="icon__wrapper"
+                                 @click="removeMedia(index, image)">
+                                <font-awesome-icon icon="fa-solid fa-minus" />
+                            </div>
                         </div>
                     </div>
                     <div class="button__wrapper">
@@ -156,6 +160,16 @@ export default defineComponent({
             }
         }
 
+        const removeMedia = async (index: any, image: any) =>
+        {
+
+            if (isEdit.value)
+            {
+                product.value.productImages.splice(index, 1)
+                sendStateToServer()
+            }
+            await utilService.removeMedia(image.fileName, image.path)
+        }
         onMounted(async () =>
         {
             await getProducts()
@@ -164,7 +178,7 @@ export default defineComponent({
             setInitialState()
         })
 
-        return { product, categories, brands, utilService, color, isEdit, sendStateToServer, uploadImages }
+        return { product, categories, brands, utilService, color, isEdit, sendStateToServer, uploadImages, removeMedia }
     },
 })
 </script>

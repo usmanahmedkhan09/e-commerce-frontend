@@ -10,7 +10,7 @@
                 <form @submit="onSubmit">
                     <Field v-model="user.name"
                            name="name"
-                           rules="required|alpha_num|username:3"
+                           rules="required|username:3"
                            class="input"
                            placeholder="Enter your name"
                            type="text" />

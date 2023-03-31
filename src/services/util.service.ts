@@ -48,6 +48,18 @@ class Util
             console.log(error);
         }
     }
+
+    async removeMedia(name: any, path: any)
+    {
+        try
+        {
+            let response = await axios.delete(`/image/removeImage`, { data: { name: name, path: path } })
+            return response
+        } catch (error)
+        {
+            console.log(error);
+        }
+    }
 }
 
 export default new Util()
