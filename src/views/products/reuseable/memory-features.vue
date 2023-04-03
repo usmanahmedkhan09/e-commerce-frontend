@@ -6,21 +6,9 @@
                placeholder="Enter product internal memory size"
                required>
         <input v-model="product.memory.ram"
-               type="number"
+               type="text"
                placeholder="Enter product ram"
                class="input">
-    </div>
-    <div class="input__wrapper">
-        <input v-model="product.memory.card"
-               type="radio"
-               class="input"
-               placeholder="Enter product screen type"
-               required>
-        <input v-model="product.performance.processor"
-               type="text"
-               class="input"
-               placeholder="Enter product proccessor"
-               required>
     </div>
     <div class="input__wrapper">
         <input v-model="product.battery.type"
@@ -33,6 +21,32 @@
                class="input"
                placeholder="Enter product proccessor"
                required>
+    </div>
+    <div class="">
+        <p for="card"
+           id="card">Memory Card</p>
+        <input type="radio"
+               id="html"
+               name="fav_language"
+               :value="true">
+        <label for="html">Yes</label> <br>
+        <input type="radio"
+               id="memory"
+               name="fav_language"
+               :value="false">
+        <label for="memory">No</label><br>
+        <!-- <input v-model="product.memory.card"
+               type="radio"
+               class=""
+               placeholder="Enter product screen type"
+               required>
+        <input :value="false"
+               v-model="product.memory.card"
+               type="radio"
+               class=""
+               name="card"
+               placeholder="Enter product screen type"
+               required> -->
     </div>
 </template>
 <script lang="ts">

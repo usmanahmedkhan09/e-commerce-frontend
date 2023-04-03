@@ -8,7 +8,9 @@
             <div class="card__body">
                 <form class="product__form"
                       @submit.prevent="sendStateToServer">
-                    <generalInfo />
+                    <!-- <generalInfo /> -->
+                    <!-- <displayFeatures /> -->
+                    <memoryFeatures />
                     <div class="button__wrapper">
                         <button class="btn"
                                 type="submit">Next</button>
@@ -24,12 +26,14 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useproductStore } from '@/stores/product.store'
 import generalInfo from './reuseable/general-info.vue';
+import displayFeatures from './reuseable/display-features.vue';
+import memoryFeatures from './reuseable/memory-features.vue';
 
 import utilService from '@/services/util.service';
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
-    components: { generalInfo },
+    components: { generalInfo, displayFeatures, memoryFeatures },
     setup()
     {
         const route = useRoute()
