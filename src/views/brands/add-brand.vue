@@ -6,7 +6,7 @@
             </div>
             <div class="categoryCard__body">
                 <form class="category__form"
-                      @click.prevent.stop="">
+                      @submit.prevent.stop="sendStateToServer">
                     <input v-model="brand.name"
                            type="text"
                            class="input"
@@ -19,8 +19,7 @@
                                  label="name"
                                  openDirection="bottom" />
                     <button type="submit"
-                            class="btn w-100"
-                            @click="sendStateToServer">
+                            class="btn w-100">
                         {{ isCreate ? 'Add' : 'Update' }} Brand
                     </button>
                 </form>

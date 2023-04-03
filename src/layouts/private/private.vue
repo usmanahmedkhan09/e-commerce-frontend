@@ -5,7 +5,7 @@
         <main class="container__content">
             <div class="topbar"></div>
             <div class="page__content">
-                <RouterView></RouterView>
+                <RouterView :key="$route.path"></RouterView>
             </div>
         </main>
     </div>

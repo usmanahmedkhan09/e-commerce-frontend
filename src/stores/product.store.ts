@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 import axios from '@/services/axios.service'
-import type Product from '@/models/product.model'
+import Product from '@/models/product.model'
 
 export const useproductStore = defineStore('product', {
     state: () =>
     {
         return {
+            product: ref(new Product()),
             products: [] as Product[]
         }
     },
