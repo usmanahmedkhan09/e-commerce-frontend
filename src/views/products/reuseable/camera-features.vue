@@ -3,36 +3,52 @@
         <input v-model="product.camera.frontCamera"
                type="text"
                class="input"
-               placeholder="Enter product front camera size"
+               placeholder="Enter specified value"
                required>
         <input v-model="product.camera.backCamera"
                type="text"
-               placeholder="Enter product ram"
+               placeholder="Enter specified value"
                class="input">
     </div>
     <div class="input__wrapper">
-        <input v-model="product.camera.backflashlight"
-               type="radio"
-               class="input"
-               placeholder="Enter product screen type"
-               required>
-        <input v-model="product.camera.frontflashlight"
-               type="radio"
-               class="input"
-               placeholder="Enter product proccessor"
-               required>
-    </div>
-    <div class="input__wrapper">
         <input v-model="product.camera.backvideorecording"
-               type="radio"
+               type="text"
                class="input"
-               placeholder="Enter product battery type"
+               placeholder="Enter specified value"
                required>
         <input v-model="product.camera.frontvideorecording"
-               type="radio"
+               type="text"
                class="input"
-               placeholder="Enter product proccessor"
+               placeholder="Enter specified value"
                required>
+    </div>
+    <div class="">
+        <p for="card"
+           id="card">Front Flash Light:</p>
+        <input type="radio"
+               id="html"
+               name="fav_language"
+               :value="true">
+        <label for="html">Yes</label> <br>
+        <input type="radio"
+               id="memory"
+               name="fav_language"
+               :value="false">
+        <label for="memory">No</label><br>
+    </div>
+    <div class="">
+        <p for="card"
+           id="card">Back Flash Light:</p>
+        <input type="radio"
+               id="html"
+               name="fav_language"
+               :value="true">
+        <label for="html">Yes</label> <br>
+        <input type="radio"
+               id="memory"
+               name="fav_language"
+               :value="false">
+        <label for="memory">No</label><br>
     </div>
 </template>
 <script lang="ts">

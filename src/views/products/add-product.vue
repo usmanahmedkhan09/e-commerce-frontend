@@ -10,7 +10,9 @@
                       @submit.prevent="sendStateToServer">
                     <!-- <generalInfo /> -->
                     <!-- <displayFeatures /> -->
-                    <memoryFeatures />
+                    <!-- <memoryFeatures /> -->
+                    <!-- <cameraFeatures /> -->
+                    <connectivityFeatures />
                     <div class="button__wrapper">
                         <button class="btn"
                                 type="submit">Next</button>
@@ -28,12 +30,14 @@ import { useproductStore } from '@/stores/product.store'
 import generalInfo from './reuseable/general-info.vue';
 import displayFeatures from './reuseable/display-features.vue';
 import memoryFeatures from './reuseable/memory-features.vue';
+import cameraFeatures from './reuseable/camera-features.vue';
+import connectivityFeatures from './reuseable/connectivity-features.vue';
 
 import utilService from '@/services/util.service';
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
-    components: { generalInfo, displayFeatures, memoryFeatures },
+    components: { generalInfo, displayFeatures, memoryFeatures, cameraFeatures, connectivityFeatures },
     setup()
     {
         const route = useRoute()

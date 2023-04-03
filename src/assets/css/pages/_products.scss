@@ -10,6 +10,16 @@
       .input {
         flex: calc(100% / 2);
       }
+
+      &.align__start {
+        justify-content: flex-start;
+        gap: 24px;
+        max-width: 500px;
+
+        .item {
+          flex: calc(100% / 3);
+        }
+      }
     }
 
     .button__wrapper {

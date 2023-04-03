@@ -35,18 +35,6 @@
                name="fav_language"
                :value="false">
         <label for="memory">No</label><br>
-        <!-- <input v-model="product.memory.card"
-               type="radio"
-               class=""
-               placeholder="Enter product screen type"
-               required>
-        <input :value="false"
-               v-model="product.memory.card"
-               type="radio"
-               class=""
-               name="card"
-               placeholder="Enter product screen type"
-               required> -->
     </div>
 </template>
 <script lang="ts">

@@ -1,38 +1,159 @@
 <template>
-    <div class="input__wrapper">
-        <input v-model="product.connectivity.bluetooth"
-               type="radio"
-               class="input"
-               placeholder="Enter product front camera size"
-               required>
-        <input v-model="product.connectivity['3g']"
-               type="radio"
-               placeholder="Enter product ram"
-               class="input">
+    <tr>
+        <td>
+            <p for="card"
+               id="card"
+               class="item">Bluetooth:</p>
+        </td>
+        <td>
+            <input type="radio"
+                   id="html"
+                   name="fav_language"
+                   :value="true">
+            <label for="html">Yes</label>
+        </td>
+        <td>
+            <input type="radio"
+                   id="memory"
+                   name="fav_language"
+                   :value="false">
+            <label for="memory">No</label>
+        </td>
+    </tr>
+    <div class="input__wrapper align__start">
+        <p for="card"
+           id="card"
+           class="item">Bluetooth:</p>
+        <div class="item">
+            <input type="radio"
+                   id="html"
+                   name="fav_language"
+                   :value="true">
+            <label for="html">Yes</label>
+        </div>
+        <div class="item">
+            <input type="radio"
+                   id="memory"
+                   name="fav_language"
+                   :value="false">
+            <label for="memory">No</label>
+        </div>
+
     </div>
-    <div class="input__wrapper">
-        <input v-model="product.connectivity['4G/LTE']"
-               type="radio"
-               class="input"
-               placeholder="Enter product screen type"
-               required>
-        <input v-model="product.connectivity['5G']"
-               type="radio"
-               class="input"
-               placeholder="Enter product proccessor"
-               required>
+    <div class="input__wrapper align__start">
+        <p for="card"
+           id="card">3G</p>
+        <div>
+            <input type="radio"
+                   id="html"
+                   name="fav_language"
+                   :value="true">
+            <label for="html">Yes</label>
+        </div>
+        <div>
+            <input type="radio"
+                   id="memory"
+                   name="fav_language"
+                   :value="false">
+            <label for="memory">No</label>
+        </div>
+
     </div>
-    <div class="input__wrapper">
-        <input v-model="product.connectivity.radio"
-               type="radio"
-               class="input"
-               placeholder="Enter product battery type"
-               required>
-        <input v-model="product.connectivity.NFC"
-               type="radio"
-               class="input"
-               placeholder="Enter product proccessor"
-               required>
+    <div class="input__wrapper align__start">
+        <p for="card"
+           id="card">4G/LTE</p>
+        <div>
+            <input type="radio"
+                   id="html"
+                   name="fav_language"
+                   :value="true">
+            <label for="html">Yes</label>
+        </div>
+        <div>
+            <input type="radio"
+                   id="memory"
+                   name="fav_language"
+                   :value="false">
+            <label for="memory">No</label>
+        </div>
+
+
+    </div>
+    <div class="input__wrapper align__start">
+        <p for="card"
+           id="card">5G</p>
+        <div>
+            <input type="radio"
+                   id="html"
+                   name="fav_language"
+                   :value="true">
+            <label for="html">Yes</label>
+        </div>
+        <div>
+            <input type="radio"
+                   id="memory"
+                   name="fav_language"
+                   :value="false">
+            <label for="memory">No</label>
+        </div>
+
+    </div>
+    <div class="input__wrapper align__start">
+        <p for="card"
+           id="card">Radio</p>
+        <div>
+            <input type="radio"
+                   id="html"
+                   name="fav_language"
+                   :value="true">
+            <label for="html">Yes</label>
+        </div>
+        <div>
+            <input type="radio"
+                   id="memory"
+                   name="fav_language"
+                   :value="false">
+            <label for="memory">No</label>
+        </div>
+
+    </div>
+    <div class="input__wrapper align__start">
+        <p for="card"
+           id="card">WiFi</p>
+        <div>
+            <input type="radio"
+                   id="html"
+                   name="fav_language"
+                   :value="true">
+            <label for="html">Yes</label>
+        </div>
+        <div>
+            <input type="radio"
+                   id="memory"
+                   name="fav_language"
+                   :value="false">
+            <label for="memory">No</label>
+        </div>
+
+    </div>
+    <div class="input__wrapper align__start">
+        <p for="card"
+           id="card">NFC</p>
+        <div>
+            <input type="radio"
+                   id="html"
+                   name="fav_language"
+                   :value="true">
+            <label for="html">Yes</label>
+        </div>
+        <div>
+            <input type="radio"
+                   id="memory"
+                   name="fav_language"
+                   :value="false">
+            <label for="memory">No</label>
+        </div>
+
     </div>
 </template>
 <script lang="ts">
