@@ -4,7 +4,7 @@ import { alpha_num } from '@vee-validate/rules';
 
 defineRule('alpha_num', alpha_num);
 
-defineRule('required', (value: string, [name], ctx) =>
+defineRule('required', (value: string, [name]: [any], ctx) =>
 {
     if (!value || !value.length)
     {
@@ -29,7 +29,7 @@ defineRule('email', (value: string,) =>
     return true;
 });
 
-defineRule('minLength', (value: any, [limit]) =>
+defineRule('minLength', (value: any, [limit]: [any], ctx) =>
 {
     // The field is empty so it should pass
     if (!value || !value.length)
@@ -38,12 +38,12 @@ defineRule('minLength', (value: any, [limit]) =>
     }
     if (value.length < limit)
     {
-        return `Password must be at least ${limit} characters`;
+        return `${ctx.field} must be at least ${limit} characters`;
     }
     return true;
 });
 
-defineRule('username', (value: any, [limit]) =>
+defineRule('username', (value: any, [limit]: [any]) =>
 {
     if (value.length < limit)
     {

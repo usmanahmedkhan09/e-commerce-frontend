@@ -1,25 +1,28 @@
 <template>
+       <div>
+              <h3>Camera Features:</h3>
+       </div>
        <div class="input__wrapper">
               <input v-model="product.camera.frontCamera"
                      type="text"
                      class="input"
-                     placeholder="Enter specified value"
+                     placeholder="Enter front camera size"
                      required>
               <input v-model="product.camera.backCamera"
                      type="text"
-                     placeholder="Enter specified value"
+                     placeholder="Enter back camera size"
                      class="input">
        </div>
        <div class="input__wrapper">
               <input v-model="product.camera.backvideorecording"
                      type="text"
                      class="input"
-                     placeholder="Enter specified value"
+                     placeholder="Enter back video recording"
                      required>
               <input v-model="product.camera.frontvideorecording"
                      type="text"
                      class="input"
-                     placeholder="Enter specified value"
+                     placeholder="Enter front video recording"
                      required>
        </div>
        <div class="checkbox__wrapper">
@@ -28,15 +31,17 @@
                         id="card">Front Flash Light:</p>
                      <input type="radio"
                             id="html"
-                            name="fav_language"
-                            :value="true">
+                            name="front_flash"
+                            :value="true"
+                            v-model="product.camera.frontflashlight">
                      <label for="html">Yes</label> <br>
               </div>
               <div class="input__wrapper">
                      <input type="radio"
                             id="memory"
-                            name="fav_language"
-                            :value="false">
+                            name="front_flash"
+                            :value="false"
+                            v-model="product.camera.frontflashlight">
                      <label for="memory">No</label><br>
               </div>
        </div>
@@ -46,16 +51,18 @@
                         id="card">Back Flash Light:</p>
                      <input type="radio"
                             id="html"
-                            name="fav_language"
-                            :value="true">
+                            name="back__flash"
+                            :value="true"
+                            v-model="product.camera.backflashlight">
                      <label for="html">Yes</label> <br>
               </div>
               <div class="input__wrapper">
                      <input type="radio"
                             id="html"
-                            name="fav_language"
-                            :value="true">
-                     <label for="html">Yes</label> <br>
+                            name="back__flash"
+                            :value="false"
+                            v-model="product.camera.backflashlight">
+                     <label for="html">No</label> <br>
               </div>
        </div>
 </template>

@@ -1,8 +1,8 @@
 class Category
 {
-    _id?: String | undefined
-    categoryId?: String | undefined
-    name: String | undefined
+    _id?: string | undefined
+    categoryId?: string | undefined
+    name: string | undefined
     image: string | undefined
 }
 

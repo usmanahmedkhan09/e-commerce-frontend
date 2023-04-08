@@ -1,14 +1,25 @@
 <template>
+    <div>
+        <h3>General Info:</h3>
+    </div>
     <div class="input__wrapper">
-        <input v-model="product.name"
-               type="text"
-               class="input"
-               placeholder="Enter product name"
-               required>
-        <input v-model="product.price"
-               type="number"
-               placeholder="Enter product price"
-               class="input">
+        <div>
+            <Field v-model="product.name"
+                   type="text"
+                   name="ProductName"
+                   class="input"
+                   rules="required|minLength:5|productName"
+                   placeholder="Enter product name" />
+            <ErrorMessage class="error__message"
+                          name="ProductName" />
+        </div>
+        <div>
+            <input v-model="product.price"
+                   type="number"
+                   placeholder="Enter product price"
+                   class="input">
+        </div>
+
     </div>
     <div class="input__wrapper">
         <input type="number"
@@ -86,11 +97,17 @@ import { useproductStore } from '@/stores/product.store'
 import { useCategoryStore } from '@/stores/category'
 import { useBrandStore } from '@/stores/brand.store'
 import utilService from '@/services/util.service';
+import { storeToRefs } from 'pinia';
+import type Product from '@/models/product.model';
+import { Field, useForm, ErrorMessage } from 'vee-validate'
 
 export default defineComponent({
+    components: { Field, ErrorMessage },
     setup()
     {
-        const { product, addProduct, updateProduct } = useproductStore()
+        const productStore = useproductStore()
+        const { product } = storeToRefs(productStore)
+        const { addProduct, updateProduct } = productStore
         const color = ref('')
         const isEdit = ref(false)
 
@@ -101,14 +118,14 @@ export default defineComponent({
         const brandStore = useBrandStore()
         const { getBrands } = brandStore
 
-        const brands = computed(() => brandStore.getBrandByCategory(product.categoryId as string))
+        const brands = computed(() => brandStore.getBrandByCategory(product.value.categoryId as string))
 
         const uploadImages = async (event: any) =>
         {
 
             let res: any = await utilService.uploadFileOnServer(event.target.files)
             res.data["color"] = color
-            product.productImages.push({ ...res.data, })
+            product.value.productImages.push({ ...res.data, })
         }
 
         const removeMedia = async (index: any, image: any) =>
@@ -116,7 +133,7 @@ export default defineComponent({
 
             if (isEdit.value)
             {
-                product.productImages.splice(index, 1)
+                product.value.productImages.splice(index, 1)
                 sendStateToServer()
             }
             await utilService.removeMedia(image.fileName, image.path)
@@ -125,11 +142,11 @@ export default defineComponent({
         const sendStateToServer = () =>
         {
             if (!isEdit.value)
-                addProduct(product)
+                addProduct(product.value)
             else
             {
-                product["productId"] = product._id
-                updateProduct(product)
+                product.value["productId"] = product.value._id
+                updateProduct(product.value)
             }
 
         }

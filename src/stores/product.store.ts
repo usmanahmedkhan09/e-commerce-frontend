@@ -7,7 +7,7 @@ export const useproductStore = defineStore('product', {
     state: () =>
     {
         return {
-            product: ref(new Product()),
+            product: ref<Product>(new Product()),
             products: [] as Product[]
         }
     },
@@ -49,6 +49,7 @@ export const useproductStore = defineStore('product', {
             let response: any = await axios.get(`product/${productId}`)
             if (response.isSuccess)
             {
+                this.product = response.data
                 return response.data
             }
         },

@@ -25,7 +25,7 @@ class Memory
 
 class Performance
 {
-    processor: String | undefined
+    processor: string | undefined
 }
 
 class Battery
@@ -47,9 +47,9 @@ class Camera
 class Connectivity
 {
     bluetooth: Boolean = false
-    '3g': Boolean = false
-    '4G/LTE': Boolean = false
-    '5G': Boolean = true
+    _3g: Boolean = false
+    _4GLTE: Boolean = false
+    _5G: Boolean = true
     radio: Boolean = true
     wifi: Boolean = true
     NFC: Boolean = true

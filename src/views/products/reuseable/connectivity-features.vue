@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <h3>Connectivity Features:</h3>
+    </div>
     <tr>
         <td>
             <p for="card"
@@ -8,15 +11,17 @@
         <td>
             <input type="radio"
                    id="html"
-                   name="fav_language"
-                   :value="true">
+                   name="bluetooth"
+                   :value="true"
+                   v-model="product.connectivity.bluetooth">
             <label for="html">Yes</label>
         </td>
         <td>
             <input type="radio"
                    id="memory"
-                   name="fav_language"
-                   :value="false">
+                   name="bluetooth"
+                   :value="false"
+                   v-model="product.connectivity.bluetooth">
             <label for="memory">No</label>
         </td>
     </tr>
@@ -28,15 +33,17 @@
         <td>
             <input type="radio"
                    id="html"
-                   name="fav_language"
-                   :value="true">
+                   name="3g"
+                   :value="true"
+                   v-model="product.connectivity._3g">
             <label for="html">Yes</label>
         </td>
         <td>
             <input type="radio"
                    id="memory"
-                   name="fav_language"
-                   :value="false">
+                   name="3g"
+                   :value="false"
+                   v-model="product.connectivity._3g">
             <label for="memory">No</label>
         </td>
     </tr>
@@ -48,15 +55,17 @@
         <td>
             <input type="radio"
                    id="html"
-                   name="fav_language"
-                   :value="true">
+                   name="4g"
+                   :value="true"
+                   v-model="product.connectivity._4GLTE">
             <label for="html">Yes</label>
         </td>
         <td>
             <input type="radio"
                    id="memory"
-                   name="fav_language"
-                   :value="false">
+                   name="4g"
+                   :value="false"
+                   v-model="product.connectivity._4GLTE">
             <label for="memory">No</label>
         </td>
     </tr>
@@ -68,15 +77,17 @@
         <td>
             <input type="radio"
                    id="html"
-                   name="fav_language"
-                   :value="true">
+                   name="5g"
+                   :value="true"
+                   v-model="product.connectivity._5G">
             <label for="html">Yes</label>
         </td>
         <td>
             <input type="radio"
                    id="memory"
-                   name="fav_language"
-                   :value="false">
+                   name="5g"
+                   :value="false"
+                   v-model="product.connectivity._5G">
             <label for="memory">No</label>
         </td>
     </tr>
@@ -88,15 +99,17 @@
         <td>
             <input type="radio"
                    id="html"
-                   name="fav_language"
-                   :value="true">
+                   name="radio"
+                   :value="true"
+                   v-model="product.connectivity.radio">
             <label for="html">Yes</label>
         </td>
         <td>
             <input type="radio"
                    id="memory"
-                   name="fav_language"
-                   :value="false">
+                   name="radio"
+                   :value="false"
+                   v-model="product.connectivity.radio">
             <label for="memory">No</label>
         </td>
     </tr>
@@ -108,15 +121,17 @@
         <td>
             <input type="radio"
                    id="html"
-                   name="fav_language"
-                   :value="true">
+                   name="wifi"
+                   :value="true"
+                   v-model="product.connectivity.wifi">
             <label for="html">Yes</label>
         </td>
         <td>
             <input type="radio"
                    id="memory"
-                   name="fav_language"
-                   :value="false">
+                   name="wifi"
+                   :value="false"
+                   v-model="product.connectivity.wifi">
             <label for="memory">No</label>
         </td>
     </tr>
@@ -128,15 +143,17 @@
         <td>
             <input type="radio"
                    id="html"
-                   name="fav_language"
-                   :value="true">
+                   name="nfc"
+                   :value="true"
+                   v-model="product.connectivity.NFC">
             <label for="html">Yes</label>
         </td>
         <td>
             <input type="radio"
                    id="memory"
-                   name="fav_language"
-                   :value="false">
+                   name="nfc"
+                   :value="false"
+                   v-model="product.connectivity.NFC">
             <label for="memory">No</label>
         </td>
     </tr>

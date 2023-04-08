@@ -1,10 +1,12 @@
 <template>
+    <div>
+        <h3>Memory Features:</h3>
+    </div>
     <div class="input__wrapper">
         <input v-model="product.memory.internal"
                type="text"
                class="input"
-               placeholder="Enter product internal memory size"
-               required>
+               placeholder="Enter product internal memory size">
         <input v-model="product.memory.ram"
                type="text"
                placeholder="Enter product ram"
@@ -14,13 +16,11 @@
         <input v-model="product.battery.type"
                type="text"
                class="input"
-               placeholder="Enter product battery type"
-               required>
+               placeholder="Enter product battery type">
         <input v-model="product.performance.processor"
                type="text"
                class="input"
-               placeholder="Enter product proccessor"
-               required>
+               placeholder="Enter product proccessor">
     </div>
     <div class="checkbox__wrapper">
         <div class="input__wrapper">
@@ -28,15 +28,17 @@
                id="card">Memory Card</p>
             <input type="radio"
                    id="html"
-                   name="fav_language"
-                   :value="true">
+                   name="memory_card"
+                   :value="true"
+                   v-model="product.memory.card">
             <label for="html">Yes</label> <br>
         </div>
         <div class="input__wrapper">
             <input type="radio"
                    id="memory"
-                   name="fav_language"
-                   :value="false">
+                   name="memory_card"
+                   :value="false"
+                   v-model="product.memory.card">
             <label for="memory">No</label><br>
         </div>
 
@@ -45,11 +47,13 @@
 <script lang="ts">
 import { defineComponent, computed, ref, onMounted } from 'vue'
 import { useproductStore } from '@/stores/product.store'
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
     setup()
     {
         const { product } = useproductStore()
+        // const { product }: Product = storeToRefs(productStore)
 
         return { product }
     },
