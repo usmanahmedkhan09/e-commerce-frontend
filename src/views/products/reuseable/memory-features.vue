@@ -12,7 +12,7 @@
     </div>
     <div class="input__wrapper">
         <input v-model="product.battery.type"
-               type="radio"
+               type="text"
                class="input"
                placeholder="Enter product battery type"
                required>
@@ -22,19 +22,24 @@
                placeholder="Enter product proccessor"
                required>
     </div>
-    <div class="">
-        <p for="card"
-           id="card">Memory Card</p>
-        <input type="radio"
-               id="html"
-               name="fav_language"
-               :value="true">
-        <label for="html">Yes</label> <br>
-        <input type="radio"
-               id="memory"
-               name="fav_language"
-               :value="false">
-        <label for="memory">No</label><br>
+    <div class="checkbox__wrapper">
+        <div class="input__wrapper">
+            <p for="card"
+               id="card">Memory Card</p>
+            <input type="radio"
+                   id="html"
+                   name="fav_language"
+                   :value="true">
+            <label for="html">Yes</label> <br>
+        </div>
+        <div class="input__wrapper">
+            <input type="radio"
+                   id="memory"
+                   name="fav_language"
+                   :value="false">
+            <label for="memory">No</label><br>
+        </div>
+
     </div>
 </template>
 <script lang="ts">
@@ -50,3 +55,9 @@ export default defineComponent({
     },
 })
 </script>
+<style scoped lang="scss">
+.checkbox__wrapper {
+    display: flex;
+    gap: 16p;
+}
+</style>

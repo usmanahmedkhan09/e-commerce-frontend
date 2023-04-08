@@ -2,6 +2,7 @@ import axios from 'axios';
 import utilService from './util.service';
 import { TYPE } from 'vue-toastification'
 import storageService from './storage.service';
+import { useRouter } from 'vue-router'
 
 const baseURL = '/api'
 const instance = axios.create({
@@ -44,6 +45,7 @@ instance.interceptors.response.use(function (response)
 
 }, function (error)
 {
+
     let { response } = error
     if (!response.data.isSuccess)
     {
@@ -55,9 +57,17 @@ instance.interceptors.response.use(function (response)
                 utilService.showToast(item.msg, TYPE.ERROR)
             })
         }
+        else if (response.status == 401)
+        {
+            storageService.removeProperty('token')
+            useRouter().push('/login')
+            return
+        }
         utilService.showToast(response.data.message ?? response.message, TYPE.ERROR);
     } else
     {
+
+
         utilService.showToast(response.data.message, TYPE.ERROR);
     }
     return response.data

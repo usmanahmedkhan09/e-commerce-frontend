@@ -23,6 +23,11 @@ class Storage
         }
     }
 
+    removeProperty(key: string)
+    {
+        localStorage.removeItem(key)
+    }
+
 }
 
 export default new Storage()

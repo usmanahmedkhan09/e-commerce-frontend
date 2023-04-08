@@ -20,144 +20,129 @@
             <label for="memory">No</label>
         </td>
     </tr>
-    <div class="input__wrapper align__start">
-        <p for="card"
-           id="card"
-           class="item">Bluetooth:</p>
-        <div class="item">
+    <tr>
+        <td>
+            <p for="card"
+               id="card">3G</p>
+        </td>
+        <td>
             <input type="radio"
                    id="html"
                    name="fav_language"
                    :value="true">
             <label for="html">Yes</label>
-        </div>
-        <div class="item">
+        </td>
+        <td>
             <input type="radio"
                    id="memory"
                    name="fav_language"
                    :value="false">
             <label for="memory">No</label>
-        </div>
-
-    </div>
-    <div class="input__wrapper align__start">
-        <p for="card"
-           id="card">3G</p>
-        <div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p for="card"
+               id="card">4G/LTE</p>
+        </td>
+        <td>
             <input type="radio"
                    id="html"
                    name="fav_language"
                    :value="true">
             <label for="html">Yes</label>
-        </div>
-        <div>
+        </td>
+        <td>
             <input type="radio"
                    id="memory"
                    name="fav_language"
                    :value="false">
             <label for="memory">No</label>
-        </div>
-
-    </div>
-    <div class="input__wrapper align__start">
-        <p for="card"
-           id="card">4G/LTE</p>
-        <div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p for="card"
+               id="card">5G</p>
+        </td>
+        <td>
             <input type="radio"
                    id="html"
                    name="fav_language"
                    :value="true">
             <label for="html">Yes</label>
-        </div>
-        <div>
+        </td>
+        <td>
             <input type="radio"
                    id="memory"
                    name="fav_language"
                    :value="false">
             <label for="memory">No</label>
-        </div>
-
-
-    </div>
-    <div class="input__wrapper align__start">
-        <p for="card"
-           id="card">5G</p>
-        <div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p for="card"
+               id="card">Radio</p>
+        </td>
+        <td>
             <input type="radio"
                    id="html"
                    name="fav_language"
                    :value="true">
             <label for="html">Yes</label>
-        </div>
-        <div>
+        </td>
+        <td>
             <input type="radio"
                    id="memory"
                    name="fav_language"
                    :value="false">
             <label for="memory">No</label>
-        </div>
-
-    </div>
-    <div class="input__wrapper align__start">
-        <p for="card"
-           id="card">Radio</p>
-        <div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p for="card"
+               id="card">WiFi</p>
+        </td>
+        <td>
             <input type="radio"
                    id="html"
                    name="fav_language"
                    :value="true">
             <label for="html">Yes</label>
-        </div>
-        <div>
+        </td>
+        <td>
             <input type="radio"
                    id="memory"
                    name="fav_language"
                    :value="false">
             <label for="memory">No</label>
-        </div>
-
-    </div>
-    <div class="input__wrapper align__start">
-        <p for="card"
-           id="card">WiFi</p>
-        <div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p for="card"
+               id="card">NFC</p>
+        </td>
+        <td>
             <input type="radio"
                    id="html"
                    name="fav_language"
                    :value="true">
             <label for="html">Yes</label>
-        </div>
-        <div>
+        </td>
+        <td>
             <input type="radio"
                    id="memory"
                    name="fav_language"
                    :value="false">
             <label for="memory">No</label>
-        </div>
-
-    </div>
-    <div class="input__wrapper align__start">
-        <p for="card"
-           id="card">NFC</p>
-        <div>
-            <input type="radio"
-                   id="html"
-                   name="fav_language"
-                   :value="true">
-            <label for="html">Yes</label>
-        </div>
-        <div>
-            <input type="radio"
-                   id="memory"
-                   name="fav_language"
-                   :value="false">
-            <label for="memory">No</label>
-        </div>
-
-    </div>
+        </td>
+    </tr>
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref, onMounted } from 'vue'
+import { defineComponent } from 'vue'
 import { useproductStore } from '@/stores/product.store'
 
 export default defineComponent({
@@ -169,3 +154,18 @@ export default defineComponent({
     },
 })
 </script>
+<style scoped lang="scss">
+tr {
+    display: flex;
+    gap: 16px;
+
+    td {
+        display: flex;
+        gap: 10px;
+
+        &:first-child {
+            width: 120px;
+        }
+    }
+}
+</style>

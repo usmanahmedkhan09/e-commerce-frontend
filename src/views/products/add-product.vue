@@ -8,14 +8,19 @@
             <div class="card__body">
                 <form class="product__form"
                       @submit.prevent="sendStateToServer">
-                    <!-- <generalInfo /> -->
-                    <!-- <displayFeatures /> -->
-                    <!-- <memoryFeatures /> -->
-                    <!-- <cameraFeatures /> -->
-                    <connectivityFeatures />
+                    <generalInfo v-if="step == 1" />
+                    <displayFeatures v-if="step == 2" />
+                    <memoryFeatures v-if="step == 3" />
+                    <cameraFeatures v-if="step == 4" />
+                    <connectivityFeatures v-if="step == 5" />
                     <div class="button__wrapper">
                         <button class="btn"
-                                type="submit">Next</button>
+                                type="submit"
+                                v-if="step > 1"
+                                @click.stop="step = step - 1">Back</button>
+                        <button class="btn"
+                                type="submit"
+                                @click.stop="step = step + 1">Next</button>
                         <!-- <button class="btn"
                                 type="submit">{{ isEdit ? 'Update' : 'Add' }} Product</button> -->
                     </div>
@@ -41,59 +46,38 @@ export default defineComponent({
     setup()
     {
         const route = useRoute()
-        // const color = ref('')
         const isEdit = ref(false)
-        // const product = ref(new Product())
+        const step = ref(1)
         const productStore = useproductStore()
         const { addProduct, getProducts, getProductById, updateProduct, product } = productStore
 
-        // const categoryStore = useCategoryStore()
-        // const { getCategories } = categoryStore
-        // const categories = computed(() => categoryStore.get)
-
-        // const brandStore = useBrandStore()
-        // const { getBrands } = brandStore
-
-        // const brands = computed(() => brandStore.getBrandByCategory(product.value.categoryId as string))
-
-        // const uploadImages = async (event: any) =>
-        // {
-
-        //     let res: any = await utilService.uploadFileOnServer(event.target.files)
-        //     res.data["color"] = color
-        //     product.value.productImages.push({ ...res.data, })
-        // }
 
         const sendStateToServer = () =>
         {
             if (!isEdit.value)
-                addProduct(product.value)
+                addProduct(product)
             else
             {
-                product.value["productId"] = product.value._id
-                updateProduct(product.value)
+                product["productId"] = product._id
+                updateProduct(product)
             }
 
         }
 
-        const setInitialState = async () =>
-        {
-            if (route.params.id)
-            {
-                isEdit.value = true
-                let res: any = await getProductById(route.params.id) as Product
-                product.value = res
-                product.value["categoryId"] = res.category
-                product.value.brandId = res.brand
-            }
-        }
 
-        onMounted(async () =>
-        {
-            setInitialState()
-        })
 
-        return { product, utilService, isEdit, sendStateToServer }
+        return { product, utilService, isEdit, sendStateToServer, step }
     },
 })
 </script>
+<style lang="scss" scoped>
+.button__wrapper {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+
+    .btn {
+        margin-left: unset !important;
+    }
+}
+</style>
