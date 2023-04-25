@@ -3,24 +3,45 @@
         <h3>Memory Features:</h3>
     </div>
     <div class="input__wrapper">
-        <input v-model="product.memory.internal"
-               type="text"
-               class="input"
-               placeholder="Enter product internal memory size">
-        <input v-model="product.memory.ram"
-               type="text"
-               placeholder="Enter product ram"
-               class="input">
+        <div>
+            <Field v-model="product.memory.internal"
+                   type="text"
+                   class="input"
+                   name="memory"
+                   placeholder="Enter product internal memory size" />
+            <ErrorMessage class="error__message"
+                          name="memory" />
+        </div>
+        <div>
+            <Field v-model="product.memory.ram"
+                   type="text"
+                   placeholder="Enter product ram"
+                   class="input"
+                   name="RAM" />
+            <ErrorMessage class="error__message"
+                          name="RAM" />
+        </div>
+
     </div>
     <div class="input__wrapper">
-        <input v-model="product.battery.type"
-               type="text"
-               class="input"
-               placeholder="Enter product battery type">
-        <input v-model="product.performance.processor"
-               type="text"
-               class="input"
-               placeholder="Enter product proccessor">
+        <div>
+            <Field v-model="product.battery.type"
+                   type="text"
+                   class="input"
+                   placeholder="Enter product battery type"
+                   name="battery" />
+            <ErrorMessage class="error__message"
+                          name="battery" />
+        </div>
+        <div>
+            <Field v-model="product.performance.processor"
+                   type="text"
+                   class="input"
+                   placeholder="Enter product proccessor"
+                   name="proccessor" />
+            <ErrorMessage class="error__message"
+                          name="proccessor" />
+        </div>
     </div>
     <div class="checkbox__wrapper">
         <div class="input__wrapper">
@@ -45,15 +66,15 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref, onMounted } from 'vue'
+import { defineComponent } from 'vue'
 import { useproductStore } from '@/stores/product.store'
-import { storeToRefs } from 'pinia';
+import { Field, ErrorMessage } from 'vee-validate'
 
 export default defineComponent({
+    components: { Field, ErrorMessage },
     setup()
     {
         const { product } = useproductStore()
-        // const { product }: Product = storeToRefs(productStore)
 
         return { product }
     },

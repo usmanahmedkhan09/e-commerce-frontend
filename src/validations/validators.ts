@@ -4,9 +4,9 @@ import { alpha_num } from '@vee-validate/rules';
 
 defineRule('alpha_num', alpha_num);
 
-defineRule('required', (value: string, [name]: [any], ctx) =>
+defineRule('required', (value: string | number, [name]: [any], ctx) =>
 {
-    if (!value || !value.length)
+    if (!value)
     {
         return `${ctx.field} field is required`;
     }

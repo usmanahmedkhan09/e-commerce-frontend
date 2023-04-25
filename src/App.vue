@@ -1,6 +1,7 @@
 <template>
   <widget-container-modal />
   <component :is="layout"> </component>
+  <h1></h1>
 </template>
 <script lang="ts">
 import { defineComponent, watch, ref, markRaw, computed, onMounted } from 'vue'

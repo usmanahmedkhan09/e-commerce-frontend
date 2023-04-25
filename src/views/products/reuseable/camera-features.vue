@@ -3,27 +3,49 @@
               <h3>Camera Features:</h3>
        </div>
        <div class="input__wrapper">
-              <input v-model="product.camera.frontCamera"
-                     type="text"
-                     class="input"
-                     placeholder="Enter front camera size"
-                     required>
-              <input v-model="product.camera.backCamera"
-                     type="text"
-                     placeholder="Enter back camera size"
-                     class="input">
+              <div>
+                     <Field v-model="product.camera.frontCamera"
+                            type="text"
+                            class="input"
+                            name="front camera"
+                            placeholder="Enter front camera size"
+                            required />
+                     <ErrorMessage class="error__message"
+                                   name="front camera" />
+              </div>
+              <div>
+                     <Field v-model="product.camera.backCamera"
+                            type="text"
+                            placeholder="Enter back camera size"
+                            class="input"
+                            name="back camera" />
+                     <ErrorMessage class="error__message"
+                                   name="back camera" />
+              </div>
+
        </div>
        <div class="input__wrapper">
-              <input v-model="product.camera.backvideorecording"
-                     type="text"
-                     class="input"
-                     placeholder="Enter back video recording"
-                     required>
-              <input v-model="product.camera.frontvideorecording"
-                     type="text"
-                     class="input"
-                     placeholder="Enter front video recording"
-                     required>
+              <div>
+                     <Field v-model="product.camera.backvideorecording"
+                            type="text"
+                            class="input"
+                            name="back video recording"
+                            placeholder="Enter back video recording"
+                            required />
+                     <ErrorMessage class="error__message"
+                                   name="back video recording" />
+              </div>
+              <div>
+                     <Field v-model="product.camera.frontvideorecording"
+                            type="text"
+                            class="input"
+                            placeholder="Enter front video recording"
+                            required
+                            name="front video recording" />
+                     <ErrorMessage class="error__message"
+                                   name="front video recording" />
+              </div>
+
        </div>
        <div class="checkbox__wrapper">
               <div class="input__wrapper">
@@ -67,10 +89,12 @@
        </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref, onMounted } from 'vue'
+import { defineComponent } from 'vue'
 import { useproductStore } from '@/stores/product.store'
+import { Field, ErrorMessage } from 'vee-validate'
 
 export default defineComponent({
+       components: { Field, ErrorMessage },
        setup()
        {
               const { product } = useproductStore()

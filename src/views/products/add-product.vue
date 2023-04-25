@@ -6,8 +6,9 @@
                 <button class="btn">Back To Products</button>
             </div>
             <div class="card__body">
-                <form class="product__form"
-                      @submit="sendStateToServer">
+                <Form class="product__form"
+                      @submit="nextStep"
+                      :initial-values="product">
                     <generalInfo v-if="step == 1" />
                     <generalFeaturesVue v-if="step == 2" />
                     <displayFeatures v-if="step == 3" />
@@ -26,7 +27,7 @@
                                 type="submit"
                                 v-if="step == 6">{{ isEdit ? 'Update' : 'Add' }} Product</button>
                     </div>
-                </form>
+                </Form>
             </div>
         </div>
     </div>
@@ -40,26 +41,33 @@ import memoryFeatures from './reuseable/memory-features.vue';
 import cameraFeatures from './reuseable/camera-features.vue';
 import connectivityFeatures from './reuseable/connectivity-features.vue';
 import generalFeaturesVue from './reuseable/general-features.vue';
-import type Product from '@/models/product.model';
-
+// import Product from '@/models/product.model';
 import utilService from '@/services/util.service';
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia';
-import { Field, useForm, ErrorMessage } from 'vee-validate'
+import { Field, useForm, ErrorMessage, Form } from 'vee-validate'
+import Product from '@/models/product.model';
+import { processSlotOutlet } from '@vue/compiler-core';
+// import Product from '@/models/product.model';
 
 export default defineComponent({
-    components: { generalInfo, displayFeatures, memoryFeatures, cameraFeatures, connectivityFeatures, generalFeaturesVue },
+    components: { generalInfo, displayFeatures, memoryFeatures, cameraFeatures, connectivityFeatures, generalFeaturesVue, Form, Field },
     setup()
     {
-        const { handleSubmit, isSubmitting } = useForm();
+        const { handleSubmit, isSubmitting, resetForm } = useForm({ initialValues: new Product() });
         const route = useRoute()
         const isEdit = ref(false)
+        const form = ref(true)
         const step = ref(1)
         const productStore = useproductStore()
         const { product } = storeToRefs(productStore)
         let { addProduct, getProducts, getProductById, updateProduct } = productStore
 
 
+        const nextStep = () =>
+        {
+            step.value++
+        }
         const sendStateToServer = handleSubmit(values =>
         {
             console.log(values)
@@ -83,17 +91,31 @@ export default defineComponent({
                 if (response)
                 {
                     product.value = { ...response as Product }
-                    product.value.categoryId = product.value.category
-                    product.value.brandId = product.value.brand
+                    product.value.categoryId = product.value.categoryId
+                    product.value.brandId = product.value.brandId
                 }
-                // productStore.$patch({ product: response })
+
+            } else
+            {
+                form.value = false
+                form.value = true
+                // resetForm({
+                //     errors: undefined,
+                //     dirty: false,
+                //     touched: false as boolean,
+                //     values: new Product(),
+                // })
+                product.value = new Product()
 
             }
         }
 
-        onMounted(() => setInitialState())
+        onMounted(() =>
+        {
+            setInitialState()
+        })
 
-        return { product, utilService, isEdit, sendStateToServer, step }
+        return { product, utilService, isEdit, sendStateToServer, step, nextStep, form }
     },
 })
 </script>

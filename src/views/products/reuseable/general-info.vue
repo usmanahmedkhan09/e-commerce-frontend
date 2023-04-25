@@ -4,45 +4,67 @@
     </div>
     <div class="input__wrapper">
         <div>
+            <!-- <customInput :name="'name'"
+                         :label="'Enter Product Price'"
+                         :value="product.name"
+                         :placeholder="'Enter Product Name'" /> -->
             <Field v-model="product.name"
                    type="text"
-                   name="ProductName"
+                   name="name"
                    class="input"
-                   rules="required|minLength:5|productName"
+                   rules="required|minLength:5"
                    placeholder="Enter product name" />
             <ErrorMessage class="error__message"
-                          name="ProductName" />
+                          name="name" />
         </div>
         <div>
-            <input v-model="product.price"
+            <Field v-model="product.price"
                    type="number"
+                   name="price"
+                   rules="required"
                    placeholder="Enter product price"
-                   class="input">
+                   class="input" />
+            <ErrorMessage class="error__message"
+                          name="price" />
         </div>
 
     </div>
     <div class="input__wrapper">
-        <input type="number"
-               placeholder="Enter product quantity"
-               class="input"
-               v-model="product.quantity">
-        <input type="text"
-               placeholder="Enter product model"
-               class="input"
-               v-model="product.model">
+        <div>
+            <Field name="quantity"
+                   type="number"
+                   placeholder="Enter product quantity"
+                   class="input"
+                   rules="required"
+                   v-model="product.quantity" />
+            <ErrorMessage class="error__message"
+                          name="quantity" />
+        </div>
+        <div>
+            <Field type="text"
+                   placeholder="Enter product model"
+                   class="input"
+                   v-model="product.model"
+                   name="model" />
+            <ErrorMessage class="error__message"
+                          name="model" />
+        </div>
     </div>
     <div class="input__wrapper">
-        <select class="input"
-                name="category"
-                id="categoryId"
-                v-model="product.categoryId">
-            <option :value="undefined"
+        <Field class="input"
+               as="select"
+               name="category"
+               id="categoryId"
+               v-slot="{ value }"
+               v-model="product.categoryId">
+            <option value=""
                     selected
                     disabled>Select a category</option>
             <option :value="category._id"
                     v-for="category in categories"
-                    :key="category._id">{{ category.name }}</option>
-        </select>
+                    :key="category._id"
+                    :selected="value">{{ category.name }}</option>
+        </Field>
         <select class="input"
                 name="brandId"
                 id="brandId"
@@ -98,11 +120,11 @@ import { useCategoryStore } from '@/stores/category'
 import { useBrandStore } from '@/stores/brand.store'
 import utilService from '@/services/util.service';
 import { storeToRefs } from 'pinia';
-import type Product from '@/models/product.model';
-import { Field, useForm, ErrorMessage } from 'vee-validate'
+import { Field, ErrorMessage } from 'vee-validate'
+import customInput from '@/components/custom-input.vue';
 
 export default defineComponent({
-    components: { Field, ErrorMessage },
+    components: { Field, ErrorMessage, customInput },
     setup()
     {
         const productStore = useproductStore()
@@ -127,6 +149,7 @@ export default defineComponent({
             res.data["color"] = color
             product.value.productImages.push({ ...res.data, })
         }
+
 
         const removeMedia = async (index: any, image: any) =>
         {

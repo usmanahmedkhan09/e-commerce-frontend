@@ -145,6 +145,7 @@ export default defineComponent({
                     useRoute().path.includes(route.path) || window.location.pathname.includes(route.path)
                 )
                 {
+
                     route.isActive = true;
                     ShowChildRoutes(route);
                 }
