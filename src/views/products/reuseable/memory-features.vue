@@ -4,34 +4,36 @@
     </div>
     <div class="input__wrapper">
         <div>
-            <Field v-model="product.memory.internal"
-                   type="text"
+            <Field type="text"
+                   name="name"
                    class="input"
-                   name="memory"
-                   placeholder="Enter product internal memory size" />
+                   rules="required"
+                   placeholder="Enter product internal memory size"
+                   v-model="product.memory.internal" />
             <ErrorMessage class="error__message"
-                          name="memory" />
+                          name="internal" />
         </div>
         <div>
             <Field v-model="product.memory.ram"
                    type="text"
                    placeholder="Enter product ram"
                    class="input"
-                   name="RAM" />
+                   name="ram" />
             <ErrorMessage class="error__message"
-                          name="RAM" />
+                          name="ram" />
         </div>
 
     </div>
     <div class="input__wrapper">
         <div>
-            <Field v-model="product.battery.type"
-                   type="text"
+            <Field type="text"
+                   name="battery type"
                    class="input"
-                   placeholder="Enter product battery type"
-                   name="battery" />
+                   rules="required"
+                   v-model="product.battery.type"
+                   placeholder="Enter product battery type" />
             <ErrorMessage class="error__message"
-                          name="battery" />
+                          name="battery type" />
         </div>
         <div>
             <Field v-model="product.performance.processor"
@@ -43,7 +45,7 @@
                           name="proccessor" />
         </div>
     </div>
-    <div class="checkbox__wrapper">
+    <!-- <div class="checkbox__wrapper">
         <div class="input__wrapper">
             <p for="card"
                id="card">Memory Card</p>
@@ -63,19 +65,20 @@
             <label for="memory">No</label><br>
         </div>
 
-    </div>
+    </div> -->
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useproductStore } from '@/stores/product.store'
 import { Field, ErrorMessage } from 'vee-validate'
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
     components: { Field, ErrorMessage },
     setup()
     {
-        const { product } = useproductStore()
-
+        const productStore = useproductStore()
+        const { product } = productStore
         return { product }
     },
 })

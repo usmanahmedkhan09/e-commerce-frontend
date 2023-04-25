@@ -1,7 +1,7 @@
 class GeneralFeatures
 {
-    releaseDate: String | undefined
-    simSupport: String | undefined
+    releaseDate: string | undefined
+    simSupport: string | undefined
     dimensions: string | undefined
     weight: string | undefined
     opertaingSystem: string | undefined

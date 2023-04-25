@@ -60,12 +60,14 @@
 import { defineComponent } from 'vue'
 import { useproductStore } from '@/stores/product.store'
 import { Field, ErrorMessage } from 'vee-validate'
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
     components: { Field, ErrorMessage },
     setup()
     {
-        const { product } = useproductStore()
+        const productStore = useproductStore()
+        const { product } = storeToRefs(productStore)
 
         return { product }
     },

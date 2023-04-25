@@ -4,10 +4,6 @@
     </div>
     <div class="input__wrapper">
         <div>
-            <!-- <customInput :name="'name'"
-                         :label="'Enter Product Price'"
-                         :value="product.name"
-                         :placeholder="'Enter Product Name'" /> -->
             <Field v-model="product.name"
                    type="text"
                    name="name"

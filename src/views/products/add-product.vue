@@ -7,7 +7,7 @@
             </div>
             <div class="card__body">
                 <Form class="product__form"
-                      @submit="nextStep"
+                      @submit="onSubmit()"
                       :initial-values="product">
                     <generalInfo v-if="step == 1" />
                     <generalFeaturesVue v-if="step == 2" />
@@ -41,47 +41,50 @@ import memoryFeatures from './reuseable/memory-features.vue';
 import cameraFeatures from './reuseable/camera-features.vue';
 import connectivityFeatures from './reuseable/connectivity-features.vue';
 import generalFeaturesVue from './reuseable/general-features.vue';
-// import Product from '@/models/product.model';
 import utilService from '@/services/util.service';
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia';
-import { Field, useForm, ErrorMessage, Form } from 'vee-validate'
+import { Field, useForm, Form } from 'vee-validate'
 import Product from '@/models/product.model';
-import { processSlotOutlet } from '@vue/compiler-core';
-// import Product from '@/models/product.model';
 
 export default defineComponent({
     components: { generalInfo, displayFeatures, memoryFeatures, cameraFeatures, connectivityFeatures, generalFeaturesVue, Form, Field },
     setup()
     {
-        const { handleSubmit, isSubmitting, resetForm } = useForm({ initialValues: new Product() });
+
+        const { handleSubmit } = useForm({ initialValues: new Product() });
         const route = useRoute()
         const isEdit = ref(false)
-        const form = ref(true)
         const step = ref(1)
         const productStore = useproductStore()
         const { product } = storeToRefs(productStore)
         let { addProduct, getProducts, getProductById, updateProduct } = productStore
 
-
-        const nextStep = () =>
+        const onSubmit = handleSubmit(values =>
         {
-            step.value++
-        }
-        const sendStateToServer = handleSubmit(values =>
-        {
-            console.log(values)
-            // console.log(product.value)
-            // return
-            // if (!isEdit.value)
-            //     addProduct(product.value)
-            // else
-            // {
-            //     product.value["productId"] = product.value._id
-            //     updateProduct(product.value)
-            // }
-
+            if (step.value < 6)
+                step.value++
+            else
+            {
+                if (step.value == 6)
+                {
+                    if (!isEdit.value)
+                        addProduct(product.value)
+                    else
+                    {
+                        product.value["productId"] = product.value._id
+                        updateProduct(product.value)
+                    }
+                }
+            }
         })
+
+        const sendStateToServer = () =>
+        {
+
+
+
+        }
 
         const setInitialState = async () =>
         {
@@ -97,14 +100,6 @@ export default defineComponent({
 
             } else
             {
-                form.value = false
-                form.value = true
-                // resetForm({
-                //     errors: undefined,
-                //     dirty: false,
-                //     touched: false as boolean,
-                //     values: new Product(),
-                // })
                 product.value = new Product()
 
             }
@@ -115,7 +110,7 @@ export default defineComponent({
             setInitialState()
         })
 
-        return { product, utilService, isEdit, sendStateToServer, step, nextStep, form }
+        return { product, utilService, isEdit, sendStateToServer, step, onSubmit }
     },
 })
 </script>
