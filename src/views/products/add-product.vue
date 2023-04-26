@@ -93,6 +93,7 @@ export default defineComponent({
                 let response = await getProductById(route.params.id) as Product
                 if (response)
                 {
+                    console.log(response)
                     product.value = { ...response as Product }
                     product.value.categoryId = product.value.categoryId
                     product.value.brandId = product.value.brandId
