@@ -60,6 +60,11 @@ class Util
             console.log(error);
         }
     }
+
+    getImageUrl(name: string, directory: string = 'images')
+    {
+        return new URL(`../assets/${directory}/${name}`, import.meta.url).href
+    }
 }
 
 export default new Util()

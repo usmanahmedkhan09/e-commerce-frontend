@@ -18,11 +18,13 @@ export default defineComponent({
   {
     const route = useRoute()
     const token = ref()
+    const isAdmin = ref(true)
     const layout = computed(() =>
     {
       let { meta } = route
       return meta.layout == 'private' || token.value ? markRaw(privateLayout) : markRaw(publicLayout)
     })
+
     onMounted(() =>
     {
       token.value = storageService.getProperty('token')

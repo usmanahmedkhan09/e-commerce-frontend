@@ -1,0 +1,49 @@
+.dashboard {
+  &__navigation {
+    background-color: var(--color-white);
+    min-height: 100px;
+    width: 100%;
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+
+      &--item {
+        // margin: 0px 32px;
+        font-size: 1.2rem;
+        text-transform: capitalize;
+        width: 140px;
+        text-align: center;
+
+        img {
+          margin: auto;
+          height: 45px;
+          width: 45px;
+        }
+
+        &:hover {
+          border-bottom: 3px solid var(--color-primary-blue);
+          background: rgba(215, 217, 219);
+        }
+      }
+    }
+  }
+
+  &__banner {
+    min-height: 500px;
+    margin-top: 24px;
+
+    button {
+      border-radius: 2px;
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 40px;
+      height: 40px;
+
+      svg {
+        fill: white;
+      }
+    }
+  }
+}

@@ -17,6 +17,7 @@ import './validations/validators'
 
 import routerGuard from './router/router-guard';
 import Multiselect from 'vue-multiselect'
+import 'vue3-carousel/dist/carousel.css'
 
 const app = createApp(App)
 

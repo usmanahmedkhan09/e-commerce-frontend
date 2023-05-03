@@ -6,8 +6,8 @@ const router = createRouter({
   routes: [
     {
       path: '',
-      redirect: '/login',
-      meta: { layout: 'public' }
+      meta: { layout: 'public', requireAuth: false },
+      component: () => import('../views/dashboard.vue')
     },
     {
       path: '/products',
@@ -94,6 +94,7 @@ const router = createRouter({
       meta: { layout: 'public', },
       component: () => import('../views/register.vue')
     },
+
   ]
 })
 
