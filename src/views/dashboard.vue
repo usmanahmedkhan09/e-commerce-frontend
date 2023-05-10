@@ -25,6 +25,7 @@
         <latestProducts :title="'smart mobiles'" />
         <shopFilters />
         <shopByBrand />
+        <customerReviews />
     </div>
 </template>
 <script lang="ts">
@@ -36,6 +37,7 @@ import latestProducts from '@/components/dashboard-components/latest-products.vu
 import bestSellerProducts from '@/components/dashboard-components/best-seller-products.vue';
 import shopFilters from '@/components/dashboard-components/shop-filters.vue';
 import shopByBrand from '@/components/dashboard-components/shop-by-brand.vue';
+import customerReviews from '@/components/dashboard-components/customer-reviews.vue';
 
 export default defineComponent({
     components: {
@@ -47,7 +49,8 @@ export default defineComponent({
         latestProducts,
         bestSellerProducts,
         shopFilters,
-        shopByBrand
+        shopByBrand,
+        customerReviews
     },
     setup()
     {
