@@ -18,6 +18,13 @@
         <latestProducts :title="'wireless earbuds'" />
         <bestSellerProducts />
         <latestProducts :title="'smart watches'" />
+        <div class="static__banner">
+            <img src="@/assets/images/dk-banner-static.jpg"
+                 alt="">
+        </div>
+        <latestProducts :title="'smart mobiles'" />
+        <shopFilters />
+        <shopByBrand />
     </div>
 </template>
 <script lang="ts">
@@ -27,6 +34,8 @@ import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 import utilService from '@/services/util.service'
 import latestProducts from '@/components/dashboard-components/latest-products.vue';
 import bestSellerProducts from '@/components/dashboard-components/best-seller-products.vue';
+import shopFilters from '@/components/dashboard-components/shop-filters.vue';
+import shopByBrand from '@/components/dashboard-components/shop-by-brand.vue';
 
 export default defineComponent({
     components: {
@@ -36,7 +45,9 @@ export default defineComponent({
         Pagination,
         Navigation,
         latestProducts,
-        bestSellerProducts
+        bestSellerProducts,
+        shopFilters,
+        shopByBrand
     },
     setup()
     {

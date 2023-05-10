@@ -33,6 +33,11 @@
   height: calc(100% - 72px);
   overflow: auto;
 
+  &::-webkit-scrollbar {
+    display: none;
+    width: unset;
+  }
+
   .container {
     height: 100%;
     .sidebar {
