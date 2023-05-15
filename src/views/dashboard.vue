@@ -26,6 +26,10 @@
         <shopFilters />
         <shopByBrand />
         <customerReviews />
+        <reasonToBuy />
+        <latestProducts :title="'tablets'" />
+        <productServices />
+        <TheFooter />
     </div>
 </template>
 <script lang="ts">
@@ -38,6 +42,9 @@ import bestSellerProducts from '@/components/dashboard-components/best-seller-pr
 import shopFilters from '@/components/dashboard-components/shop-filters.vue';
 import shopByBrand from '@/components/dashboard-components/shop-by-brand.vue';
 import customerReviews from '@/components/dashboard-components/customer-reviews.vue';
+import reasonToBuy from '@/components/dashboard-components/reason-to-buy.vue';
+import productServices from '@/components/dashboard-components/product-services.vue';
+import TheFooter from '@/components/footer.vue';
 
 export default defineComponent({
     components: {
@@ -50,7 +57,10 @@ export default defineComponent({
         bestSellerProducts,
         shopFilters,
         shopByBrand,
-        customerReviews
+        customerReviews,
+        reasonToBuy,
+        productServices,
+        TheFooter
     },
     setup()
     {
