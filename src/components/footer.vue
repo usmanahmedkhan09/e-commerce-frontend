@@ -64,7 +64,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .footer {
     background-color: #48afff;
-    // min-height: 400px;
     padding-top: 24px;
 
     .primary__footer {

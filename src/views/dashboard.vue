@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard">
-        <Header />
+        <dashboard-navigation />
         <carousel class="dashboard__banner"
                   :items-to-show="1"
                   :autoplay="5000"
@@ -15,7 +15,7 @@
                 <navigation />
             </template>
         </carousel>
-        <latestProducts :title="'wireless earbuds'" />
+        <!-- <latestProducts :title="'wireless earbuds'" />
         <bestSellerProducts />
         <latestProducts :title="'smart watches'" />
         <div class="static__banner">
@@ -29,12 +29,12 @@
         <reasonToBuy />
         <latestProducts :title="'tablets'" />
         <productServices />
-        <TheFooter />
+        <TheFooter /> -->
     </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import Header from '@/components/dashboard-components/navigation.vue';
+import dashboardNavigation from '@/components/dashboard-components/navigation.vue';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 import utilService from '@/services/util.service'
 import latestProducts from '@/components/dashboard-components/latest-products.vue';
@@ -48,7 +48,7 @@ import TheFooter from '@/components/footer.vue';
 
 export default defineComponent({
     components: {
-        Header,
+        dashboardNavigation,
         Carousel,
         Slide,
         Pagination,

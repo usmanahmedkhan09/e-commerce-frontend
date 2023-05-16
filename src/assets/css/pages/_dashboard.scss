@@ -3,15 +3,16 @@
     background-color: var(--color-white);
     min-height: 100px;
     width: 100%;
+    overflow-y: auto;
 
     .nav__links {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100px;
+      min-width: 800px;
 
       &--item {
-        // margin: 0px 32px;
         font-size: 1.2rem;
         text-transform: capitalize;
         width: 140px;
@@ -32,7 +33,7 @@
   }
 
   &__banner {
-    min-height: 500px;
+    max-height: 500px;
     margin-top: 24px;
 
     button {
