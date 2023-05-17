@@ -45,48 +45,4 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-.product__services {
-    padding: 60px 0 15px;
-
-    &__container {
-        padding: 30px 0;
-        background-color: #fff;
-        overflow: hidden;
-
-        .card__Wrapper {
-            max-width: 60%;
-            margin: 32px auto;
-            display: flex;
-            justify-content: space-between;
-
-            .productService__card {
-                text-align: center;
-
-                .image__wrapper {
-                    width: 70px;
-                    height: 70px;
-                    margin: 0 auto 10px;
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: contain;
-                    }
-                }
-
-                &--title {
-                    font-size: 1.4rem;
-                    font-weight: 500;
-                }
-
-                &--subTitle {
-                    font-size: 1.3rem;
-                    color: rgba(7, 18, 27, .6);
-                }
-            }
-
-        }
-    }
-}
-</style>
+<style lang="scss" scoped></style>

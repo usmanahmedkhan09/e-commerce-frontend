@@ -1,0 +1,76 @@
+@use '../Base/' as *;
+
+.footer {
+  background-color: #48afff;
+  padding-top: 24px;
+
+  .primary__footer {
+    display: flex;
+    max-width: 60%;
+    margin: auto;
+    padding-top: 16px;
+
+    @include media('<=phone') {
+      max-width: unset;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0px 24px;
+    }
+
+    .column {
+      flex: 0 0 33%;
+
+      li {
+        color: white;
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        text-transform: capitalize;
+        font-weight: 100;
+
+        &.image__wrapper {
+          width: 170px;
+        }
+
+        &.column__header {
+          font-size: 1.8rem;
+          margin-bottom: 16px;
+        }
+      }
+    }
+  }
+
+  .secondary__footer {
+    background-color: #3eabff;
+    min-height: 50px;
+
+    .container {
+      display: flex;
+      max-width: 60%;
+      margin: auto;
+      padding: 1.8rem 0rem;
+      align-items: center;
+      min-height: inherit;
+
+      @include media('<=phone') {
+        max-width: unset;
+        padding: 0px 24px;
+        justify-content: center;
+        // flex-direction: column;
+      }
+
+      .column {
+        flex: 0 0 33%;
+
+        &.title {
+          font-size: 1.3rem;
+          color: white;
+        }
+      }
+
+      .social__icons {
+        display: flex;
+        gap: 10px;
+      }
+    }
+  }
+}

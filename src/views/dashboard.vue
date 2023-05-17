@@ -17,7 +17,7 @@
         </carousel>
         <latestProducts :title="'wireless earbuds'" />
         <bestSellerProducts />
-        <!-- <latestProducts :title="'smart watches'" />
+        <latestProducts :title="'smart watches'" />
         <div class="static__banner">
             <img src="@/assets/images/dk-banner-static.jpg"
                  alt="">
@@ -29,7 +29,7 @@
         <reasonToBuy />
         <latestProducts :title="'tablets'" />
         <productServices />
-        <TheFooter /> -->
+        <TheFooter />
     </div>
 </template>
 <script lang="ts">
