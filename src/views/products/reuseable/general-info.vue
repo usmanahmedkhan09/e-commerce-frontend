@@ -86,10 +86,11 @@
               class="input textarea"
               v-model="product.description" />
     <div class="input__wrapper">
-        <input @change.exact.stop="uploadImages($event)"
+        <Field @change="uploadImages($event)"
                type="file"
                class="input"
-               placeholder="Choose product images">
+               placeholder="Choose product images"
+               name="image" />
         <input type="text"
                placeholder="Choose product color"
                class="input"
@@ -143,7 +144,7 @@ export default defineComponent({
 
             let res: any = await utilService.uploadFileOnServer(event.target.files)
             res.data["color"] = color
-            product.value.productImages.push({ ...res.data, })
+            product.value.productImages.push(res.data)
         }
 
 

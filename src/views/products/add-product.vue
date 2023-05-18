@@ -8,7 +8,7 @@
             <div class="card__body">
                 <Form class="product__form"
                       @submit="onSubmit()"
-                      :initial-values="product">
+                      :initial-values="undefined">
                     <generalInfo v-if="step == 1" />
                     <generalFeaturesVue v-if="step == 2" />
                     <displayFeatures v-if="step == 3" />
@@ -79,12 +79,6 @@ export default defineComponent({
             }
         })
 
-        const sendStateToServer = () =>
-        {
-
-
-
-        }
 
         const setInitialState = async () =>
         {
@@ -93,7 +87,6 @@ export default defineComponent({
                 let response = await getProductById(route.params.id) as Product
                 if (response)
                 {
-                    console.log(response)
                     product.value = { ...response as Product }
                     product.value.categoryId = product.value.categoryId
                     product.value.brandId = product.value.brandId
@@ -111,7 +104,7 @@ export default defineComponent({
             setInitialState()
         })
 
-        return { product, utilService, isEdit, sendStateToServer, step, onSubmit }
+        return { product, utilService, isEdit, step, onSubmit }
     },
 })
 </script>

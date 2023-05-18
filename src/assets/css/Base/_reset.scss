@@ -73,7 +73,8 @@ ol {
 input,
 button,
 textarea,
-select {
+select label {
+  font-size: 1.6rem;
   font: inherit;
 }
 
@@ -81,4 +82,5 @@ select {
   height: 100%;
   margin: 0 auto;
   font-weight: normal;
+  font-size: 1.6rem;
 }

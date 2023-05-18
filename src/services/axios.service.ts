@@ -23,8 +23,6 @@ instance.interceptors.request.use(function (config: any)
     if (token)
     {
         config.headers.Authorization = `Bearer ${token}`
-        // config.headers = { ...config.headers } as AxiosHeaders;
-        // config.headers.set('Authorization', `Bearer ${token}`)
     }
     return config
 }, (error) =>
