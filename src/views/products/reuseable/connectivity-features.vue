@@ -2,6 +2,16 @@
     <div>
         <h3>Connectivity Features:</h3>
     </div>
+    <div>
+        <label for="bluetooth">Bluetooth</label>
+        <select name="bluetooth"
+                id="bluetooth"
+                class="input">
+            <option :value="undefined">Please Select One</option>
+            <option :value="true">Yes</option>
+            <option :value="false">No</option>
+        </select>
+    </div>
     <tr>
         <td>
             <p for="card"
@@ -24,6 +34,7 @@
                    v-model="product.connectivity.bluetooth">
             <label for="memory">No</label>
         </td>
+
     </tr>
     <tr>
         <td>

@@ -5,6 +5,9 @@ class GeneralFeatures
     dimensions: string | undefined
     weight: string | undefined
     opertaingSystem: string | undefined
+    waterproof: string | undefined
+    wearingType: string | undefined
+    volumeControl: string | undefined
 }
 
 class Display
@@ -23,6 +26,7 @@ class Memory
     card: Boolean = true
 }
 
+
 class Performance
 {
     processor: string | undefined
@@ -31,6 +35,8 @@ class Performance
 class Battery
 {
     type: string | undefined
+    chargingTime: string | undefined
+    playTime: string | undefined
 }
 
 class Camera
@@ -53,6 +59,9 @@ class Connectivity
     radio: Boolean = true
     wifi: Boolean = true
     NFC: Boolean = true
+    bluetoothVersion: string | undefined
+    bluetoothRange: string | undefined
+    microPhone: string | undefined
 }
 class Product
 {
@@ -60,6 +69,7 @@ class Product
     name: string | undefined
     productImages: any[] = []
     price: number | undefined
+    discount: number | undefined
     description: string | undefined
     quantity: number | undefined
     model: string | undefined

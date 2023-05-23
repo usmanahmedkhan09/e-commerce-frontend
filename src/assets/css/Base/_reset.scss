@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
   --color-primary-blue: rgb(72, 175, 255);
@@ -18,9 +18,9 @@ body {
   height: 100%;
   background-color: #f1f3f6;
   line-height: 1.6;
-  // font-family: 'Rubik', sans-serif;
-  font-family: 'Open Sans', 'Noto Nastaliq Urdu Draft', 'Roboto', 'Helvetica Neue', 'Helvetica',
-    'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  // font-family: 'Open Sans', 'Noto Nastaliq Urdu Draft', 'Roboto', 'Helvetica Neue', 'Helvetica',
+  //   'Arial', sans-serif;
   // font-size: 1.6rem;
   cursor: pointer;
   text-rendering: optimizeLegibility;
@@ -73,9 +73,17 @@ ol {
 input,
 button,
 textarea,
-select label {
+select {
   font-size: 1.6rem;
   font: inherit;
+}
+
+label {
+  font-size: 1.4rem !important;
+  font-weight: 500 !important;
+  color: #3f414d;
+  font: inherit;
+  margin-bottom: 10px !important;
 }
 
 #app {

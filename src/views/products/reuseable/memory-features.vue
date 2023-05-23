@@ -45,27 +45,27 @@
                           name="proccessor" />
         </div>
     </div>
-    <!-- <div class="checkbox__wrapper">
-        <div class="input__wrapper">
-            <p for="card"
-               id="card">Memory Card</p>
-            <input type="radio"
-                   id="html"
-                   name="memory_card"
-                   :value="true"
-                   v-model="product.memory.card">
-            <label for="html">Yes</label> <br>
+    <div class="input__wrapper">
+        <div>
+            <Field type="text"
+                   name="battery type"
+                   class="input"
+                   rules="required"
+                   v-model="product.battery.type"
+                   placeholder="Enter product battery type" />
+            <ErrorMessage class="error__message"
+                          name="battery type" />
         </div>
-        <div class="input__wrapper">
-            <input type="radio"
-                   id="memory"
-                   name="memory_card"
-                   :value="false"
-                   v-model="product.memory.card">
-            <label for="memory">No</label><br>
+        <div>
+            <Field v-model="product.performance.processor"
+                   type="text"
+                   class="input"
+                   placeholder="Enter product proccessor"
+                   name="proccessor" />
+            <ErrorMessage class="error__message"
+                          name="proccessor" />
         </div>
-
-    </div> -->
+    </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'

@@ -17,12 +17,12 @@
         </carousel>
         <latestProducts :title="'wireless earbuds'" />
         <bestSellerProducts />
-        <latestProducts :title="'smart watches'" />
+        <latestProducts :title="'watches'" />
         <div class="static__banner">
             <img src="@/assets/images/dk-banner-static.jpg"
                  alt="">
         </div>
-        <latestProducts :title="'smart mobiles'" />
+        <latestProducts :title="'mobiles'" />
         <shopFilters />
         <shopByBrand />
         <customerReviews />

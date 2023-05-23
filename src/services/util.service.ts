@@ -65,6 +65,11 @@ class Util
     {
         return new URL(`../assets/${directory}/${name}`, import.meta.url).href
     }
+
+    getBaseUrl()
+    {
+        return 'http://localhost:3000/api/'
+    }
 }
 
 export default new Util()

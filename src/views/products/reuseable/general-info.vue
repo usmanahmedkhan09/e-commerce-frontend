@@ -1,9 +1,10 @@
 <template>
-    <div>
+    <!-- <div>
         <h3>General Info:</h3>
-    </div>
+    </div> -->
     <div class="input__wrapper">
         <div>
+            <label for="name">Product Name:</label>
             <Field v-model="product.name"
                    type="text"
                    name="name"
@@ -14,6 +15,7 @@
                           name="name" />
         </div>
         <div>
+            <label for="name">Product Price:</label>
             <Field v-model="product.price"
                    type="number"
                    name="price"
@@ -27,6 +29,7 @@
     </div>
     <div class="input__wrapper">
         <div>
+            <label for="name">Product Quantity:</label>
             <Field name="quantity"
                    type="number"
                    placeholder="Enter product quantity"
@@ -37,6 +40,7 @@
                           name="quantity" />
         </div>
         <div>
+            <label for="name">Product Model:</label>
             <Field type="text"
                    placeholder="Enter product model"
                    class="input"
@@ -47,54 +51,67 @@
         </div>
     </div>
     <div class="input__wrapper">
-        <Field class="input"
-               as="select"
-               name="category"
-               id="categoryId"
-               v-slot="{ value }"
-               v-model="product.categoryId">
-            <option value=""
-                    selected
-                    disabled>Select a category</option>
-            <option :value="category._id"
-                    v-for="category in categories"
-                    :key="category._id"
-                    :selected="value">{{ category.name }}</option>
-        </Field>
-        <select class="input"
-                name="brandId"
-                id="brandId"
-                v-model="product.brandId">
-            <option :value="undefined"
-                    selected
-                    disabled>Select a brand</option>
-            <option :value="brand._id"
-                    v-for="brand in brands"
-                    :key="brand._id"> {{ brand.name }}</option>
-        </select>
+        <div>
+            <label for="name">Category:</label>
+            <Field class="input select"
+                   as="select"
+                   name="category"
+                   id="categoryId"
+                   v-slot="{ value }"
+                   v-model="product.categoryId"
+                   @change="handleSelectedCategory($event)">
+                <option value=""
+                        selected
+                        disabled>Select a category</option>
+                <option :value="category._id"
+                        v-for="category in categories"
+                        :key="category._id"
+                        :selected="value">{{ category.name }}</option>
+            </Field>
+        </div>
+        <div>
+            <label for="name">Brand:</label>
+            <select class="input select"
+                    name="brandId"
+                    id="brandId"
+                    v-model="product.brandId">
+                <option :value="undefined"
+                        selected
+                        disabled>Select a brand</option>
+                <option :value="brand._id"
+                        v-for="brand in brands"
+                        :key="brand._id"> {{ brand.name }}</option>
+            </select>
+        </div>
+
     </div>
-    <select class="input"
-            name="series"
-            id="series"
-            v-model="product.seriesId">
-        <option :value="undefined"
-                selected
-                disabled>Select a series</option>
-    </select>
-    <textarea type="number"
-              placeholder="Enter product description"
-              class="input textarea"
-              v-model="product.description" />
     <div class="input__wrapper">
-        <Field @change="uploadImages($event)"
-               type="file"
-               class="input"
-               placeholder="Choose product images"
-               name="image" />
-        <input type="text"
-               placeholder="Choose product color"
-               class="input"
-               v-model="color">
+        <div>
+            <label for="name">Discount:</label>
+            <Field v-model="product.discount"
+                   type="number"
+                   name="discount"
+                   placeholder="Enter product discount in percentage"
+                   class="input" />
+        </div>
+    </div>
+    <div class="input__wrapper">
+        <div>
+            <label for="name">Variant:</label>
+            <input type="text"
+                   placeholder="Choose product variant"
+                   class="input"
+                   v-model="color">
+        </div>
+        <div>
+            <label for="name">Images:</label>
+            <Field @change="uploadImages($event)"
+                   type="file"
+                   class="input"
+                   placeholder="Choose product images"
+                   name="image" />
+        </div>
+
     </div>
     <div class="imagesContainer">
         <div class="images"
@@ -177,6 +194,10 @@ export default defineComponent({
             await getBrands()
         })
 
+        const handleSelectedCategory = (e: any) =>
+        {
+            console.log(e)
+        }
         return {
             product,
             color,
@@ -184,7 +205,8 @@ export default defineComponent({
             categories,
             uploadImages,
             removeMedia,
-            utilService
+            utilService,
+            handleSelectedCategory
         }
     },
 })

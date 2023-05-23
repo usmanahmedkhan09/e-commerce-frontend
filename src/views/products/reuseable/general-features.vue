@@ -53,7 +53,35 @@
             <ErrorMessage class="error__message"
                           name="weight" />
         </div>
-
+        <div>
+            <Field v-model="product.generalFeatures.wearingType"
+                   type="text"
+                   class="input"
+                   name="waterProof"
+                   placeholder="Enter product weight" />
+            <ErrorMessage class="error__message"
+                          name="waterProof" />
+        </div>
+    </div>
+    <div class="input__wrapper">
+        <div>
+            <Field v-model="product.generalFeatures.waterproof"
+                   type="text"
+                   class="input"
+                   name="waterProof"
+                   placeholder="Enter product weight" />
+            <ErrorMessage class="error__message"
+                          name="waterProof" />
+        </div>
+        <div>
+            <Field v-model="product.generalFeatures.volumeControl"
+                   type="text"
+                   class="input"
+                   name="waterProof"
+                   placeholder="Enter product weight" />
+            <ErrorMessage class="error__message"
+                          name="waterProof" />
+        </div>
     </div>
 </template>
 <script lang="ts">

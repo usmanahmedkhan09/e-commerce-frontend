@@ -67,6 +67,14 @@ export const useproductStore = defineStore('product', {
 
         },
 
+        async getProductByCategoryName(Name: string)
+        {
+            let response: any = await axios.get(`product/getproductsByCategoryName/${Name}`)
+            if (response.isSuccess)
+            {
+                return response.data
+            }
+        }
 
     }
 })

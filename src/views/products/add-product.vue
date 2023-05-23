@@ -9,12 +9,14 @@
                 <Form class="product__form"
                       @submit="onSubmit()"
                       :initial-values="undefined">
-                    <generalInfo v-if="step == 1" />
+                    <!-- <connectivityFeatures /> -->
+                    <generalInfo />
+                    <!-- <generalInfo v-if="step == 1" />
                     <generalFeaturesVue v-if="step == 2" />
                     <displayFeatures v-if="step == 3" />
                     <memoryFeatures v-if="step == 4" />
                     <cameraFeatures v-if="step == 5" />
-                    <connectivityFeatures v-if="step == 6" />
+                    <connectivityFeatures v-if="step == 6" /> -->
                     <div class="button__wrapper">
                         <button class="btn"
                                 type="button"
@@ -85,13 +87,14 @@ export default defineComponent({
             if (route.params.id)
             {
                 let response = await getProductById(route.params.id) as Product
+                console.log(response)
                 if (response)
                 {
                     product.value = { ...response as Product }
                     product.value.categoryId = product.value.categoryId
                     product.value.brandId = product.value.brandId
                 }
-
+                isEdit.value = true
             } else
             {
                 product.value = new Product()
