@@ -28,10 +28,17 @@
   }
 
   &.select {
-    color: #a6a7a6;
     option {
       color: black;
       text-transform: capitalize;
+    }
+
+    option[disabled] {
+      color: #a6a7a6 !important;
+    }
+
+    &.active {
+      color: #a6a7a6;
     }
   }
 }

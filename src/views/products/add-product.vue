@@ -9,8 +9,8 @@
                 <Form class="product__form"
                       @submit="onSubmit()"
                       :initial-values="undefined">
-                    <!-- <connectivityFeatures /> -->
-                    <generalInfo />
+                    <connectivityFeatures />
+                    <!-- <generalInfo /> -->
                     <!-- <generalInfo v-if="step == 1" />
                     <generalFeaturesVue v-if="step == 2" />
                     <displayFeatures v-if="step == 3" />
