@@ -1,7 +1,4 @@
 <template>
-    <!-- <div>
-        <h3>General Info:</h3>
-    </div> -->
     <div class="input__wrapper">
         <div>
             <label for="name">Product Name:</label>
@@ -9,16 +6,18 @@
                    type="text"
                    name="name"
                    class="input"
+                   id="name"
                    rules="required|minLength:5"
                    placeholder="Enter product name" />
             <ErrorMessage class="error__message"
                           name="name" />
         </div>
         <div>
-            <label for="name">Product Price:</label>
+            <label for="price">Product Price:</label>
             <Field v-model="product.price"
                    type="number"
                    name="price"
+                   id="price"
                    rules="required"
                    placeholder="Enter product price"
                    class="input" />
@@ -29,9 +28,10 @@
     </div>
     <div class="input__wrapper">
         <div>
-            <label for="name">Product Quantity:</label>
+            <label for="quantity">Product Quantity:</label>
             <Field name="quantity"
                    type="number"
+                   id="quantity"
                    placeholder="Enter product quantity"
                    class="input"
                    rules="required"
@@ -40,10 +40,11 @@
                           name="quantity" />
         </div>
         <div>
-            <label for="name">Product Model:</label>
+            <label for="model">Product Model:</label>
             <Field type="text"
                    placeholder="Enter product model"
                    class="input"
+                   id="model"
                    v-model="product.model"
                    name="model" />
             <ErrorMessage class="error__message"
@@ -52,13 +53,14 @@
     </div>
     <div class="input__wrapper">
         <div>
-            <label for="name">Category:</label>
+            <label for="category">Category:</label>
             <Field class="input select"
                    as="select"
+                   id="category"
                    name="category"
-                   id="categoryId"
                    v-slot="{ value }"
                    v-model="product.categoryId"
+                   :class="{ 'active': product.categoryId == undefined }"
                    @change="handleSelectedCategory($event)">
                 <option value=""
                         selected
@@ -70,11 +72,12 @@
             </Field>
         </div>
         <div>
-            <label for="name">Brand:</label>
+            <label for="brand">Brand:</label>
             <select class="input select"
                     name="brandId"
-                    id="brandId"
-                    v-model="product.brandId">
+                    id="brand"
+                    v-model="product.brandId"
+                    :class="{ 'active': product.brandId == undefined }">
                 <option :value="undefined"
                         selected
                         disabled>Select a brand</option>
@@ -87,27 +90,30 @@
     </div>
     <div class="input__wrapper">
         <div>
-            <label for="name">Discount:</label>
+            <label for="discount">Discount:</label>
             <Field v-model="product.discount"
                    type="number"
                    name="discount"
+                   id="discount"
                    placeholder="Enter product discount in percentage"
                    class="input" />
         </div>
     </div>
     <div class="input__wrapper">
         <div>
-            <label for="name">Variant:</label>
+            <label for="variant">Variant:</label>
             <input type="text"
                    placeholder="Choose product variant"
                    class="input"
+                   id="variant"
                    v-model="color">
         </div>
         <div>
-            <label for="name">Images:</label>
+            <label for="images">Images:</label>
             <Field @change="uploadImages($event)"
                    type="file"
                    class="input"
+                   id="images"
                    placeholder="Choose product images"
                    name="image" />
         </div>

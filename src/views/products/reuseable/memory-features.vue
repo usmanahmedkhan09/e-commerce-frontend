@@ -1,22 +1,23 @@
 <template>
-    <div>
-        <h3>Memory Features:</h3>
-    </div>
     <div class="input__wrapper">
         <div>
+            <label for="memory">Internal Memory Size:</label>
             <Field type="text"
+                   id="memory"
                    name="name"
                    class="input"
                    rules="required"
-                   placeholder="Enter product internal memory size"
+                   placeholder="Enter internal memory size"
                    v-model="product.memory.internal" />
             <ErrorMessage class="error__message"
                           name="internal" />
         </div>
         <div>
+            <label for="ram">Ram:</label>
             <Field v-model="product.memory.ram"
                    type="text"
-                   placeholder="Enter product ram"
+                   id="ram"
+                   placeholder="Enter ram"
                    class="input"
                    name="ram" />
             <ErrorMessage class="error__message"
@@ -26,20 +27,24 @@
     </div>
     <div class="input__wrapper">
         <div>
+            <label for="battery-type">Battery Type:</label>
             <Field type="text"
                    name="battery type"
                    class="input"
                    rules="required"
+                   id="battery-type"
                    v-model="product.battery.type"
-                   placeholder="Enter product battery type" />
+                   placeholder="Enter battery type" />
             <ErrorMessage class="error__message"
                           name="battery type" />
         </div>
         <div>
+            <label for="proccessor">Proccessor:</label>
             <Field v-model="product.performance.processor"
                    type="text"
                    class="input"
-                   placeholder="Enter product proccessor"
+                   id="proccessor"
+                   placeholder="Enter proccessor"
                    name="proccessor" />
             <ErrorMessage class="error__message"
                           name="proccessor" />
@@ -47,23 +52,27 @@
     </div>
     <div class="input__wrapper">
         <div>
+            <label for="play-time">Battery Play Time:</label>
             <Field type="text"
                    name="battery type"
                    class="input"
                    rules="required"
-                   v-model="product.battery.type"
-                   placeholder="Enter product battery type" />
+                   id="play-time"
+                   v-model="product.battery.playTime"
+                   placeholder="Enter play time" />
             <ErrorMessage class="error__message"
                           name="battery type" />
         </div>
         <div>
-            <Field v-model="product.performance.processor"
+            <label for="chargin-time">Battery Charging Time:</label>
+            <Field v-model="product.battery.chargingTime"
                    type="text"
                    class="input"
-                   placeholder="Enter product proccessor"
-                   name="proccessor" />
+                   id="chargin-time"
+                   placeholder="Battery charging time"
+                   name="chargingTime" />
             <ErrorMessage class="error__message"
-                          name="proccessor" />
+                          name="chargingTime" />
         </div>
     </div>
 </template>

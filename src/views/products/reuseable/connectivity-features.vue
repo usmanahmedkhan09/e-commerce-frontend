@@ -17,7 +17,7 @@
             </select>
         </div>
         <div>
-            <label for="bluetooth">3G:</label>
+            <label for="3g">3G:</label>
             <select name="3g"
                     id="3g"
                     class="input select"
@@ -30,7 +30,7 @@
             </select>
         </div>
         <div>
-            <label for="bluetooth">4G/LTE:</label>
+            <label for="4g">4G/LTE:</label>
             <select name="4g"
                     id="4g"
                     class="input select"
@@ -43,7 +43,7 @@
             </select>
         </div>
         <div>
-            <label for="bluetooth">5G:</label>
+            <label for="5g">5G:</label>
             <select name="5g"
                     id="5g"
                     class="input select"
@@ -58,7 +58,7 @@
     </div>
     <div class="input__wrapper">
         <div>
-            <label for="bluetooth">NFC:</label>
+            <label for="nfc">NFC:</label>
             <select name="nfc"
                     id="nfc"
                     class="input select"
@@ -71,7 +71,7 @@
             </select>
         </div>
         <div>
-            <label for="bluetooth">Wifi:</label>
+            <label for="wifi">Wifi:</label>
             <select name="wifi"
                     id="wifi"
                     class="input select"
@@ -84,7 +84,7 @@
             </select>
         </div>
         <div>
-            <label for="bluetooth">Radio:</label>
+            <label for="radio">Radio:</label>
             <select name="radio"
                     id="radio"
                     class="input select"
@@ -113,6 +113,24 @@
                 <option :value="'no'"
                         :selected="value">No</option>
             </Field>
+        </div>
+    </div>
+    <div class="input__wrapper">
+        <div>
+            <label for="range">Bluetooth Range:</label>
+            <Field name="range"
+                   id="range"
+                   v-model="product.connectivity.bluetoothRange"
+                   class="input"
+                   placeholder="Enter bluetooth range"></Field>
+        </div>
+        <div>
+            <label for="version">Bluetooth Version:</label>
+            <Field name="range"
+                   id="version"
+                   v-model="product.connectivity.bluetoothVersion"
+                   class="input"
+                   placeholder="Enter bluetooth version"></Field>
         </div>
     </div>
 </template>

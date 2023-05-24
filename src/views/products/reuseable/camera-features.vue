@@ -1,34 +1,36 @@
 <template>
-       <div>
-              <h3>Camera Features:</h3>
-       </div>
        <div class="input__wrapper">
               <div>
+                     <label for="front-camera">Front Camera Size:</label>
                      <Field v-model="product.camera.frontCamera"
                             type="text"
                             class="input"
                             name="front camera"
+                            id="front-camera"
                             placeholder="Enter front camera size"
                             required />
                      <ErrorMessage class="error__message"
                                    name="front camera" />
               </div>
               <div>
+                     <label for="back-camera">Back Camera Size:</label>
                      <Field v-model="product.camera.backCamera"
                             type="text"
                             placeholder="Enter back camera size"
                             class="input"
+                            id="back-camera"
                             name="back camera" />
                      <ErrorMessage class="error__message"
                                    name="back camera" />
               </div>
-
        </div>
        <div class="input__wrapper">
               <div>
+                     <label for="back-video">Back Video Recording:</label>
                      <Field v-model="product.camera.backvideorecording"
                             type="text"
                             class="input"
+                            id="back-video"
                             name="back video recording"
                             placeholder="Enter back video recording"
                             required />
@@ -36,55 +38,54 @@
                                    name="back video recording" />
               </div>
               <div>
+                     <label for="front-video">Front Video Recording:</label>
                      <Field v-model="product.camera.frontvideorecording"
                             type="text"
                             class="input"
                             placeholder="Enter front video recording"
                             required
+                            id="front-video"
                             name="front video recording" />
                      <ErrorMessage class="error__message"
                                    name="front video recording" />
               </div>
-
        </div>
-       <div class="checkbox__wrapper">
-              <div class="input__wrapper">
-                     <p for="card"
-                        id="card">Front Flash Light:</p>
-                     <input type="radio"
-                            id="html"
-                            name="front_flash"
-                            :value="true"
+       <div class="input__wrapper">
+              <div>
+                     <label for="flash-light">Front Flashlight:</label>
+                     <Field name="flashlight"
+                            class="input select"
+                            as="select"
+                            id="flash-light"
+                            v-slot="{ value }"
+                            :class="{ 'active': product.camera.frontflashlight == undefined }"
                             v-model="product.camera.frontflashlight">
-                     <label for="html">Yes</label> <br>
+                            <option value=""
+                                    disabled
+                                    selected>Please Select One</option>
+                            <option :value="true"
+                                    :selected="value">Yes</option>
+                            <option :value="false"
+                                    :selected="value">No</option>
+                     </Field>
               </div>
-              <div class="input__wrapper">
-                     <input type="radio"
-                            id="memory"
-                            name="front_flash"
-                            :value="false"
-                            v-model="product.camera.frontflashlight">
-                     <label for="memory">No</label><br>
-              </div>
-       </div>
-       <div class="checkbox__wrapper">
-              <div class="input__wrapper">
-                     <p for="card"
-                        id="card">Back Flash Light:</p>
-                     <input type="radio"
-                            id="html"
-                            name="back__flash"
-                            :value="true"
+              <div>
+                     <label for="back-flashlight">Back Flashlight:</label>
+                     <Field name="flashlight"
+                            id="back-flashlight"
+                            class="input select"
+                            as="select"
+                            v-slot="{ value }"
+                            :class="{ 'active': product.camera.backflashlight == undefined }"
                             v-model="product.camera.backflashlight">
-                     <label for="html">Yes</label> <br>
-              </div>
-              <div class="input__wrapper">
-                     <input type="radio"
-                            id="html"
-                            name="back__flash"
-                            :value="false"
-                            v-model="product.camera.backflashlight">
-                     <label for="html">No</label> <br>
+                            <option value=""
+                                    disabled
+                                    selected>Please Select One</option>
+                            <option :value="true"
+                                    :selected="value">Yes</option>
+                            <option :value="false"
+                                    :selected="value">No</option>
+                     </Field>
               </div>
        </div>
 </template>

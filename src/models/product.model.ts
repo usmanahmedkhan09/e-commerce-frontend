@@ -5,7 +5,7 @@ class GeneralFeatures
     dimensions: string | undefined
     weight: string | undefined
     opertaingSystem: string | undefined
-    waterproof: string | undefined
+    waterproof: boolean | undefined
     wearingType: string | undefined
     volumeControl: string | undefined
 }
@@ -43,8 +43,8 @@ class Camera
 {
     frontCamera: string | undefined
     backCamera: string | undefined
-    frontflashlight: Boolean = false
-    backflashlight: Boolean = false
+    frontflashlight: Boolean | undefined
+    backflashlight: Boolean | undefined
     frontvideorecording: string | undefined
     backvideorecording: string | undefined
 

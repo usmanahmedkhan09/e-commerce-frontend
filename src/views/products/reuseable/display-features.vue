@@ -1,22 +1,23 @@
 <template>
-    <div>
-        <h3>Display Features:</h3>
-    </div>
     <div class="input__wrapper">
         <div>
+            <label for="screen-size">Screen Size:</label>
             <Field v-model="product.display.size"
                    type="text"
                    class="input"
-                   placeholder="Enter product screen size"
+                   id="screen-size"
+                   placeholder="Enter screen size"
                    name="size" />
             <ErrorMessage class="error__message"
                           name="size" />
         </div>
         <div>
+            <label for="screen-resolution">Screen Resolution:</label>
             <Field v-model="product.display.resolution"
                    type="text"
-                   placeholder="Enter product resolution"
+                   placeholder="Enter resolution"
                    class="input"
+                   id="screen-resolution"
                    name="resolution" />
             <ErrorMessage class="error__message"
                           name="resolution" />
@@ -25,19 +26,23 @@
     </div>
     <div class="input__wrapper">
         <div>
+            <label for="screen-type">Screen Type:</label>
             <Field v-model="product.display.type"
                    type="text"
                    class="input"
-                   placeholder="Enter product screen type"
+                   id="screen-type"
+                   placeholder="Enter screen type"
                    name="screenType" />
             <ErrorMessage class="error__message"
                           name="screenType" />
         </div>
         <div>
+            <label for="screen-protection">Screen Protection:</label>
             <Field v-model="product.display.protection"
                    type="text"
-                   placeholder="Enter product protection"
+                   placeholder="Enter screen protection"
                    class="input"
+                   id="screen-protection"
                    name="protection" />
             <ErrorMessage class="error__message"
                           name="protection" />

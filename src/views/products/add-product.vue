@@ -9,14 +9,12 @@
                 <Form class="product__form"
                       @submit="onSubmit()"
                       :initial-values="undefined">
-                    <connectivityFeatures />
-                    <!-- <generalInfo /> -->
-                    <!-- <generalInfo v-if="step == 1" />
+                    <generalInfo v-if="step == 1" />
                     <generalFeaturesVue v-if="step == 2" />
                     <displayFeatures v-if="step == 3" />
-                    <memoryFeatures v-if="step == 4" />
-                    <cameraFeatures v-if="step == 5" />
-                    <connectivityFeatures v-if="step == 6" /> -->
+                    <!-- <connectivityFeatures /> -->
+                    <!-- <memoryFeatures /> -->
+                    <!-- <cameraFeatures /> -->
                     <div class="button__wrapper">
                         <button class="btn"
                                 type="button"
