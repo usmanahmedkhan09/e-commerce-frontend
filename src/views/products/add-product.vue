@@ -12,9 +12,9 @@
                     <generalInfo v-if="step == 1" />
                     <generalFeaturesVue v-if="step == 2" />
                     <displayFeatures v-if="step == 3" />
-                    <!-- <connectivityFeatures /> -->
-                    <!-- <memoryFeatures /> -->
-                    <!-- <cameraFeatures /> -->
+                    <memoryFeatures v-if="step == 4" />
+                    <connectivityFeatures v-if="step == 5" />
+                    <cameraFeatures v-if="step == 6" />
                     <div class="button__wrapper">
                         <button class="btn"
                                 type="button"
@@ -33,7 +33,7 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { useproductStore } from '@/stores/product.store'
 import generalInfo from './reuseable/general-info.vue';
 import displayFeatures from './reuseable/display-features.vue';
@@ -62,6 +62,7 @@ export default defineComponent({
 
         const onSubmit = handleSubmit(values =>
         {
+            console.log(step.value)
             if (step.value < 6)
                 step.value++
             else
@@ -85,7 +86,6 @@ export default defineComponent({
             if (route.params.id)
             {
                 let response = await getProductById(route.params.id) as Product
-                console.log(response)
                 if (response)
                 {
                     product.value = { ...response as Product }

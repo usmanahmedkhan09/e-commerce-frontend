@@ -6,7 +6,6 @@
                    id="memory"
                    name="name"
                    class="input"
-                   rules="required"
                    placeholder="Enter internal memory size"
                    v-model="product.memory.internal" />
             <ErrorMessage class="error__message"
@@ -31,12 +30,9 @@
             <Field type="text"
                    name="battery type"
                    class="input"
-                   rules="required"
                    id="battery-type"
                    v-model="product.battery.type"
                    placeholder="Enter battery type" />
-            <ErrorMessage class="error__message"
-                          name="battery type" />
         </div>
         <div>
             <label for="proccessor">Proccessor:</label>
@@ -54,14 +50,11 @@
         <div>
             <label for="play-time">Battery Play Time:</label>
             <Field type="text"
-                   name="battery type"
+                   name="play-time"
                    class="input"
-                   rules="required"
                    id="play-time"
                    v-model="product.battery.playTime"
                    placeholder="Enter play time" />
-            <ErrorMessage class="error__message"
-                          name="battery type" />
         </div>
         <div>
             <label for="chargin-time">Battery Charging Time:</label>
@@ -71,8 +64,26 @@
                    id="chargin-time"
                    placeholder="Battery charging time"
                    name="chargingTime" />
-            <ErrorMessage class="error__message"
-                          name="chargingTime" />
+        </div>
+    </div>
+    <div class="input__wrapper">
+        <div>
+            <label for="buds">Battery Capacity for Buds:</label>
+            <Field type="text"
+                   name="buds"
+                   class="input"
+                   id="buds"
+                   v-model="product.battery.capacityforbuds"
+                   placeholder="Battery capacity for buds" />
+        </div>
+        <div>
+            <label for="case">Battery Capacity for Case:</label>
+            <Field v-model="product.battery.capacityforcase"
+                   type="text"
+                   class="input"
+                   id="case"
+                   placeholder="Battery capacity for case"
+                   name="case" />
         </div>
     </div>
 </template>

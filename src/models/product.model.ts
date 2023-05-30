@@ -37,6 +37,8 @@ class Battery
     type: string | undefined
     chargingTime: string | undefined
     playTime: string | undefined
+    capacityforbuds: string | undefined
+    capacityforcase: string | undefined
 }
 
 class Camera

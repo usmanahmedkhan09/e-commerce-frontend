@@ -50,7 +50,7 @@ export default defineComponent({
 
         onMounted(async () =>
         {
-            let response = await getProductByCategoryName(props.title.split(" ").join("").toLowerCase())
+            let response = await getProductByCategoryName(props.title.toLowerCase())
             if (response)
                 products.value = [...response]
         })

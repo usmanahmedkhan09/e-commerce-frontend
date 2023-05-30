@@ -37,6 +37,7 @@ export const useproductStore = defineStore('product', {
 
         async getProducts()
         {
+
             let response: any = await axios.get('product')
             if (response.isSuccess)
             {
@@ -46,7 +47,8 @@ export const useproductStore = defineStore('product', {
 
         async getProductById(productId: any)
         {
-            let response: any = await axios.get(`product/${productId}`)
+
+            let response: any = await axios.get(`product/productById/${productId}`)
             if (response.isSuccess)
             {
                 this.product = response.data
@@ -73,6 +75,16 @@ export const useproductStore = defineStore('product', {
             if (response.isSuccess)
             {
                 return response.data
+            }
+        },
+
+        async getBestSellingProducts()
+        {
+            let response: any = await axios.get(`product/getBestSellingProducts`)
+            if (response.isSuccess)
+            {
+                let products = response.data.map((x: any) => x.product)
+                return products
             }
         }
 

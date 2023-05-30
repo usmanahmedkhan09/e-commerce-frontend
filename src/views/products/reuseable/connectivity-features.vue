@@ -126,7 +126,7 @@
         </div>
         <div>
             <label for="version">Bluetooth Version:</label>
-            <Field name="range"
+            <Field name="version"
                    id="version"
                    v-model="product.connectivity.bluetoothVersion"
                    class="input"

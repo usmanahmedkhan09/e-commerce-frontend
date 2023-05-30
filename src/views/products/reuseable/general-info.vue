@@ -60,8 +60,7 @@
                    name="category"
                    v-slot="{ value }"
                    v-model="product.categoryId"
-                   :class="{ 'active': product.categoryId == undefined }"
-                   @change="handleSelectedCategory($event)">
+                   :class="{ 'active': product.categoryId == undefined }">
                 <option value=""
                         selected
                         disabled>Select a category</option>

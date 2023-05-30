@@ -19,6 +19,7 @@
                                 <th>S No</th>
                                 <th>Name</th>
                                 <th>Price</th>
+                                <th>Category</th>
                                 <th>Brand</th>
                                 <th>Quantity</th>
                                 <th>Created At</th>
@@ -31,6 +32,7 @@
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ product.name }}</td>
                                 <td>{{ product.price }}</td>
+                                <td>{{ product.category.name }}</td>
                                 <td>{{ product.brand.name }}</td>
                                 <td>{{ product.quantity }}</td>
                                 <td>{{ moment(product.createdAt).format("MMM Do YY") }}</td>
