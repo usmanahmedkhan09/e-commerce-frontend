@@ -4,13 +4,17 @@
          @click="$emit('toggleSidebar')">
         <div class="main__sidebar"
              :class="{ 'open': showSidebar }">
-            <div class="user__box">
-                <img height=""
-                     width="130"
-                     :src="getImageUrl('logo.svg', 'svg')"
-                     alt="">
-                <button class="btn btn__login">Login</button>
+            <div class="sidebar-content"
+                 v-show="showSidebar">
+                <div class="user__box">
+                    <img height=""
+                         width="130"
+                         :src="getImageUrl('logo.svg', 'svg')"
+                         alt="">
+                    <button class="btn btn__login">Login</button>
+                </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -44,17 +48,29 @@ export default defineComponent({
 
     &.open {
         width: 100%;
-        // transition: all .5s ease-in-out;
     }
 
     .main__sidebar {
-        width: 0;
         height: 100%;
         background-color: white;
+        transform: translateX(-200px);
+        transition: transform 0.5s ease-in-out;
+
 
         &.open {
             width: 358px;
-            transition: all .5s ease-in-out;
+            transform: translateX(0);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .sidebar-content {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 1;
+        }
+
+        .sidebar-content[v-show] {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .user__box {
