@@ -1,10 +1,16 @@
 <template>
     <header class="header">
         <div class="header__icons">
-            <inline-svg class="bar__icon"
-                        :src="require('@/assets/svg/bar.svg')"></inline-svg>
-            <inline-svg class="logo__icon"
-                        :src="require('@/assets/svg/logo.svg')"></inline-svg>
+            <img class="bar__icon"
+                 height="50"
+                 width="50"
+                 :src="getImageUrl('bar.svg', 'svg')"
+                 alt=""
+                 @click="showSidebar = !showSidebar">
+            <img height=""
+                 width="130"
+                 :src="getImageUrl('logo.svg', 'svg')"
+                 alt="">
         </div>
         <div class="header__buttons">
             <RouterLink to="/login"
@@ -16,16 +22,23 @@
     <main class="content">
         <router-view></router-view>
     </main>
+    <sidebar :showSidebar="showSidebar"
+             @toggleSidebar="showSidebar = !showSidebar" />
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { RouterLink } from 'vue-router';
-
+import utilService from '@/services/util.service'
+import sidebar from './public/sidebar.vue';
 export default defineComponent({
+    components: { sidebar },
     setup()
     {
+        const showSidebar = ref(false)
         return {
-            RouterLink
+            RouterLink,
+            getImageUrl: utilService.getImageUrl,
+            showSidebar
         }
     },
 })

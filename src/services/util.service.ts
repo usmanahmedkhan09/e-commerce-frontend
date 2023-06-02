@@ -3,6 +3,7 @@ import axios from '@/services/axios.service'
 class Util
 {
     public baseUrl = 'http://localhost:3000/api/'
+    public showSidebar = false
     showToast(
         message: string,
         type: TYPE = TYPE.SUCCESS,
@@ -69,6 +70,11 @@ class Util
     getBaseUrl()
     {
         return 'http://localhost:3000/api/'
+    }
+
+    toggleSideBar()
+    {
+        this.showSidebar = !this.showSidebar
     }
 }
 

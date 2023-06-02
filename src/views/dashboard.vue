@@ -17,7 +17,7 @@
         </carousel>
         <latestProducts :title="'wireless earbuds'" />
         <bestSellerProducts />
-        <latestProducts :title="'watches'" />
+        <latestProducts :title="'Smart watches'" />
         <div class="static__banner">
             <img src="@/assets/images/dk-banner-static.jpg"
                  alt="">
