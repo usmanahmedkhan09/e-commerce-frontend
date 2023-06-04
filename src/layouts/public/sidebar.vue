@@ -13,6 +13,9 @@
                          alt="">
                     <button class="btn btn__login">Login</button>
                 </div>
+                <div class="sidebar__categories">
+                    <categoryList />
+                </div>
             </div>
 
         </div>
@@ -21,8 +24,10 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service';
+import categoryList from '@/components/sidebar-categories.vue';
 
 export default defineComponent({
+    components: { categoryList },
     props: {
         showSidebar: {
             type: Boolean,
