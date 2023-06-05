@@ -1,7 +1,9 @@
 <template>
-    <div class="sidebar__accordian">
+    <div class="sidebar__accordian"
+         :class="{ 'active': showBrands }">
         <div class="sidebar__accordian__header">
-            <div class="title">
+            <div class="title"
+                 @click.stop="showBrands = !showBrands">
                 <img class="title__icon"
                      :src="getImageUrl(`sidebar-${category?.name.split(' ').join('-').toLowerCase()}-icon.svg`, 'svg')"
                      alt="">
@@ -11,9 +13,11 @@
                      alt="">
             </div>
         </div>
-        <div class="sidebar__accordian__content">
+        <div class="sidebar__accordian__content"
+             v-if="showBrands"
+             :class="{ 'active': showBrands }">
             <div class="brands"
-                 v-for="brand in category.brands"
+                 v-for="brand in category.brands.slice(0, 5)"
                  :key="brand">
                 <p class="brands__item">{{ brand.name }}</p>
             </div>
@@ -21,7 +25,7 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service';
 
 export default defineComponent({
@@ -36,15 +40,21 @@ export default defineComponent({
     },
     setup()
     {
-        return { getImageUrl: utilService.getImageUrl }
+        const showBrands = ref(false)
+        return { getImageUrl: utilService.getImageUrl, showBrands }
     },
 })
 </script>
 <style lang="scss" scoped>
 .sidebar__accordian {
-    padding: 10px 20px 10px 15px;
+
+    &.active {
+        background: rgba(116, 138, 152, .05);
+        border-radius: 10px;
+    }
 
     &__header {
+        padding: 10px 20px 10px 15px;
         display: flex;
 
         .title {
@@ -65,9 +75,19 @@ export default defineComponent({
                 flex-grow: 1;
             }
         }
+
+
     }
 
     &__content {
+
+        &.active {
+            border-top: 1px solid #ccc;
+            margin-bottom: 2rem;
+            padding: 5px 0 0 0px;
+            list-style: none;
+        }
+
         .brands {
 
             .brands__item {
@@ -80,6 +100,10 @@ export default defineComponent({
 
                 :first-child {
                     margin-top: 10px;
+                }
+
+                &:hover {
+                    background: rgba(116, 138, 152, .08);
                 }
             }
         }
