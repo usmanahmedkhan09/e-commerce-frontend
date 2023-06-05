@@ -16,6 +16,7 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useCategoryStore } from '@/stores/category'
 import sidebarAccordian from './sidebar-accordian.vue'
+import type Category from '@/models/category.model'
 
 export default defineComponent({
     components: { sidebarAccordian },
@@ -25,7 +26,7 @@ export default defineComponent({
         const { getCategories } = categoriesStore
         const selectedCategory = ref()
 
-        const categories = computed(() => categoriesStore.get)
+        const categories = computed<Category[]>(() => categoriesStore.get)
         onMounted(async () => { await getCategories() })
 
 

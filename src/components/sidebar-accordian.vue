@@ -17,16 +17,38 @@
              v-if="showBrands"
              :class="{ 'active': showBrands }">
             <div class="brands"
-                 v-for="brand in category.brands.slice(0, 5)"
-                 :key="brand">
+                 v-for="(brand, index) in brands"
+                 :key="index">
                 <p class="brands__item">{{ brand.name }}</p>
+            </div>
+            <div class="accordian__subSection">
+                <div class="accordian__subSection__header"
+                     :class="{ 'active': showMore }">
+                    <div class="title"
+                         @click.stop="showMore = !showMore">
+                        <span class="category__name">Show More</span>
+                        <img class="caret"
+                             :src="getImageUrl(`caret.svg`, 'svg')"
+                             alt="">
+                    </div>
+                </div>
+                <div class="sidebar__accordian__content"
+                     v-if="showMore"
+                     :class="{ 'active': showMore }">
+                    <div class="brands"
+                         v-for="(brand, index) in remaningBrands"
+                         :key="index">
+                        <p class="brands__item">{{ brand.name }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service';
+
 
 export default defineComponent({
     props: {
@@ -38,10 +60,13 @@ export default defineComponent({
             required: true
         }
     },
-    setup()
+    setup(props)
     {
         const showBrands = ref(false)
-        return { getImageUrl: utilService.getImageUrl, showBrands }
+        const showMore = ref(false)
+        const brands = ref(props.category.brands.slice(0, 5))
+        const remaningBrands = computed(() => props.category.brands.slice(5, props.category.brands.length - 1))
+        return { getImageUrl: utilService.getImageUrl, showBrands, brands, remaningBrands, showMore }
     },
 })
 </script>
@@ -104,6 +129,18 @@ export default defineComponent({
 
                 &:hover {
                     background: rgba(116, 138, 152, .08);
+                }
+            }
+        }
+
+        .accordian__subSection {
+
+            &__header {
+                @extend .sidebar__accordian__header;
+
+                &.active {
+                    background: rgba(116, 138, 152, .05);
+                    border-radius: 10px;
                 }
             }
         }

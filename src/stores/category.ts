@@ -10,7 +10,7 @@ export const useCategoryStore = defineStore('categoryStore', {
         }
     },
     getters: {
-        get: (state) => state.categories as Category[]
+        get: (state): Category[] => state.categories as Category[]
     },
     actions: {
         async addCategory(category: Category)
