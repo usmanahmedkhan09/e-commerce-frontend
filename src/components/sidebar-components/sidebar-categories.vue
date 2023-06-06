@@ -1,21 +1,19 @@
 <template>
-    <div class="">
-        <div class="sidebar__categories__title">Categories</div>
-        <div class="all__categories">
-            <div class="all__categories__item"
-                 v-for="category in categories"
-                 :key="category._id"
-                 :class="{ 'active': selectedCategory }"
-                 @click="toggleCategories(category)">
-                <sidebarAccordian :category="category" />
-            </div>
+    <div class="sidebar__categories__title">Categories</div>
+    <div class="all__categories">
+        <div class="all__categories__item"
+             v-for="category in categories"
+             :key="category._id"
+             :class="{ 'active': selectedCategory }"
+             @click="toggleCategories(category)">
+            <sidebarAccordian :category="category" />
         </div>
     </div>
 </template>
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useCategoryStore } from '@/stores/category'
-import sidebarAccordian from './sidebar-accordian.vue'
+import sidebarAccordian from '../sidebar-accordian.vue'
 import type Category from '@/models/category.model'
 
 export default defineComponent({

@@ -15,19 +15,22 @@
                 </div>
                 <div class="sidebar__categories">
                     <categoryList />
+                    <popularList />
+                    <navigation />
                 </div>
             </div>
-
         </div>
     </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service';
-import categoryList from '@/components/sidebar-categories.vue';
+import categoryList from '@/components/sidebar-components/sidebar-categories.vue';
+import popularList from '@/components/sidebar-components/popular-list.vue';
+import navigation from '@/components/sidebar-components/main-navigation.vue';
 
 export default defineComponent({
-    components: { categoryList },
+    components: { categoryList, popularList, navigation },
     props: {
         showSidebar: {
             type: Boolean,
