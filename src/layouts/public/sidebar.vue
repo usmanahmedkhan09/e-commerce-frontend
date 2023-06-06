@@ -71,6 +71,8 @@ export default defineComponent({
         .sidebar-content {
             transition: opacity 0.3s ease-in-out;
             opacity: 1;
+            height: 100%;
+            overflow: auto;
         }
 
         .sidebar-content[v-show] {
@@ -84,12 +86,17 @@ export default defineComponent({
             background: var(--color-primary-blue);
             padding: 70px 32px;
 
+
             .btn__login {
                 max-width: 110px;
                 margin-top: 24px;
                 font-weight: 400;
                 padding: 5px
             }
+        }
+
+        .sidebar__categories {
+            padding: 32px;
         }
     }
 }

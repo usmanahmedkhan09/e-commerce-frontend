@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar__categories">
+    <div class="">
         <div class="sidebar__categories__title">Categories</div>
         <div class="all__categories">
             <div class="all__categories__item"
@@ -41,7 +41,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .sidebar__categories {
-    padding: 32px;
+
 
     &__title {
         color: #748a98;
