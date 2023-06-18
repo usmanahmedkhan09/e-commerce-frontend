@@ -8,7 +8,8 @@ export const useAuthStore = defineStore('auth', {
     state: () =>
     {
         return {
-            user: new User()
+            user: new User(),
+            showSidebar: false
         }
     },
     actions: {

@@ -7,7 +7,8 @@
                 <img class="title__icon"
                      :src="getImageUrl(`sidebar-${category?.name.split(' ').join('-').toLowerCase()}-icon.svg`, 'svg')"
                      alt="">
-                <span class="category__name">{{ category?.name }}</span>
+                <span class="category__name"
+                      @click.stop.exact="goToCategorPage(category.name)">{{ category?.name }}</span>
                 <img class="caret"
                      :src="getImageUrl(`caret.svg`, 'svg')"
                      alt="">
@@ -48,6 +49,8 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service';
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth.store'
 
 
 export default defineComponent({
@@ -62,11 +65,20 @@ export default defineComponent({
     },
     setup(props)
     {
+        const authStore = useAuthStore()
+        const showSidebar = computed(() => authStore.showSidebar)
+        const router = useRouter()
         const showBrands = ref(false)
         const showMore = ref(false)
         const brands = ref(props.category.brands.slice(0, 5))
         const remaningBrands = computed(() => props.category.brands.slice(5, props.category.brands.length - 1))
-        return { getImageUrl: utilService.getImageUrl, showBrands, brands, remaningBrands, showMore }
+
+        const goToCategorPage = (name: string) =>
+        {
+            authStore.$patch({ showSidebar: !showSidebar })
+            router.push(`/${name}`)
+        }
+        return { getImageUrl: utilService.getImageUrl, showBrands, brands, remaningBrands, showMore, goToCategorPage }
     },
 })
 </script>

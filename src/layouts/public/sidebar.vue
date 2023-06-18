@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar__overlay"
          :class="{ 'open': showSidebar }"
-         @click="$emit('toggleSidebar')">
+         @click="toggleSidebar">
         <div class="main__sidebar"
              :class="{ 'open': showSidebar }">
             <div class="sidebar-content"
@@ -23,23 +23,23 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service';
 import categoryList from '@/components/sidebar-components/sidebar-categories.vue';
 import popularList from '@/components/sidebar-components/popular-list.vue';
 import navigation from '@/components/sidebar-components/main-navigation.vue';
+import { useAuthStore } from '@/stores/auth.store'
 
 export default defineComponent({
     components: { categoryList, popularList, navigation },
-    props: {
-        showSidebar: {
-            type: Boolean,
-            required: true
-        }
-    },
     setup(props)
     {
-        return { getImageUrl: utilService.getImageUrl }
+        const authStore = useAuthStore()
+        const showSidebar = computed(() => authStore.showSidebar)
+        const toggleSidebar = () => authStore.$patch({ showSidebar: !showSidebar })
+
+
+        return { showSidebar, getImageUrl: utilService.getImageUrl, toggleSidebar }
     },
 })
 </script>

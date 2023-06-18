@@ -94,6 +94,12 @@ const router = createRouter({
       meta: { layout: 'public', },
       component: () => import('../views/register.vue')
     },
+    {
+      path: '/:category',
+      name: 'Product Category',
+      meta: { layout: 'public', },
+      component: () => import('../views/public/products/product-listing.vue')
+    },
 
   ]
 })

@@ -6,7 +6,7 @@
                  width="50"
                  :src="getImageUrl('bar.svg', 'svg')"
                  alt=""
-                 @click="showSidebar = !showSidebar">
+                 @click="toggleSidebar()">
             <img height=""
                  width="130"
                  :src="getImageUrl('logo.svg', 'svg')"
@@ -30,15 +30,21 @@ import { defineComponent, ref } from 'vue'
 import { RouterLink } from 'vue-router';
 import utilService from '@/services/util.service'
 import sidebar from './public/sidebar.vue';
+import { useAuthStore } from '@/stores/auth.store'
 export default defineComponent({
     components: { sidebar },
     setup()
     {
-        const showSidebar = ref(false)
+        const authStore = useAuthStore()
+        const { showSidebar } = authStore
+        const toggleSidebar = () => authStore.$patch({ showSidebar: !showSidebar })
+
+
         return {
             RouterLink,
             getImageUrl: utilService.getImageUrl,
-            showSidebar
+            showSidebar,
+            toggleSidebar
         }
     },
 })

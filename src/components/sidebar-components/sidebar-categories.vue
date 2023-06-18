@@ -4,8 +4,7 @@
         <div class="all__categories__item"
              v-for="category in categories"
              :key="category._id"
-             :class="{ 'active': selectedCategory }"
-             @click="toggleCategories(category)">
+             :class="{ 'active': selectedCategory }">
             <sidebarAccordian :category="category" />
         </div>
     </div>
@@ -27,12 +26,7 @@ export default defineComponent({
         const categories = computed<Category[]>(() => categoriesStore.get)
         onMounted(async () => { await getCategories() })
 
-
-        const toggleCategories = (category: any) =>
-        {
-
-        }
-        return { categories, selectedCategory, toggleCategories }
+        return { categories, selectedCategory }
     },
 })
 </script>
