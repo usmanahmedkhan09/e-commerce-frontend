@@ -65,6 +65,15 @@ export const useBrandStore = defineStore('brand', {
 
             }
 
+        },
+
+        async getBrandsByCategoryName(categoryName: string)
+        {
+            let response: any = await axios.get(`brand/getBrandsByCategory/${categoryName}`)
+            if (response.isSuccess)
+            {
+                this.brands = [...response.data]
+            }
         }
     }
 })
