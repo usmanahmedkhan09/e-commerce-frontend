@@ -46,7 +46,7 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import Accordian from '../accordian.vue';
 import { useBrandStore } from '@/stores/brand.store'
 import { ProductFilters } from '@/models/product.model'
@@ -66,13 +66,12 @@ export default defineComponent({
         const route = useRoute()
         const brands = computed(() => brandStore.get)
 
-        const getProductListing = () => getProductByCategoryName(route.params.category as string)
-        // const addBrandToQuery = async (e: any) =>
-        // {
-        //     await getProductByCategoryName(route.params.category as string)
-        // }
+        watch(() => route.params.category, () => setInitialState())
 
-        onMounted(async () => await getBrandsByCategoryName(route.params.category as string))
+        const getProductListing = () => getProductByCategoryName(route.params.category as string)
+        const setInitialState = async () => await getBrandsByCategoryName(route.params.category as string)
+
+        onMounted(() => setInitialState())
         return { brands, productStore, getProductListing }
     },
 })

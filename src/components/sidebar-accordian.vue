@@ -81,11 +81,9 @@ export default defineComponent({
 
         const goToCategorPage = () =>
         {
-            console.log(selectedCategory.value)
             if (selectedBrand.value)
-            {
                 productStore.filters.brand.push(selectedBrand.value)
-            }
+
             authStore.$patch({ showSidebar: !showSidebar })
             router.push(`/${selectedCategory.value}`)
         }

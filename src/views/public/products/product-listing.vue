@@ -65,6 +65,7 @@ export default defineComponent({
         {
             setInitialState()
         })
+
         const setInitialState = async () =>
         {
             if (route.params.category)
