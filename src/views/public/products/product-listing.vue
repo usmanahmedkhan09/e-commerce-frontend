@@ -61,7 +61,7 @@ export default defineComponent({
         const products = computed(() => productStore.get)
         const banners = ref(['banner-1.jpg', 'banner-2.png', 'banner-3.jpg', 'banner-4.jpg'])
 
-        watch(() => route.params.category, () =>
+        watch([() => route.params.category, () => productStore.filters.brand], (oldValue, newValue) =>
         {
             setInitialState()
         })
@@ -69,7 +69,9 @@ export default defineComponent({
         const setInitialState = async () =>
         {
             if (route.params.category)
+            {
                 await getProductByCategoryName(route.params.category as string)
+            }
 
         }
         onMounted(() =>

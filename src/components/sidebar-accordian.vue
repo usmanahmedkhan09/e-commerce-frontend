@@ -8,7 +8,8 @@
                      :src="getImageUrl(`sidebar-${category?.name.split(' ').join('-').toLowerCase()}-icon.svg`, 'svg')"
                      alt="">
                 <span class="category__name"
-                      @click.exact.stop="selectedCategory = category?.name, goToCategorPage()">{{ category?.name }}</span>
+                      @click.exact.stop="selectedCategory = category?.name, selectedBrand = '', goToCategoryPage()">{{
+                          category?.name }}</span>
                 <img class="caret"
                      :src="getImageUrl(`caret.svg`, 'svg')"
                      alt=""
@@ -22,7 +23,7 @@
                  v-for="(brand, index) in brands"
                  :key="index">
                 <p class="brands__item"
-                   @click.exact.stop="goToCategorPage(), selectedBrand = brand.name">{{ brand.name }}</p>
+                   @click.exact.stop="selectedBrand = brand.name, goToCategoryPage()">{{ brand.name }}</p>
             </div>
             <div class="accordian__subSection">
                 <div class="accordian__subSection__header"
@@ -49,11 +50,12 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import utilService from '@/services/util.service';
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth.store'
 import { useproductStore } from '@/stores/product.store'
+import { ProductFilters } from '@/models/product.model'
 
 
 export default defineComponent({
@@ -79,15 +81,17 @@ export default defineComponent({
         const brands = ref(props.category.brands.slice(0, 5))
         const remaningBrands = computed(() => props.category.brands.slice(5, props.category.brands.length - 1))
 
-        const goToCategorPage = () =>
+        const goToCategoryPage = () =>
         {
+
+            productStore.$patch((state) => state.filters = new ProductFilters())
             if (selectedBrand.value)
                 productStore.filters.brand.push(selectedBrand.value)
 
             authStore.$patch({ showSidebar: !showSidebar })
             router.push(`/${selectedCategory.value}`)
         }
-        return { getImageUrl: utilService.getImageUrl, showBrands, brands, remaningBrands, showMore, goToCategorPage, selectedCategory, selectedBrand }
+        return { getImageUrl: utilService.getImageUrl, showBrands, brands, remaningBrands, showMore, goToCategoryPage, selectedCategory, selectedBrand }
     },
 })
 </script>

@@ -69,7 +69,11 @@ export default defineComponent({
         watch(() => route.params.category, () => setInitialState())
 
         const getProductListing = () => getProductByCategoryName(route.params.category as string)
-        const setInitialState = async () => await getBrandsByCategoryName(route.params.category as string)
+        const setInitialState = async () =>
+        {
+            // getProductListing()
+            await getBrandsByCategoryName(route.params.category as string)
+        }
 
         onMounted(() => setInitialState())
         return { brands, productStore, getProductListing }
