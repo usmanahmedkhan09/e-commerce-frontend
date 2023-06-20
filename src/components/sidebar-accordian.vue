@@ -8,10 +8,11 @@
                      :src="getImageUrl(`sidebar-${category?.name.split(' ').join('-').toLowerCase()}-icon.svg`, 'svg')"
                      alt="">
                 <span class="category__name"
-                      @click.stop.exact="goToCategorPage(category.name)">{{ category?.name }}</span>
+                      @click.exact.stop="selectedCategory = category?.name, goToCategorPage()">{{ category?.name }}</span>
                 <img class="caret"
                      :src="getImageUrl(`caret.svg`, 'svg')"
-                     alt="">
+                     alt=""
+                     @click.exact="selectedCategory = category?.name">
             </div>
         </div>
         <div class="sidebar__accordian__content"
@@ -20,7 +21,8 @@
             <div class="brands"
                  v-for="(brand, index) in brands"
                  :key="index">
-                <p class="brands__item">{{ brand.name }}</p>
+                <p class="brands__item"
+                   @click.exact.stop="goToCategorPage(), selectedBrand = brand.name">{{ brand.name }}</p>
             </div>
             <div class="accordian__subSection">
                 <div class="accordian__subSection__header"
@@ -51,6 +53,7 @@ import { computed, defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service';
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth.store'
+import { useproductStore } from '@/stores/product.store'
 
 
 export default defineComponent({
@@ -65,6 +68,9 @@ export default defineComponent({
     },
     setup(props)
     {
+        const productStore = useproductStore()
+        const selectedCategory = ref('')
+        const selectedBrand = ref('')
         const authStore = useAuthStore()
         const showSidebar = computed(() => authStore.showSidebar)
         const router = useRouter()
@@ -73,12 +79,17 @@ export default defineComponent({
         const brands = ref(props.category.brands.slice(0, 5))
         const remaningBrands = computed(() => props.category.brands.slice(5, props.category.brands.length - 1))
 
-        const goToCategorPage = (name: string) =>
+        const goToCategorPage = () =>
         {
+            console.log(selectedCategory.value)
+            if (selectedBrand.value)
+            {
+                productStore.filters.brand.push(selectedBrand.value)
+            }
             authStore.$patch({ showSidebar: !showSidebar })
-            router.push(`/${name}`)
+            router.push(`/${selectedCategory.value}`)
         }
-        return { getImageUrl: utilService.getImageUrl, showBrands, brands, remaningBrands, showMore, goToCategorPage }
+        return { getImageUrl: utilService.getImageUrl, showBrands, brands, remaningBrands, showMore, goToCategorPage, selectedCategory, selectedBrand }
     },
 })
 </script>

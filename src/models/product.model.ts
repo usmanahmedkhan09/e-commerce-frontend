@@ -89,4 +89,13 @@ class Product
 
 }
 
-export default Product
+
+
+class ProductFilters
+{
+    count: number = 50
+    sort: number = 1
+    brand: string[] = []
+}
+
+export { Product, ProductFilters }

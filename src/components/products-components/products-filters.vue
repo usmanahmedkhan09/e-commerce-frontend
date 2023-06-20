@@ -12,13 +12,19 @@
                        for="prc">
                     <input type="checkbox"
                            id="prc"
-                           class="checkbox">
+                           :value="1"
+                           v-model="productStore.filters.sort"
+                           class="checkbox"
+                           @change="getProductListing">
                     Price (Low To High)</label>
                 <label class="checkbox__lable"
                        for="price">
                     <input type="checkbox"
                            id="price"
-                           class="checkbox">
+                           :value="-1"
+                           v-model="productStore.filters.sort"
+                           class="checkbox"
+                           @change="getProductListing">
                     Price (High To Low)</label>
             </div>
         </Accordian>
@@ -30,16 +36,22 @@
                        :key="brand.name">
                     <input type="checkbox"
                            :id="brand.name"
-                           class="checkbox">
+                           :value="brand.name"
+                           v-model="productStore.filters.brand"
+                           class="checkbox"
+                           @change="getProductListing()">
                     {{ brand.name }}</label>
             </div>
         </Accordian>
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import Accordian from '../accordian.vue';
 import { useBrandStore } from '@/stores/brand.store'
+import { ProductFilters } from '@/models/product.model'
+import { useproductStore } from '@/stores/product.store'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
     components: { Accordian },
@@ -47,10 +59,21 @@ export default defineComponent({
     {
         const brandStore = useBrandStore()
         const { getBrandsByCategoryName } = brandStore
+
+        const productStore = useproductStore()
+        const { getProductByCategoryName } = productStore
+
+        const route = useRoute()
         const brands = computed(() => brandStore.get)
 
-        onMounted(async () => await getBrandsByCategoryName('mobiles'))
-        return { brands }
+        const getProductListing = () => getProductByCategoryName(route.params.category as string)
+        // const addBrandToQuery = async (e: any) =>
+        // {
+        //     await getProductByCategoryName(route.params.category as string)
+        // }
+
+        onMounted(async () => await getBrandsByCategoryName(route.params.category as string))
+        return { brands, productStore, getProductListing }
     },
 })
 </script>

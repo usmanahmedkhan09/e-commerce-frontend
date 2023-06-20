@@ -35,7 +35,7 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import ProductsHeader from '@/components/products-components/products-header.vue';
 import utilService from '@/services/util.service'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
@@ -56,15 +56,19 @@ export default defineComponent({
     setup()
     {
         const route = useRoute()
-        const products = ref<any[]>([])
         const productStore = useproductStore()
         const { getProductByCategoryName } = productStore
+        const products = computed(() => productStore.get)
         const banners = ref(['banner-1.jpg', 'banner-2.png', 'banner-3.jpg', 'banner-4.jpg'])
 
+        watch(() => route.params.category, () =>
+        {
+            setInitialState()
+        })
         const setInitialState = async () =>
         {
             if (route.params.category)
-                products.value = await getProductByCategoryName(route.params.category as string)
+                await getProductByCategoryName(route.params.category as string)
 
         }
         onMounted(() =>
@@ -118,6 +122,7 @@ export default defineComponent({
 
                 .productBox {
                     flex: calc(100% / 4 - 16px);
+                    max-width: calc(100% / 4 - 16px);
                 }
             }
         }

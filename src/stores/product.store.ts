@@ -1,14 +1,17 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import axios from '@/services/axios.service'
-import Product from '@/models/product.model'
+import { Product, ProductFilters } from '@/models/product.model'
+import utilService from '@/services/util.service'
+import Brand from '@/models/brand.model'
 
 export const useproductStore = defineStore('product', {
     state: () =>
     {
         return {
             product: ref<Product>(new Product()),
-            products: [] as Product[]
+            products: [] as Product[],
+            filters: new ProductFilters()
         }
     },
     getters: {
@@ -47,7 +50,6 @@ export const useproductStore = defineStore('product', {
 
         async getProductById(productId: any)
         {
-
             let response: any = await axios.get(`product/productById/${productId}`)
             if (response.isSuccess)
             {
@@ -71,9 +73,11 @@ export const useproductStore = defineStore('product', {
 
         async getProductByCategoryName(Name: string)
         {
-            let response: any = await axios.get(`product/getproductsByCategoryName/${Name}`)
+            let query = utilService.makequerytString(this.filters)
+            let response: any = await axios.get(`product/getproductsByCategoryName/${Name}${query}`)
             if (response.isSuccess)
             {
+                this.products = [...response.data]
                 return response.data
             }
         },

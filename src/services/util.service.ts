@@ -76,6 +76,22 @@ class Util
     {
         this.showSidebar = !this.showSidebar
     }
+
+    makequerytString(query: any)
+    {
+        const params = new URLSearchParams()
+        for (let x in query)
+        {
+            if (x == 'brand' && query[x].length > 0)
+            {
+                params.append(x, [...query[x]].join("-"))
+            } else
+            {
+                params.append(x, query[x])
+            }
+        }
+        return '?' + params.toString()
+    }
 }
 
 export default new Util()
