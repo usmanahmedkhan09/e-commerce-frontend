@@ -11,7 +11,8 @@ export const useproductStore = defineStore('product', {
         return {
             product: ref<Product>(new Product()),
             products: [] as Product[],
-            filters: new ProductFilters()
+            filters: new ProductFilters(),
+            totalProducts: 0
         }
     },
     getters: {

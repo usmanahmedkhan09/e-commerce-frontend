@@ -1,6 +1,7 @@
 <template>
     <div class="product__dashboard">
-        <ProductsHeader />
+        <ProductsHeader v-if="category"
+                        :category="category" />
         <carousel class="dashboard__banner"
                   :items-to-show="1"
                   :autoplay="5000"
@@ -17,18 +18,26 @@
         </carousel>
         <div class="product__dashboard__content">
             <div class="header__card">
-                <p class="title">Buy Mobiles Phones in Pakistan 2023</p>
-                <p class="subTitle">395 results for Mobiles. Find a wide range of mobiles at the lowest rates in Pakistan,
+                <p class="title">Buy <span>{{ category }}</span> in Pakistan {{ new Date().getFullYear() }}</p>
+                <p class="subTitle">{{ products.length }} results for <span>{{ category }}</span>. Find a wide range of
+                    mobiles at the lowest
+                    rates in Pakistan,
                     only at PriceOye.
                 </p>
             </div>
             <div class="listing">
                 <ProductsFilters class="listing__filters" />
                 <div class="listing__items">
-                    <ProductsListingItems v-for="product in products"
-                                          :key="product.name"
-                                          :product="product"
-                                          class="productBox" />
+                    <template v-if="products.length > 0">
+                        <ProductsListingItems v-for="product in products"
+                                              :key="product.name"
+                                              :product="product"
+                                              class="productBox" />
+                    </template>
+                    <div class="error"
+                         v-else>
+                        <p>No result found</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,6 +70,7 @@ export default defineComponent({
         const products = computed(() => productStore.get)
         const banners = ref(['banner-1.jpg', 'banner-2.png', 'banner-3.jpg', 'banner-4.jpg'])
 
+        const category = computed(() => route.params.category as string)
         watch([() => route.params.category, () => productStore.filters.brand], (oldValue, newValue) =>
         {
             setInitialState()
@@ -78,7 +88,7 @@ export default defineComponent({
         {
             setInitialState()
         })
-        return { banners, getImageUrl: utilService.getImageUrl, products }
+        return { banners, getImageUrl: utilService.getImageUrl, products, category }
     },
 })
 </script>
@@ -96,10 +106,18 @@ export default defineComponent({
 
             .title {
                 font-size: 1.6rem;
+
+                span {
+                    text-transform: capitalize;
+                }
             }
 
             .subTitle {
                 font-size: 1.2rem;
+
+                span {
+                    text-transform: capitalize;
+                }
             }
         }
 
@@ -126,6 +144,16 @@ export default defineComponent({
                 .productBox {
                     flex: calc(100% / 4 - 16px);
                     max-width: calc(100% / 4 - 16px);
+                }
+            }
+
+            .error {
+                text-align: center;
+                width: 100%;
+                text-transform: capitalize;
+
+                p {
+                    font-weight: 700;
                 }
             }
         }

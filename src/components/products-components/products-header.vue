@@ -13,13 +13,20 @@
     </section>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import utilService from '@/services/util.service'
 
 export default defineComponent({
-    setup()
+    props: {
+        category: {
+            type: String,
+            required: true
+        }
+    },
+    setup(props)
     {
-        const links = ref([
+        const links = ref<any[]>([])
+        const mobiles__links = ref([
             { name: 'samsung', icon: 'samsung.jpg' },
             { name: 'infinix', icon: 'infinix.jpg' },
             { name: 'oppo', icon: 'oppo.jpg' },
@@ -29,6 +36,42 @@ export default defineComponent({
             { name: 'realme', icon: 'realme.jpg' },
             { name: 'itel', icon: 'itel.jpg' },
         ])
+
+        const tablets__links = ref<any[]>([
+            { name: 'iphone', icon: 'apple.jpg' },
+            { name: 'samsung', icon: 'samsung.jpg' },
+            { name: 'dany', icon: 'dany.jpg' },
+            { name: 'xiaomi', icon: 'xiaomi.jpg' },
+        ])
+
+        const laptops__links = ref<any[]>([
+            { name: 'infinix', icon: 'infinix.jpg' },
+            { name: 'iphone', icon: 'apple.jpg' },
+            { name: 'dell', icon: 'dell.jpg' },
+            { name: 'hp', icon: 'hp.jpg' },
+        ])
+
+        watch(() => props.category, () =>
+        {
+            if (props.category == 'mobiles')
+                links.value = mobiles__links.value
+            else if (props.category == 'tablets')
+                links.value = tablets__links.value
+            else if (props.category == 'laptops')
+                links.value = laptops__links.value
+        }, { deep: true })
+
+        const setInitialState = () =>
+        {
+            if (props.category == 'mobiles')
+                links.value = mobiles__links.value
+            else if (props.category == 'tablets')
+                links.value = tablets__links.value
+            else if (props.category == 'laptops')
+                links.value = laptops__links.value
+        }
+
+        onMounted(() => setInitialState())
 
         return { links, getImageUrl: utilService.getImageUrl }
     },
