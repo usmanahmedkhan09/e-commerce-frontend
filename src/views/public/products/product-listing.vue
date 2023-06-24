@@ -40,7 +40,21 @@
                     </div>
                 </div>
             </div>
+            {{ totalPages }}
+            <pagination v-if="totalPages"
+                        :totalPages="totalPages" />
         </div>
+        <div class="warranty__section card">
+            <div v-for="item in warranty"
+                 :key="item.name"
+                 class="item">
+                <img :src="getImageUrl(item.icon, 'svg')"
+                     alt=""
+                     height="25">
+                <p>{{ item.name }}</p>
+            </div>
+        </div>
+        <footerVue />
     </div>
 </template>
 <script lang="ts">
@@ -52,6 +66,8 @@ import ProductsFilters from '@/components/products-components/products-filters.v
 import ProductsListingItems from '@/components/products-components/products-listing-items.vue';
 import { useproductStore } from '@/stores/product.store'
 import { useRoute } from 'vue-router'
+import footerVue from '@/components/footer.vue';
+import pagination from '@/components/pagination.vue';
 
 export default defineComponent({
     components: {
@@ -61,14 +77,25 @@ export default defineComponent({
         ProductsFilters,
         Slide,
         ProductsListingItems,
+        footerVue,
+        pagination
     },
     setup()
     {
         const route = useRoute()
+
         const productStore = useproductStore()
         const { getProductByCategoryName } = productStore
         const products = computed(() => productStore.get)
+        const totalPages = computed(() => productStore.getTotalProducts)
+
+
         const banners = ref(['banner-1.jpg', 'banner-2.png', 'banner-3.jpg', 'banner-4.jpg'])
+        const warranty = ref([
+            { name: '100% origianl product', icon: 'percentage.svg' },
+            { name: 'fast delivery', icon: 'cockade.svg' },
+            { name: 'easy replacement', icon: 'replace.svg' },
+        ])
 
         const category = computed(() => route.params.category as string)
         watch([() => route.params.category, () => productStore.filters.brand], (oldValue, newValue) =>
@@ -84,11 +111,8 @@ export default defineComponent({
             }
 
         }
-        onMounted(() =>
-        {
-            setInitialState()
-        })
-        return { banners, getImageUrl: utilService.getImageUrl, products, category }
+        onMounted(() => setInitialState())
+        return { banners, getImageUrl: utilService.getImageUrl, products, category, warranty, totalPages }
     },
 })
 </script>
@@ -155,6 +179,35 @@ export default defineComponent({
                 p {
                     font-weight: 700;
                 }
+            }
+        }
+    }
+
+    .warranty__section {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        min-height: 100px;
+        align-items: center;
+        box-shadow: unset;
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            flex: calc(100% / 3);
+            text-align: center;
+            justify-content: center;
+            height: 100px;
+
+            &:nth-child(2) {
+                border-right: 1px solid #d6d6d6;
+                border-left: 1px solid #d6d6d6;
+            }
+
+            p {
+                font-size: 1.3rem;
+                margin: 5px 0px;
+                text-transform: capitalize;
             }
         }
     }
