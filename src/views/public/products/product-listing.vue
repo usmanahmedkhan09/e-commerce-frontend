@@ -102,7 +102,8 @@ export default defineComponent({
         ])
 
         const category = computed(() => route.params.category as string)
-        watch([() => route.params.category, () => productStore.filters.brand], (oldValue, newValue) =>
+
+        watch([() => route.params.category, () => productStore.filters.brand, () => productStore.filters.sort], (oldValue, newValue) =>
         {
             setInitialState()
         })

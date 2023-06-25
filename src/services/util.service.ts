@@ -85,7 +85,7 @@ class Util
             if (x == 'brand' && query[x].length > 0)
             {
                 params.append(x, [...query[x]].join("-"))
-            } else
+            } else if (query[x])
             {
                 params.append(x, query[x])
             }

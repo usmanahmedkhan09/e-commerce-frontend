@@ -7,7 +7,8 @@
                 <img height="50"
                      width="50"
                      :src="getImageUrl(link.icon, 'images')"
-                     alt="">
+                     alt=""
+                     @click="productStore.filters.brand = [link.name]">
             </li>
         </ul>
     </section>
@@ -15,7 +16,7 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import utilService from '@/services/util.service'
-
+import { useproductStore } from '@/stores/product.store'
 export default defineComponent({
     props: {
         category: {
@@ -25,9 +26,10 @@ export default defineComponent({
     },
     setup(props)
     {
+        const productStore = useproductStore()
         const links = ref<any[]>([])
         const mobiles__links = ref([
-            { name: 'samsung', icon: 'samsung.jpg' },
+            { name: 'sumsung', icon: 'samsung.jpg' },
             { name: 'infinix', icon: 'infinix.jpg' },
             { name: 'oppo', icon: 'oppo.jpg' },
             { name: 'xiaomi', icon: 'xiaomi.jpg' },
@@ -73,7 +75,7 @@ export default defineComponent({
 
         onMounted(() => setInitialState())
 
-        return { links, getImageUrl: utilService.getImageUrl }
+        return { links, getImageUrl: utilService.getImageUrl, productStore }
     },
 })
 </script>
@@ -90,7 +92,15 @@ export default defineComponent({
         align-items: center;
 
         &--item {
-            width: 140px
+            width: 140px;
+
+            img {
+                filter: grayscale(100%);
+
+                &:hover {
+                    filter: unset;
+                }
+            }
         }
     }
 }

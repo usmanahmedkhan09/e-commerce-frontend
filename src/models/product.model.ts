@@ -93,9 +93,9 @@ class Product
 
 class ProductFilters
 {
-    count: number = 2
+    count: number = 50
     page: number = 1
-    sort: number = 1
+    sort: number | undefined
     brand: string[] = []
 }
 
