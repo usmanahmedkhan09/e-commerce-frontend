@@ -40,9 +40,11 @@
                     </div>
                 </div>
             </div>
-            {{ totalPages }}
-            <pagination v-if="totalPages"
-                        :totalPages="totalPages" />
+            <pagination v-if="totalPages && totalPages > 1"
+                        :totalPages="totalPages"
+                        @goToSelectedPage="(data) => sendStateToServer(data)"
+                        @goToPrePage="(data) => sendStateToServer(data)"
+                        @goToNextPage="(data) => sendStateToServer(data)" />
         </div>
         <div class="warranty__section card">
             <div v-for="item in warranty"
@@ -68,6 +70,7 @@ import { useproductStore } from '@/stores/product.store'
 import { useRoute } from 'vue-router'
 import footerVue from '@/components/footer.vue';
 import pagination from '@/components/pagination.vue';
+import { ProductFilters } from '@/models/product.model'
 
 export default defineComponent({
     components: {
@@ -83,11 +86,12 @@ export default defineComponent({
     setup()
     {
         const route = useRoute()
+        let filters = ref(new ProductFilters())
 
         const productStore = useproductStore()
         const { getProductByCategoryName } = productStore
         const products = computed(() => productStore.get)
-        const totalPages = computed(() => productStore.getTotalProducts)
+        const totalPages = computed(() => productStore.getTotalProducts / filters.value.count)
 
 
         const banners = ref(['banner-1.jpg', 'banner-2.png', 'banner-3.jpg', 'banner-4.jpg'])
@@ -112,7 +116,14 @@ export default defineComponent({
 
         }
         onMounted(() => setInitialState())
-        return { banners, getImageUrl: utilService.getImageUrl, products, category, warranty, totalPages }
+
+        const sendStateToServer = (pageNumber: any) =>
+        {
+            filters.value.page = pageNumber
+            console.log(filters.value)
+            getProductByCategoryName(route.params.category as string, filters.value)
+        }
+        return { banners, getImageUrl: utilService.getImageUrl, products, category, warranty, totalPages, sendStateToServer }
     },
 })
 </script>

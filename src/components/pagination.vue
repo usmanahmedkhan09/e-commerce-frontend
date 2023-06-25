@@ -1,13 +1,17 @@
 <template>
     <div class="pagination">
-        <div class="btn">
+        <div class="btn"
+             @click="selectedPage--, $emit('goToPrePage', selectedPage)">
             prev
         </div>
         <div v-for="item in pages"
-             :key="item">
-            <div class="btn btn__numbers active">{{ item }}</div>
+             :key="item"
+             @click="selectedPage = item, $emit('goToSelectedPage', selectedPage)">
+            <div class="btn btn__numbers"
+                 :class="{ 'active': selectedPage == item }">{{ item }}</div>
         </div>
-        <div class="btn">
+        <div class="btn"
+             @click="selectedPage++, $emit('goToNextPage', selectedPage)">
             next
         </div>
     </div>
@@ -19,8 +23,9 @@ export default defineComponent({
     props: ["totalPages"],
     setup(props)
     {
+        const selectedPage = ref(1)
         const pages = ref(Array.from({ length: props.totalPages }, (_, index) => index + 1))
-        return { pages }
+        return { pages, selectedPage }
     },
 })
 </script>
