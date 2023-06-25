@@ -93,7 +93,7 @@ class Product
 
 class ProductFilters
 {
-    count: number = 50
+    count: number = 2
     page: number = 1
     sort: number = 1
     brand: string[] = []

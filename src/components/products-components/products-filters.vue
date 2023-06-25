@@ -38,8 +38,10 @@
                            :id="brand.name"
                            :value="brand.name"
                            v-model="productStore.filters.brand"
-                           class="checkbox"
-                           @change="getProductListing()">
+                           class="checkbox" />
+                    <!-- @change="
+                       getProductListing()
+                       -->
                     {{ brand.name }}</label>
             </div>
         </Accordian>
@@ -66,9 +68,14 @@ export default defineComponent({
         const route = useRoute()
         const brands = computed(() => brandStore.get)
 
-        watch(() => route.params.category, () => setInitialState())
+        // watch(() => route.params.category, () => setInitialState())
 
-        const getProductListing = () => getProductByCategoryName(route.params.category as string)
+        const getProductListing = () =>
+        {
+
+            // getProductByCategoryName(route.params.category as string)
+        }
+
         const setInitialState = async () =>
         {
             // getProductListing()

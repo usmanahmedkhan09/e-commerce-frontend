@@ -91,7 +91,7 @@ export default defineComponent({
         const productStore = useproductStore()
         const { getProductByCategoryName } = productStore
         const products = computed(() => productStore.get)
-        const totalPages = computed(() => productStore.getTotalProducts / filters.value.count)
+        const totalPages = computed(() => productStore.getTotalProducts / productStore.filters.count)
 
 
         const banners = ref(['banner-1.jpg', 'banner-2.png', 'banner-3.jpg', 'banner-4.jpg'])
@@ -119,9 +119,8 @@ export default defineComponent({
 
         const sendStateToServer = (pageNumber: any) =>
         {
-            filters.value.page = pageNumber
-            console.log(filters.value)
-            getProductByCategoryName(route.params.category as string, filters.value)
+            productStore.filters.page = pageNumber
+            getProductByCategoryName(route.params.category as string)
         }
         return { banners, getImageUrl: utilService.getImageUrl, products, category, warranty, totalPages, sendStateToServer }
     },

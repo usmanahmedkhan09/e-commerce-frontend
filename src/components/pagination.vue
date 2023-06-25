@@ -1,6 +1,7 @@
 <template>
     <div class="pagination">
         <div class="btn"
+             :class="{ 'disabled': selectedPage == 1 }"
              @click="selectedPage--, $emit('goToPrePage', selectedPage)">
             prev
         </div>
@@ -11,20 +12,26 @@
                  :class="{ 'active': selectedPage == item }">{{ item }}</div>
         </div>
         <div class="btn"
+             :class="{ 'disabled': selectedPage == pages.length }"
              @click="selectedPage++, $emit('goToNextPage', selectedPage)">
             next
         </div>
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watchEffect } from 'vue'
 
 export default defineComponent({
     props: ["totalPages"],
     setup(props)
     {
         const selectedPage = ref(1)
-        const pages = ref(Array.from({ length: props.totalPages }, (_, index) => index + 1))
+        const pages = ref()
+
+        watchEffect(() =>
+        {
+            pages.value = Array.from({ length: Math.ceil(props.totalPages) }, (_, index) => index + 1)
+        })
         return { pages, selectedPage }
     },
 })
@@ -50,6 +57,12 @@ export default defineComponent({
             &.active {
                 background-color: #ff338c;
             }
+        }
+
+        &.disabled {
+            pointer-events: none;
+            background-color: #aedcff;
+            cursor: not-allowed !important;
         }
     }
 }

@@ -74,15 +74,19 @@ export const useproductStore = defineStore('product', {
 
         },
 
-        async getProductByCategoryName(Name: string, filters = new ProductFilters())
+        async getProductByCategoryName(Name: string)
         {
-            let query = utilService.makequerytString(filters)
+            let query = utilService.makequerytString(this.filters)
             let response: any = await axios.get(`product/getproductsByCategoryName/${Name}${query}`)
             if (response.isSuccess)
             {
                 this.products = [...response.data.products]
                 this.totalProducts = response.data.totalCount
                 return response.data.products
+            } else
+            {
+                this.products = []
+                this.totalProducts = 0
             }
         },
 
