@@ -62,6 +62,7 @@ export default defineComponent({
         const route = useRoute()
         const brands = computed(() => brandStore.get)
 
+        watch(() => route.params.category, () => setInitialState())
         const setInitialState = async () =>
         {
             await getBrandsByCategoryName(route.params.category as string)

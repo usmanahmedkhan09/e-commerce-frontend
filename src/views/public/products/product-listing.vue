@@ -32,7 +32,8 @@
                         <ProductsListingItems v-for="product in products"
                                               :key="product.name"
                                               :product="product"
-                                              class="productBox" />
+                                              class="productBox"
+                                              @click="goToProductDetailPage(product.name)" />
                     </template>
                     <div class="error"
                          v-else>
@@ -67,7 +68,7 @@ import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 import ProductsFilters from '@/components/products-components/products-filters.vue';
 import ProductsListingItems from '@/components/products-components/products-listing-items.vue';
 import { useproductStore } from '@/stores/product.store'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import footerVue from '@/components/footer.vue';
 import pagination from '@/components/pagination.vue';
 import { ProductFilters } from '@/models/product.model'
@@ -86,6 +87,7 @@ export default defineComponent({
     setup()
     {
         const route = useRoute()
+        const router = useRouter()
         let filters = ref(new ProductFilters())
 
         const productStore = useproductStore()
@@ -123,7 +125,13 @@ export default defineComponent({
             productStore.filters.page = pageNumber
             getProductByCategoryName(route.params.category as string)
         }
-        return { banners, getImageUrl: utilService.getImageUrl, products, category, warranty, totalPages, sendStateToServer }
+
+        const goToProductDetailPage = (name: string) =>
+        {
+            router.push(`/${route.params.category}/${name.split(" ").join("-")}`)
+        }
+
+        return { banners, getImageUrl: utilService.getImageUrl, products, category, warranty, totalPages, sendStateToServer, goToProductDetailPage }
     },
 })
 </script>

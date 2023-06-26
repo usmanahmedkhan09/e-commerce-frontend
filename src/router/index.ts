@@ -98,8 +98,14 @@ const router = createRouter({
       path: '/:category',
       name: 'Product Category',
       meta: { layout: 'public', },
-      component: () => import('../views/public/products/product-listing.vue')
+      component: () => import('../views/public/products/product-listing.vue'),
     },
+    {
+      path: '/:category/:productName',
+      name: 'Product Details',
+      meta: { layout: 'public', },
+      component: () => import('../views/public/products/product-details.vue'),
+    }
 
   ]
 })

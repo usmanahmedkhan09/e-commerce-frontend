@@ -48,7 +48,7 @@ export default defineComponent({
 
         const laptops__links = ref<any[]>([
             { name: 'infinix', icon: 'infinix.jpg' },
-            { name: 'iphone', icon: 'apple.jpg' },
+            { name: 'apple', icon: 'apple.jpg' },
             { name: 'dell', icon: 'dell.jpg' },
             { name: 'hp', icon: 'hp.jpg' },
         ])
