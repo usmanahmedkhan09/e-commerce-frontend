@@ -52,7 +52,7 @@ export default defineComponent({
         {
             let response = await getProductByCategoryName(props.title.toLowerCase())
             if (response)
-                products.value = [...response]
+                products.value = [...response.slice(0, 8)]
         })
         return { products, getBaseUrl: utilService.getBaseUrl }
     },
