@@ -2,7 +2,7 @@
     <div class="overview__conatiner">
         <div class="images__container"></div>
         <div class="product__details">
-            <h1 class="title">Apple iPhone 11</h1>
+            <h1 class="title">{{ product.name }}</h1>
             <div class="ratings">
                 <span>5.0</span>
                 <div class="image__wrapper">
@@ -22,20 +22,24 @@
             <div class="price__container">
                 <div>
                     <p class="title">Priceoye Price</p>
-                    <p class="price">Rs.207,999</p>
+                    <p class="price">Rs.{{ product.price }}</p>
                 </div>
                 <div>
                     <p class="title">Availability</p>
-                    <p class="price">Out Of Stock</p>
+                    <p class="price">{{ product.quantity && product.quantity > 0 ? 'In Stock' : 'Out Of Stock' }}</p>
                 </div>
             </div>
             <div class="colors__container">
                 <p class="title">Colors</p>
                 <div class="box__wrapper">
-                    <div class="image__box"
-                         v-for="item in 6"
+                    <div class="image__box image__height"
+                         v-for="item in product.productImages"
                          :class="{ 'active': item == 3 }"
-                         :key="item"></div>
+                         :key="item">
+                        <img :src="baseUrl + item.path"
+                             alt="">
+                        <p>{{ item.color }}</p>
+                    </div>
                 </div>
 
             </div>
@@ -44,7 +48,8 @@
                 <div class="box__wrapper">
                     <div class="image__box"
                          v-for="item in [32, 64, 128]"
-                         :key="item">
+                         :key="item"
+                         :class="{ 'active': item == 3 }">
                         {{ item }}
                     </div>
                 </div>
@@ -65,27 +70,39 @@
                     <p class="subTitle">Get the item you order or get your money back</p>
                 </div>
             </div>
+            <div class="button__wrapper">
+                <button class="button btn">Add To Cart</button>
+            </div>
         </div>
     </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service';
-
+import { Product } from '@/models/product.model'
 export default defineComponent({
-    setup()
+    props: {
+        product: {
+            type: Product,
+            default: new Product()
+        },
+    },
+    setup(props)
     {
-        return { getImageUrl: utilService.getImageUrl, }
+        // let product = ref<Product>(props.product)
+        return { getImageUrl: utilService.getImageUrl, baseUrl: utilService.baseUrl }
     },
 })
 </script>
 <style lang="scss" scoped>
 .overview__conatiner {
     background-color: #fff;
-    height: 500px;
+    // height: 500px;
     width: 100%;
     margin: 15px 0px;
     display: flex;
+    gap: 24px;
+    padding: 64px 0px;
     // align-items: center;
 
     .images__container {
@@ -96,6 +113,7 @@ export default defineComponent({
         align-items: center;
         border: 2.29px solid #d7d9db;
         border-radius: 18.37px;
+        margin-left: 25.5rem;
     }
 
     .product__details {
@@ -131,6 +149,7 @@ export default defineComponent({
         }
 
         .price__container {
+            margin-top: 16px;
             display: flex;
             width: 500px;
             justify-content: space-between;
@@ -150,6 +169,8 @@ export default defineComponent({
         }
 
         .colors__container {
+            margin-top: 16px;
+
             .title {
                 @extend .title;
                 font-size: 1.4rem;
@@ -176,10 +197,22 @@ export default defineComponent({
                     text-align: center;
                     width: 80px;
                     font-weight: 700;
-                    // height: 80px;
 
                     &.active {
                         border: 2px solid #48afff;
+                    }
+
+                    p {
+                        font-size: 1rem;
+                        text-transform: capitalize;
+                        color: rgba(7, 18, 27, .4);
+                        font-weight: 500;
+                        margin-top: 3px;
+                    }
+
+                    &.image__height {
+                        // height: 80px !important;
+
                     }
                 }
 
@@ -238,6 +271,19 @@ export default defineComponent({
                     font-weight: 400;
                     text-transform: capitalize;
                 }
+            }
+        }
+
+        .button__wrapper {
+            .button {
+                color: #fff;
+                background-color: #f88b2a;
+                border-color: #cf6507;
+                padding: 9px;
+                font-size: 1.4rem;
+                font-weight: 400;
+                width: 390px;
+                margin-top: 16px;
             }
         }
     }

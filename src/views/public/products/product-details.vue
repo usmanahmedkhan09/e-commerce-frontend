@@ -4,14 +4,16 @@
             <p><span>Mobiles > </span><span>Apple > </span><span>{{ productName }}</span></p>
             <p class="subtitle">Buy {{ productName }} price in pakistan</p>
         </div>
-        <ProductOverview />
+        <ProductOverview v-if="product"
+                         :product="product" />
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useproductStore } from '@/stores/product.store'
 import { useRoute } from 'vue-router'
 import ProductOverview from '@/components/products-components/product-overview.vue'
+import { Product } from '@/models/product.model'
 
 export default defineComponent({
     components: { ProductOverview },
@@ -19,18 +21,19 @@ export default defineComponent({
     {
         const productStore = useproductStore()
         const { getProductByName } = productStore
+        const product = ref<Product>(new Product())
 
         const route = useRoute()
         const productName = computed(() => route.params.productName.toString().split("-").join(" "))
         const setInitialState = async () =>
         {
             if (route.params.productName)
-                await getProductByName(route.params.productName as string)
+                product.value = await getProductByName(route.params.productName as string) as any
 
         }
 
         onMounted(() => setInitialState())
-        return { route, productName }
+        return { route, productName, product }
     },
 })
 </script>

@@ -106,6 +106,7 @@ export const useproductStore = defineStore('product', {
             if (response.isSuccess)
             {
                 console.log(response)
+                return response.data
             }
         }
 
