@@ -17,10 +17,7 @@
                      :key="item.value">
                     {{ item.name }}
                 </div>
-                <!-- <p><span>Mobiles > </span><span>Apple > </span><span>{{ productName }}</span></p>
-                <p class="subtitle">Buy {{ productName }} price in pakistan</p> -->
             </div>
-
         </div>
         <Footer />
     </div>
@@ -72,6 +69,7 @@ export default defineComponent({
         background: #fff;
         padding: 16px;
         max-width: 100%;
+        margin-bottom: 16px;
 
         .container {
             // max-width: 124rem;
@@ -96,11 +94,14 @@ export default defineComponent({
         .links__container {
             @extend .container;
             flex-direction: row;
+            padding: 16px 0px;
+            // margin-bottom: 16px;
 
             .links {
                 margin-right: 30px;
                 font-size: 1.2rem;
                 color: #000;
+                font-weight: 500;
                 cursor: pointer;
             }
         }
