@@ -19,6 +19,7 @@
                 </div>
             </div>
         </div>
+        <ProductFeaturesDetailsVue />
         <Footer />
     </div>
 </template>
@@ -30,9 +31,10 @@ import ProductOverview from '@/components/products-components/product-overview.v
 import { Product } from '@/models/product.model'
 import ProductServices from '@/components/dashboard-components/product-services.vue'
 import Footer from '@/components/footer.vue'
+import ProductFeaturesDetailsVue from '@/components/products-components/product-features-details.vue'
 
 export default defineComponent({
-    components: { ProductOverview, ProductServices, Footer },
+    components: { ProductOverview, ProductServices, Footer, ProductFeaturesDetailsVue },
     setup()
     {
         const productStore = useproductStore()
@@ -69,7 +71,7 @@ export default defineComponent({
         background: #fff;
         padding: 16px;
         max-width: 100%;
-        margin-bottom: 16px;
+        // margin-bottom: 16px;
 
         .container {
             // max-width: 124rem;
