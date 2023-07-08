@@ -3,7 +3,6 @@
         <div class="images__container">
             <carousel class="dashboard__banner"
                       :items-to-show="1"
-                      :autoplay="5000"
                       :wrap-around="true">
                 <slide v-for="item in product.productImages"
                        :key="item.path">
@@ -39,6 +38,7 @@
                 <div>
                     <p class="title">Priceoye Price</p>
                     <p class="price">Rs.{{ product.price }}</p>
+                    <p class="discountedPrice"><span>Rs.26,999</span> <span>17% OFF</span></p>
                 </div>
                 <div>
                     <p class="title">Availability</p>
@@ -199,8 +199,27 @@ export default defineComponent({
 
                 .price {
                     color: #404040;
-                    font-size: 2rem;
+                    font-size: 2.4rem;
                     font-weight: 500;
+                }
+
+                .discountedPrice {
+                    color: rgba(7, 18, 27, .4);
+                    font-size: 1.4rem;
+
+                    :nth-child(2) {
+                        background: #f0faf7;
+                        border-radius: 5px;
+                        text-align: center;
+                        padding: calc(30px / 6) calc(30px / 3);
+                        align-self: center;
+                        margin-left: calc(30px / 3);
+                        // text-decoration: none !important;
+                    }
+
+                    :first-child {
+                        text-decoration: line-through;
+                    }
                 }
             }
         }
