@@ -1,6 +1,22 @@
 <template>
     <div class="overview__conatiner">
-        <div class="images__container"></div>
+        <div class="images__container">
+            <carousel class="dashboard__banner"
+                      :items-to-show="1"
+                      :autoplay="5000"
+                      :wrap-around="true">
+                <slide v-for="item in product.productImages"
+                       :key="item.path">
+                    <img class="image"
+                         :src="baseUrl + item.path"
+                         alt="">
+                </slide>
+
+                <template #addons>
+                    <navigation />
+                </template>
+            </carousel>
+        </div>
         <div class="product__details">
             <h1 class="title">{{ product.name }}</h1>
             <div class="ratings">
@@ -80,7 +96,15 @@
 import { defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service';
 import { Product } from '@/models/product.model'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+
 export default defineComponent({
+    components: {
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
+    },
     props: {
         product: {
             type: Product,
@@ -97,23 +121,36 @@ export default defineComponent({
 <style lang="scss" scoped>
 .overview__conatiner {
     background-color: #fff;
-    // height: 500px;
     width: 100%;
     margin: 15px 0px;
     display: flex;
     gap: 24px;
-    padding: 64px 0px;
-    // align-items: center;
+    padding: 24px 0px;
 
     .images__container {
         display: flex;
         height: 418px;
-        width: 400px;
+        width: 456px;
         padding: calc(30px / 2);
         align-items: center;
         border: 2.29px solid #d7d9db;
         border-radius: 18.37px;
-        margin-left: 25.5rem;
+        margin-left: 34rem;
+
+        .dashboard__banner {
+            width: 456px;
+
+            .image {
+                height: 270px;
+                width: 270px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
     }
 
     .product__details {

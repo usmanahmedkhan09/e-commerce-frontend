@@ -1,8 +1,11 @@
 <template>
     <div class="products__details">
         <div class="navigation__header">
-            <p><span>Mobiles > </span><span>Apple > </span><span>{{ productName }}</span></p>
-            <p class="subtitle">Buy {{ productName }} price in pakistan</p>
+            <div class="container">
+                <p><span>Mobiles > </span><span>Apple > </span><span>{{ productName }}</span></p>
+                <p class="subtitle">Buy {{ productName }} price in pakistan</p>
+            </div>
+
         </div>
         <ProductOverview v-if="product"
                          :product="product" />
@@ -44,17 +47,24 @@ export default defineComponent({
         padding: 16px;
         max-width: 100%;
 
-        p {
-            font-size: 1.2rem;
-            color: rgba(7, 18, 27, .4);
-            font-weight: 600;
-            padding-left: 24rem;
-        }
+        .container {
+            // max-width: 124rem;
+            display: flex;
+            flex-direction: column;
+            max-width: 124rem;
+            margin: 0px auto;
 
-        .subtitle {
-            font-size: 1.3rem;
-            color: #202020;
-            font-weight: 500;
+            p {
+                font-size: 1.2rem;
+                color: rgba(7, 18, 27, .4);
+                font-weight: 600;
+            }
+
+            .subtitle {
+                font-size: 1.3rem;
+                color: #202020;
+                font-weight: 500;
+            }
         }
     }
 }
