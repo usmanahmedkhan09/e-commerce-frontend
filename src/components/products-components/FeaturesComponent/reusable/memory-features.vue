@@ -2,29 +2,21 @@
     <table class="productSpecTable">
         <thead class="productSpecTable__header">
             <tr>
-                <th>General Features</th>
+                <th>Memory</th>
             </tr>
         </thead>
         <tbody class="productSpecTable__body">
             <tr>
-                <th>Release Date</th>
+                <th>Internal Memory</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Sim Supports</th>
+                <th>RAM</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Phone Dimensions</th>
+                <th>Card Slot</th>
                 <td> </td>
-            </tr>
-            <tr>
-                <th>Phone Weight</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Operating System</th>
-                <td></td>
             </tr>
         </tbody>
     </table>

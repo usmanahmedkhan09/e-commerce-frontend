@@ -2,28 +2,36 @@
     <table class="productSpecTable">
         <thead class="productSpecTable__header">
             <tr>
-                <th>General Features</th>
+                <th>Connectivity</th>
             </tr>
         </thead>
         <tbody class="productSpecTable__body">
             <tr>
-                <th>Release Date</th>
+                <th>Bluetooth</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Sim Supports</th>
+                <th>3G</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Phone Dimensions</th>
-                <td> </td>
-            </tr>
-            <tr>
-                <th>Phone Weight</th>
+                <th>4G/LTE</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Operating System</th>
+                <th>5G</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Radio</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Wifi</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>NFC</th>
                 <td></td>
             </tr>
         </tbody>
@@ -47,7 +55,7 @@ export default defineComponent({
     padding: 10px;
     border-spacing: 0;
     width: 100%;
-    margin-bottom: 15px;
+
 
     &__header {
         text-align: left;

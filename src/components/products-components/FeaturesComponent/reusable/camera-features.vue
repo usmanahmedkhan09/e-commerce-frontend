@@ -2,28 +2,32 @@
     <table class="productSpecTable">
         <thead class="productSpecTable__header">
             <tr>
-                <th>General Features</th>
+                <th>Camera</th>
             </tr>
         </thead>
         <tbody class="productSpecTable__body">
             <tr>
-                <th>Release Date</th>
+                <th>Front Camera</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Sim Supports</th>
+                <th>Front Flash Light</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Phone Dimensions</th>
-                <td> </td>
-            </tr>
-            <tr>
-                <th>Phone Weight</th>
+                <th>Front Video Recording</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Operating System</th>
+                <th>Back Flash Light</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Back Camera</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Back Video Recording</th>
                 <td></td>
             </tr>
         </tbody>
@@ -48,6 +52,7 @@ export default defineComponent({
     border-spacing: 0;
     width: 100%;
     margin-bottom: 15px;
+
 
     &__header {
         text-align: left;

@@ -47,6 +47,7 @@ export default defineComponent({
     padding: 10px;
     border-spacing: 0;
     width: 100%;
+    margin-bottom: 15px;
 
     &__header {
         text-align: left;

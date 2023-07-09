@@ -19,9 +19,14 @@
         <section class="content">
             <div class="column__one">
                 <generalFeatures />
+                <displayFeaturesVue />
+                <memoryFeaturesVue />
+                <Performance />
             </div>
             <div class="column__two">
                 <batteryFeatures />
+                <cameraFeaturesVue />
+                <connectivityFeaturesVue />
             </div>
         </section>
     </div>
@@ -31,9 +36,14 @@ import { defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service'
 import generalFeatures from './reusable/general-features.vue'
 import batteryFeatures from './reusable/battery-features.vue'
+import displayFeaturesVue from './reusable/display-features.vue'
+import memoryFeaturesVue from './reusable/memory-features.vue'
+import Performance from './reusable/performance-features.vue'
+import cameraFeaturesVue from './reusable/camera-features.vue'
+import connectivityFeaturesVue from './reusable/connectivity-features.vue'
 
 export default defineComponent({
-    components: { generalFeatures, batteryFeatures },
+    components: { generalFeatures, batteryFeatures, displayFeaturesVue, memoryFeaturesVue, Performance, cameraFeaturesVue, connectivityFeaturesVue },
     setup()
     {
         const features = ref([

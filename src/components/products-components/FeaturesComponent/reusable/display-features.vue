@@ -2,28 +2,24 @@
     <table class="productSpecTable">
         <thead class="productSpecTable__header">
             <tr>
-                <th>General Features</th>
+                <th>Display</th>
             </tr>
         </thead>
         <tbody class="productSpecTable__body">
             <tr>
-                <th>Release Date</th>
+                <th>Screen Size</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Sim Supports</th>
+                <th>Screen Resolution</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Phone Dimensions</th>
+                <th>Screen Type</th>
                 <td> </td>
             </tr>
             <tr>
-                <th>Phone Weight</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Operating System</th>
+                <th>Screen Protection</th>
                 <td></td>
             </tr>
         </tbody>

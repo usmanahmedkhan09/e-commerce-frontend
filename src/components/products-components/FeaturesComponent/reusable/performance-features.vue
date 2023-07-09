@@ -2,28 +2,16 @@
     <table class="productSpecTable">
         <thead class="productSpecTable__header">
             <tr>
-                <th>General Features</th>
+                <th>Performance</th>
             </tr>
         </thead>
         <tbody class="productSpecTable__body">
             <tr>
-                <th>Release Date</th>
+                <th>Processor</th>
                 <td></td>
             </tr>
             <tr>
-                <th>Sim Supports</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Phone Dimensions</th>
-                <td> </td>
-            </tr>
-            <tr>
-                <th>Phone Weight</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Operating System</th>
+                <th>GPU</th>
                 <td></td>
             </tr>
         </tbody>
@@ -47,7 +35,6 @@ export default defineComponent({
     padding: 10px;
     border-spacing: 0;
     width: 100%;
-    margin-bottom: 15px;
 
     &__header {
         text-align: left;
