@@ -51,9 +51,12 @@ export default defineComponent({
 
     &__header {
         text-align: left;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: #07121b;
+
+        tr th {
+            color: #07121b;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
     }
 
     &__body {
