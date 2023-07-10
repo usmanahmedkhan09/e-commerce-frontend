@@ -64,7 +64,7 @@ export default defineComponent({
         th {
             border-bottom: 0.1rem solid #d7d9db;
             text-align: left;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: gray;
             padding: 6px 0;
         }

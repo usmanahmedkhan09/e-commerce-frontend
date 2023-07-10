@@ -54,7 +54,7 @@ export default defineComponent({
 
         tr th {
             color: #07121b;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 500;
         }
 

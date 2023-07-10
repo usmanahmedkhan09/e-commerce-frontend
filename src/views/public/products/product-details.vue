@@ -20,6 +20,7 @@
             </div>
         </div>
         <ProductFeaturesDetailsVue />
+        <Faqs />
         <Footer />
     </div>
 </template>
@@ -32,9 +33,10 @@ import { Product } from '@/models/product.model'
 import ProductServices from '@/components/dashboard-components/product-services.vue'
 import Footer from '@/components/footer.vue'
 import ProductFeaturesDetailsVue from '@/components/products-components/product-features-details.vue'
+import Faqs from '@/components/products-components/productFaqs/product-faqs.vue'
 
 export default defineComponent({
-    components: { ProductOverview, ProductServices, Footer, ProductFeaturesDetailsVue },
+    components: { ProductOverview, ProductServices, Footer, ProductFeaturesDetailsVue, Faqs },
     setup()
     {
         const productStore = useproductStore()
