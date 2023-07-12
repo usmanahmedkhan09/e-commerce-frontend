@@ -15,16 +15,28 @@
                 <td>{{ product.generalFeatures.simSupport }}</td>
             </tr>
             <tr>
-                <th>Phone Dimensions</th>
+                <th>Dimensions</th>
                 <td> {{ product.generalFeatures.dimensions }}</td>
             </tr>
             <tr>
-                <th>Phone Weight</th>
-                <td>{{ product.generalFeatures.weight }}</td>
+                <th>Weight</th>
+                <td>{{ product.generalFeatures.weight ?? 'N/A' }}</td>
             </tr>
             <tr>
                 <th>Operating System</th>
                 <td>{{ product.generalFeatures.opertaingSystem }}</td>
+            </tr>
+            <tr>
+                <th>Volume Control</th>
+                <td>{{ product.generalFeatures.volumeControl ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Water Proof</th>
+                <td>{{ product.generalFeatures.waterproof ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Wearing Type</th>
+                <td>{{ product.generalFeatures.wearingType ?? 'N/A' }}</td>
             </tr>
         </tbody>
     </table>

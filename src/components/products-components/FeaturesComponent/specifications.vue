@@ -21,18 +21,18 @@
                 <generalFeatures />
                 <displayFeaturesVue />
                 <memoryFeaturesVue />
-                <Performance />
+                <Performance v-if="product.category && product.category.name.toLowerCase() != 'smart watches'" />
             </div>
             <div class="column__two">
                 <batteryFeatures />
-                <cameraFeaturesVue />
+                <cameraFeaturesVue v-if="product.category && product.category.name.toLowerCase() != 'smart watches'" />
                 <connectivityFeaturesVue />
             </div>
         </section>
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import utilService from '@/services/util.service'
 import generalFeatures from './reusable/general-features.vue'
 import batteryFeatures from './reusable/battery-features.vue'
@@ -48,7 +48,7 @@ export default defineComponent({
     setup()
     {
         const productStore = useproductStore()
-        const product = computed(() => productStore.product)
+        const product = computed<any>(() => productStore.product)
         const features = ref([
             { image: 'display.svg', name: 'Display', apiValue: 'size', value: '6.52 inches' },
             { image: 'ram.svg', name: 'Ram', apiValue: 'ram', value: '2/3 GB' },
@@ -63,6 +63,7 @@ export default defineComponent({
             { image: 'ram.svg', name: 'Back Camera', apiValue: '', value: '8 MP + 0.08 MP (QVGA)' },
         ])
 
+        watch(() => product.value, () => setInitialState(), { deep: true })
         const setInitialState = () =>
         {
             if (product.value)
@@ -81,6 +82,7 @@ export default defineComponent({
                 })
             }
         }
+
         const getImageByName = (name: any) => utilService.getImageUrl(name, 'svg')
 
         onMounted(() => setInitialState())

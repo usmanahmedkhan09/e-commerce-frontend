@@ -8,11 +8,11 @@
         <tbody class="productSpecTable__body">
             <tr>
                 <th>Internal Memory</th>
-                <td>{{ product.memory.internal }}</td>
+                <td>{{ product.memory.internal ?? 'N/A' }}</td>
             </tr>
             <tr>
                 <th>RAM</th>
-                <td>{{ product.memory.ram }}</td>
+                <td>{{ product.memory.ram ?? 'N/A' }}</td>
             </tr>
             <tr>
                 <th>Card Slot</th>

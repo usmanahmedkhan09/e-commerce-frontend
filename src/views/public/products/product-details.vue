@@ -24,7 +24,7 @@
     </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
 import { useproductStore } from '@/stores/product.store'
 import { useRoute } from 'vue-router'
 import ProductOverview from '@/components/products-components/product-overview.vue'
@@ -61,11 +61,11 @@ export default defineComponent({
                     product: response
                 })
             }
-
-
         }
 
         onMounted(() => setInitialState())
+
+        onUnmounted(() => productStore.$patch({ product: new Product() }))
         return { route, productName, product, headerLinks }
     },
 })
