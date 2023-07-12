@@ -32,6 +32,7 @@ export default defineComponent({
             { image: 'feature-delivery.svg', name: 'Free delivery', value: 'All Over Pakistan' },
         ])
 
+
         const getImageByName = (name: any) =>
         {
             return utilService.getImageUrl(name, 'svg')

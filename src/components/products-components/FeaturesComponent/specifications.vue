@@ -32,7 +32,7 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import utilService from '@/services/util.service'
 import generalFeatures from './reusable/general-features.vue'
 import batteryFeatures from './reusable/battery-features.vue'
@@ -41,23 +41,50 @@ import memoryFeaturesVue from './reusable/memory-features.vue'
 import Performance from './reusable/performance-features.vue'
 import cameraFeaturesVue from './reusable/camera-features.vue'
 import connectivityFeaturesVue from './reusable/connectivity-features.vue'
+import { useproductStore } from '@/stores/product.store'
 
 export default defineComponent({
     components: { generalFeatures, batteryFeatures, displayFeaturesVue, memoryFeaturesVue, Performance, cameraFeaturesVue, connectivityFeaturesVue },
     setup()
     {
+        const productStore = useproductStore()
+        const product = computed(() => productStore.product)
         const features = ref([
-            { image: 'display.svg', name: 'Display', value: '6.52 inches' },
-            { image: 'ram.svg', name: 'Ram', value: '2/3 GB' },
-            { image: 'battery.svg', name: 'Battery', value: '5000 mAh' },
-            { image: 'backcamera.svg', name: 'Back Camera', value: '8 MP + 0.08 MP (QVGA)' },
+            { image: 'display.svg', name: 'Display', apiValue: 'size', value: '6.52 inches' },
+            { image: 'ram.svg', name: 'Ram', apiValue: 'ram', value: '2/3 GB' },
+            { image: 'battery.svg', name: 'Battery', apiValue: 'type', value: '5000 mAh' },
+            { image: 'backcamera.svg', name: 'Back Camera', apiValue: 'backCamera', value: '8 MP + 0.08 MP (QVGA)' },
         ])
 
-        const getImageByName = (name: any) =>
+        const laptopfeatures = ref([
+            { image: 'screensize2.svg', name: 'Display', apiValue: 'size', value: '13.3 inches' },
+            { image: 'generation.svg', name: 'Ram', apiValue: '', value: '2/3 GB' },
+            { image: 'processor.svg', name: 'Battery', apiValue: '', value: '5000 mAh' },
+            { image: 'ram.svg', name: 'Back Camera', apiValue: '', value: '8 MP + 0.08 MP (QVGA)' },
+        ])
+
+        const setInitialState = () =>
         {
-            return utilService.getImageUrl(name, 'svg')
+            if (product.value)
+            {
+                features.value.map((x: any) =>
+                {
+                    if (x.apiValue == 'size')
+                        x.value = product.value.display.size
+                    if (x.apiValue == 'ram')
+                        x.value = product.value.memory.ram
+                    if (x.apiValue == 'type')
+                        x.value = product.value.battery.type
+                    if (x.apiValue == 'backCamera')
+                        x.value = product.value.camera.backCamera
+                    return x
+                })
+            }
         }
-        return { getImageByName, features }
+        const getImageByName = (name: any) => utilService.getImageUrl(name, 'svg')
+
+        onMounted(() => setInitialState())
+        return { getImageByName, features, product, laptopfeatures }
     },
 })
 </script>
