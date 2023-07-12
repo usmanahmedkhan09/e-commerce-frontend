@@ -30,6 +30,7 @@ class Memory
 class Performance
 {
     processor: string | undefined
+    generation: string | undefined
 }
 
 class Battery

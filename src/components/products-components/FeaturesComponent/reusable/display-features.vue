@@ -8,19 +8,19 @@
         <tbody class="productSpecTable__body">
             <tr>
                 <th>Screen Size</th>
-                <td>{{ product.display.size }}</td>
+                <td>{{ product.display.size ?? 'N/A' }}</td>
             </tr>
             <tr>
                 <th>Screen Resolution</th>
-                <td>{{ product.display.resolution }}</td>
+                <td>{{ product.display.resolution ?? 'N/A' }}</td>
             </tr>
             <tr>
                 <th>Screen Type</th>
-                <td> {{ product.display.type }}</td>
+                <td> {{ product.display.type ?? 'N/A' }}</td>
             </tr>
             <tr>
                 <th>Screen Protection</th>
-                <td>{{ product.display.protection }}</td>
+                <td>{{ product.display.protection ?? 'N/A' }}</td>
             </tr>
         </tbody>
     </table>

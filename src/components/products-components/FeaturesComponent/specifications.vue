@@ -10,7 +10,7 @@
                             <img :src="getImageByName(item.image)"
                                  alt="">
                         </div>
-                        <p class="productFeatures__card--subTitle">{{ item.value }}</p>
+                        <p class="productFeatures__card--subTitle">{{ item.value ?? 'N/A' }}</p>
                         <h4 class="productFeatures__card--title">{{ item.name }}</h4>
                     </div>
                 </div>
@@ -84,9 +84,9 @@ export default defineComponent({
                         x.value = product.value.display.size
                     if (x.apiValue == 'ram')
                         x.value = product.value.memory.ram
+                    if (x.apiValue == 'processor')
+                        x.value = product.value.performance.processor
                     if (x.apiValue == 'generation')
-                        x.value = product.value.processor.generation
-                    if (x.apiValue == 'backCamera')
                         x.value = product.value.performance.generation
                     return x
                 })
