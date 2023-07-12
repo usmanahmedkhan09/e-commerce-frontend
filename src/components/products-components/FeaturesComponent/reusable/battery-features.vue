@@ -56,10 +56,7 @@ export default defineComponent({
             font-size: 1.3rem;
             color: gray;
             padding: 6px 0;
-
-            // &:not(:last-child) {
-            //     border-bottom: unset;
-            // }
+            width: 50%
         }
 
         td {
@@ -67,6 +64,7 @@ export default defineComponent({
             border-bottom: 0.1rem solid #d7d9db;
             color: #07121b;
             font-weight: 500;
+            width: 50%
         }
 
 

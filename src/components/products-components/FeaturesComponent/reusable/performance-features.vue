@@ -57,7 +57,7 @@ export default defineComponent({
             font-size: 1.2rem;
             color: gray;
             padding: 6px 0;
-
+            width: 50%
         }
 
         td {
@@ -65,12 +65,8 @@ export default defineComponent({
             border-bottom: 0.1rem solid #d7d9db;
             color: #07121b;
             font-weight: 500;
+            width: 50%
         }
-
-        // tr th :last-child {
-        //     border-bottom: none;
-        // }
-
     }
 }
 </style>

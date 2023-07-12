@@ -1,8 +1,8 @@
 <template>
     <table class="productSpecTable">
-        <thead class="productSpecTable__header">
-            <tr>
-                <th>General Features</th>
+        <thead class="productSpecTable__head">
+            <tr class="row">
+                <th class="title">General Features</th>
             </tr>
         </thead>
         <tbody class="productSpecTable__body">
@@ -52,13 +52,14 @@ export default defineComponent({
     width: 100%;
     margin-bottom: 15px;
 
-    &__header {
+    &__head {
         text-align: left;
 
-        tr th {
+        .title {
             color: #07121b;
             font-size: 1.3rem;
             font-weight: 500;
+            // width: 100%;
         }
     }
 
@@ -70,6 +71,7 @@ export default defineComponent({
             font-size: 1.2rem;
             color: gray;
             padding: 6px 0;
+            width: 50%;
         }
 
         td {
@@ -77,6 +79,7 @@ export default defineComponent({
             border-bottom: 0.1rem solid #d7d9db;
             color: #07121b;
             font-weight: 500;
+            width: 50%;
         }
 
         tr th :last-child {

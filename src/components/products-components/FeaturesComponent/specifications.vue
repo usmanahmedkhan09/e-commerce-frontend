@@ -134,11 +134,11 @@ export default defineComponent({
         gap: 10px;
 
         .column__one {
-            flex: 0 0 50%
+            flex: calc(100% / 2 - 10px)
         }
 
         .column__two {
-            flex: 0 0 50%
+            flex: calc(100% / 2 - 10px)
         }
     }
 }
