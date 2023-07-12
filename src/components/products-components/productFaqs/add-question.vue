@@ -8,6 +8,7 @@
                       cols="30"
                       rows="10"></textarea>
         </div>
+        <button class="button btn">Ask Question</button>
     </div>
 </template>
 <script lang="ts">
@@ -46,6 +47,13 @@ export default defineComponent({
                 outline: unset;
             }
         }
+    }
+
+    .button {
+        font-size: 1.3rem;
+        font-weight: 500;
+        padding: 1rem 2.5rem;
+        margin-top: 16px;
     }
 }
 </style>

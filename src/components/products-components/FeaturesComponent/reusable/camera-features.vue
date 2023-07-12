@@ -8,38 +8,41 @@
         <tbody class="productSpecTable__body">
             <tr>
                 <th>Front Camera</th>
-                <td></td>
+                <td>{{ product.camera.frontCamera }}</td>
             </tr>
             <tr>
                 <th>Front Flash Light</th>
-                <td></td>
+                <td>{{ product.camera.frontflashlight }}</td>
             </tr>
             <tr>
                 <th>Front Video Recording</th>
-                <td></td>
+                <td>{{ product.camera.frontvideorecording }}</td>
             </tr>
             <tr>
                 <th>Back Flash Light</th>
-                <td></td>
+                <td> {{ product.camera.frontflashlight }}</td>
             </tr>
             <tr>
                 <th>Back Camera</th>
-                <td></td>
+                <td>{{ product.camera.backCamera }}</td>
             </tr>
             <tr>
                 <th>Back Video Recording</th>
-                <td></td>
+                <td>{{ product.camera.backvideorecording }}</td>
             </tr>
         </tbody>
     </table>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
+import { useproductStore } from '@/stores/product.store'
 
 export default defineComponent({
     setup()
     {
-        return {}
+        const producStore = useproductStore()
+        const product = computed(() => producStore.product)
+        return { product }
     },
 })
 </script>
@@ -72,6 +75,15 @@ export default defineComponent({
             font-size: 1.2rem;
             color: gray;
             padding: 6px 0;
+            width: 50%
+        }
+
+        td {
+            font-size: 1.2rem;
+            border-bottom: 0.1rem solid #d7d9db;
+            color: #07121b;
+            font-weight: 500;
+            width: 50%
         }
 
         tr th :last-child {

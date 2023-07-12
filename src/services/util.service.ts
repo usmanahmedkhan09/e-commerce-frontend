@@ -92,6 +92,12 @@ class Util
         }
         return '?' + params.toString()
     }
+
+    formatePrice(price: any)
+    {
+        if (price)
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
 }
 
 export default new Util()

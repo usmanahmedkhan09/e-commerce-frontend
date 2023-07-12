@@ -7,8 +7,7 @@
             </div>
 
         </div>
-        <ProductOverview v-if="product"
-                         :product="product" />
+        <ProductOverview />
         <ProductServices class="product__services" />
         <div class="navigation__header">
             <div class="links__container">
@@ -29,19 +28,19 @@ import { computed, defineComponent, onMounted, ref } from 'vue'
 import { useproductStore } from '@/stores/product.store'
 import { useRoute } from 'vue-router'
 import ProductOverview from '@/components/products-components/product-overview.vue'
-import { Product } from '@/models/product.model'
 import ProductServices from '@/components/dashboard-components/product-services.vue'
 import Footer from '@/components/footer.vue'
 import ProductFeaturesDetailsVue from '@/components/products-components/product-features-details.vue'
 import Faqs from '@/components/products-components/productFaqs/product-faqs.vue'
+import { Product } from '@/models/product.model'
+
 
 export default defineComponent({
     components: { ProductOverview, ProductServices, Footer, ProductFeaturesDetailsVue, Faqs },
     setup()
     {
         const productStore = useproductStore()
-        const { getProductByName } = productStore
-        const product = ref<Product>(new Product())
+        const { getProductByName, product } = productStore
 
         const headerLinks = ref([
             { name: "Highlights", value: 'highlights' },
@@ -56,7 +55,13 @@ export default defineComponent({
         const setInitialState = async () =>
         {
             if (route.params.productName)
-                product.value = await getProductByName(route.params.productName as string) as any
+            {
+                let response = await getProductByName(route.params.productName as string) as any
+                productStore.$patch({
+                    product: response
+                })
+            }
+
 
         }
 

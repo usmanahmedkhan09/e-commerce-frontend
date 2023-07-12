@@ -8,42 +8,45 @@
         <tbody class="productSpecTable__body">
             <tr>
                 <th>Bluetooth</th>
-                <td></td>
+                <td> {{ product.connectivity.bluetooth ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>3G</th>
-                <td></td>
+                <td>{{ product.connectivity._3g ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>4G/LTE</th>
-                <td></td>
+                <td>{{ product.connectivity._4GLTE ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>5G</th>
-                <td></td>
+                <td>{{ product.connectivity._5G ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>Radio</th>
-                <td></td>
+                <td>{{ product.connectivity.radio ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>Wifi</th>
-                <td></td>
+                <td>{{ product.connectivity.wifi ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>NFC</th>
-                <td></td>
+                <td>{{ product.connectivity.NFC ? 'Yes' : 'No' }}</td>
             </tr>
         </tbody>
     </table>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
+import { useproductStore } from '@/stores/product.store'
 
 export default defineComponent({
     setup()
     {
-        return {}
+        const producStore = useproductStore()
+        const product = computed(() => producStore.product)
+        return { product }
     },
 })
 </script>
@@ -75,6 +78,15 @@ export default defineComponent({
             font-size: 1.2rem;
             color: gray;
             padding: 6px 0;
+            width: 50%
+        }
+
+        td {
+            font-size: 1.2rem;
+            border-bottom: 0.1rem solid #d7d9db;
+            color: #07121b;
+            font-weight: 500;
+            width: 50%
         }
 
         tr th :last-child {

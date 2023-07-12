@@ -8,34 +8,21 @@
         <tbody class="productSpecTable__body">
             <tr>
                 <th>Type</th>
-                <td></td>
+                <td>{{ product.battery.type }}</td>
             </tr>
-            <!-- <tr>
-                <th>Sim Supports</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Phone Dimensions</th>
-                <td> </td>
-            </tr>
-            <tr>
-                <th>Phone Weight</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Operating System</th>
-                <td></td>
-            </tr> -->
         </tbody>
     </table>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
+import { useproductStore } from '@/stores/product.store'
 
 export default defineComponent({
     setup()
     {
-        return {}
+        const producStore = useproductStore()
+        const product = computed(() => producStore.product)
+        return { product }
     },
 })
 </script>
@@ -70,10 +57,18 @@ export default defineComponent({
             color: gray;
             padding: 6px 0;
 
-            &:not(:last-child) {
-                border-bottom: unset;
-            }
+            // &:not(:last-child) {
+            //     border-bottom: unset;
+            // }
         }
+
+        td {
+            font-size: 1.2rem;
+            border-bottom: 0.1rem solid #d7d9db;
+            color: #07121b;
+            font-weight: 500;
+        }
+
 
 
     }

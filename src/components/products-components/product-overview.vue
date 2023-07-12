@@ -37,7 +37,7 @@
             <div class="price__container">
                 <div>
                     <p class="title">Priceoye Price</p>
-                    <p class="price">Rs.{{ product.price }}</p>
+                    <p class="price">Rs.{{ formatePrice(product.price) }}</p>
                     <p class="discountedPrice"><span>Rs.26,999</span> <span>17% OFF</span></p>
                 </div>
                 <div>
@@ -93,10 +93,11 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import utilService from '@/services/util.service';
 import { Product } from '@/models/product.model'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import { useproductStore } from '@/stores/product.store'
 
 export default defineComponent({
     components: {
@@ -105,16 +106,11 @@ export default defineComponent({
         Pagination,
         Navigation,
     },
-    props: {
-        product: {
-            type: Product,
-            default: new Product()
-        },
-    },
     setup(props)
     {
-        // let product = ref<Product>(props.product)
-        return { getImageUrl: utilService.getImageUrl, baseUrl: utilService.baseUrl }
+        const producStore = useproductStore()
+        const product = computed(() => producStore.product)
+        return { product, getImageUrl: utilService.getImageUrl, baseUrl: utilService.baseUrl, formatePrice: utilService.formatePrice }
     },
 })
 </script>

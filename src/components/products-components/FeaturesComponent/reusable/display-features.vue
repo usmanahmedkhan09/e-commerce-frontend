@@ -8,30 +8,32 @@
         <tbody class="productSpecTable__body">
             <tr>
                 <th>Screen Size</th>
-                <td></td>
+                <td>{{ product.display.size }}</td>
             </tr>
             <tr>
                 <th>Screen Resolution</th>
-                <td></td>
+                <td>{{ product.display.resolution }}</td>
             </tr>
             <tr>
                 <th>Screen Type</th>
-                <td> </td>
+                <td> {{ product.display.type }}</td>
             </tr>
             <tr>
                 <th>Screen Protection</th>
-                <td></td>
+                <td>{{ product.display.protection }}</td>
             </tr>
         </tbody>
     </table>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { defineComponent, computed } from 'vue'
+import { useproductStore } from '@/stores/product.store'
 export default defineComponent({
     setup()
     {
-        return {}
+        const producStore = useproductStore()
+        const product = computed(() => producStore.product)
+        return { product }
     },
 })
 </script>
@@ -63,6 +65,15 @@ export default defineComponent({
             font-size: 1.2rem;
             color: gray;
             padding: 6px 0;
+            width: 50%;
+        }
+
+        td {
+            font-size: 1.2rem;
+            border-bottom: 0.1rem solid #d7d9db;
+            width: 50%;
+            color: #07121b;
+            font-weight: 500;
         }
 
         tr th :last-child {
