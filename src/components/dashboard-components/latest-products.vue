@@ -14,7 +14,7 @@
                              alt="">
                     </div>
                     <p class="product__name">{{ item.name }}</p>
-                    <p class="product__price">Rs. {{ item.price }}</p>
+                    <p class="product__price">Rs. {{ formatePrice(item.price) }}</p>
                     <p class="discounted__price"><span>Rs.1,249</span> (8% OFF)</p>
                 </div>
             </template>
@@ -54,7 +54,7 @@ export default defineComponent({
             if (response)
                 products.value = [...response.slice(0, 8)]
         })
-        return { products, getBaseUrl: utilService.getBaseUrl }
+        return { products, getBaseUrl: utilService.getBaseUrl, formatePrice: utilService.formatePrice }
     },
 })
 </script>

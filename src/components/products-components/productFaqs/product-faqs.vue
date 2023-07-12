@@ -1,7 +1,7 @@
 <template>
     <section class="faqs">
         <div class="faqs__title">
-            <p>Question About Xiaomi Redmi A1+</p>
+            <p>Question About {{ product.name }}</p>
         </div>
         <div class="faqs__body">
             <addQuestion />
@@ -9,14 +9,17 @@
     </section>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import addQuestion from './add-question.vue';
+import { useproductStore } from '@/stores/product.store'
 
 export default defineComponent({
     components: { addQuestion },
     setup()
     {
-        return {}
+        const producStore = useproductStore()
+        const product = computed(() => producStore.product)
+        return { product }
     },
 })
 </script>

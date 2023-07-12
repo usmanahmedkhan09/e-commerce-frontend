@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="detail__box">
-                    <p class="actual__price">Rs. {{ product.price }}</p>
+                    <p class="actual__price">Rs. {{ formatePrice(product.price) }}</p>
                     <div class="price__diff">
                         <p class="price__diff--retail">Rs. 57,999</p>
                         <p class="price__diff--saving">(10% OFF)</p>
@@ -116,7 +116,7 @@ export default defineComponent({
         }
 
         onMounted(() => setInitialState())
-        return { products, getBaseUrl: utilService.getBaseUrl }
+        return { products, getBaseUrl: utilService.getBaseUrl, formatePrice: utilService.formatePrice }
     },
 })
 </script>

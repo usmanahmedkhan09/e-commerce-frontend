@@ -7,7 +7,7 @@
         </div>
         <div class="content">
             <p class="title">{{ product.name }}</p>
-            <p class="price">Rs. {{ product.price }}</p>
+            <p class="price">Rs. {{ formatePrice(product.price) }}</p>
             <p class="price-diff"><span>Rs. 31,999</span> <span>(27% Off)</span></p>
         </div>
     </div>
@@ -24,7 +24,7 @@ export default defineComponent({
     },
     setup()
     {
-        return { baseUrl: utilService.baseUrl }
+        return { baseUrl: utilService.baseUrl, formatePrice: utilService.formatePrice }
     },
 })
 </script>
