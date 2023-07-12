@@ -49,7 +49,10 @@ export default defineComponent({
     {
         const productStore = useproductStore()
         const product = computed<any>(() => productStore.product)
-        const features = ref([
+        const features = ref<any[]>([])
+
+
+        const mobileFeatures = ref([
             { image: 'display.svg', name: 'Display', apiValue: 'size', value: '6.52 inches' },
             { image: 'ram.svg', name: 'Ram', apiValue: 'ram', value: '2/3 GB' },
             { image: 'battery.svg', name: 'Battery', apiValue: 'type', value: '5000 mAh' },
@@ -58,17 +61,42 @@ export default defineComponent({
 
         const laptopfeatures = ref([
             { image: 'screensize2.svg', name: 'Display', apiValue: 'size', value: '13.3 inches' },
-            { image: 'generation.svg', name: 'Ram', apiValue: '', value: '2/3 GB' },
-            { image: 'processor.svg', name: 'Battery', apiValue: '', value: '5000 mAh' },
-            { image: 'ram.svg', name: 'Back Camera', apiValue: '', value: '8 MP + 0.08 MP (QVGA)' },
+            { image: 'generation.svg', name: 'Generation', apiValue: 'generation', value: '2/3 GB' },
+            { image: 'processor.svg', name: 'Processor', apiValue: 'processor', value: '5000 mAh' },
+            { image: 'ram.svg', name: 'Ram', apiValue: 'ram', value: '8 MP + 0.08 MP (QVGA)' },
+        ])
+
+        const smartWatchesfeatures = ref([
+            { image: 'display.svg', name: 'Display', apiValue: 'size', value: '13.3 inches' },
+            { image: 'screentype.svg', name: 'Screen Type', apiValue: 'type', value: '2/3 GB' },
+            { image: 'battery.svg', name: 'Battery', apiValue: 'type', value: '5000 mAh' },
         ])
 
         watch(() => product.value, () => setInitialState(), { deep: true })
+
         const setInitialState = () =>
         {
-            if (product.value)
+            if (product.value && product.value.category && product.value.category.name.toLowerCase() == 'laptops')
             {
-                features.value.map((x: any) =>
+                laptopfeatures.value.map((x: any) =>
+                {
+                    if (x.apiValue == 'size')
+                        x.value = product.value.display.size
+                    if (x.apiValue == 'ram')
+                        x.value = product.value.memory.ram
+                    if (x.apiValue == 'generation')
+                        x.value = product.value.processor.generation
+                    if (x.apiValue == 'backCamera')
+                        x.value = product.value.performance.generation
+                    return x
+                })
+
+                features.value = laptopfeatures.value
+            }
+
+            if (product.value && product.value.category && product.value.category.name.toLowerCase() == 'mobiles')
+            {
+                mobileFeatures.value.map((x: any) =>
                 {
                     if (x.apiValue == 'size')
                         x.value = product.value.display.size
@@ -80,6 +108,25 @@ export default defineComponent({
                         x.value = product.value.camera.backCamera
                     return x
                 })
+
+                features.value = mobileFeatures.value
+            }
+
+            if (product.value && product.value.category && product.value.category.name.toLowerCase() == 'smart watches')
+            {
+                smartWatchesfeatures.value.map((x: any) =>
+                {
+                    if (x.apiValue == 'size')
+                        x.value = product.value.display.size
+                    if (x.apiValue == 'type')
+                        x.value = product.value.battery.type
+                    if (x.apiValue == 'ram')
+                        x.value = product.value.memory.ram
+
+                    return x
+                })
+
+                features.value = smartWatchesfeatures.value
             }
         }
 

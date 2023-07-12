@@ -105,7 +105,6 @@ export const useproductStore = defineStore('product', {
             let response: any = await axios.get(`product/getProductByName/${productName}`)
             if (response.isSuccess)
             {
-                console.log(response)
                 return response.data
             }
         }
