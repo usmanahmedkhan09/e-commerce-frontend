@@ -3,6 +3,7 @@
         <div class="images__container">
             <carousel class="dashboard__banner"
                       :items-to-show="1"
+                      :modelValue="selectedImage"
                       :wrap-around="true">
                 <slide v-for="item in product.productImages"
                        :key="item.path">
@@ -37,8 +38,10 @@
             <div class="price__container">
                 <div>
                     <p class="title">Priceoye Price</p>
-                    <p class="price">Rs.{{ formatePrice(product.price) }}</p>
-                    <p class="discountedPrice"><span>Rs.26,999</span> <span>17% OFF</span></p>
+                    <p class="price">Rs.{{ calculateDiscount(product.price!, product.discount) }} </p>
+                    <p class="discountedPrice"><span>Rs.{{ formatePrice(product.price) }}</span> <span>{{ product.discount
+                    }}% OFF</span>
+                    </p>
                 </div>
                 <div>
                     <p class="title">Availability</p>
@@ -49,9 +52,10 @@
                 <p class="title">Colors</p>
                 <div class="box__wrapper">
                     <div class="image__box image__height"
-                         v-for="item in product.productImages"
-                         :class="{ 'active': item == 3 }"
-                         :key="item">
+                         v-for="(item, index) in product.productImages"
+                         :class="{ 'active': index == selectedImage }"
+                         :key="item"
+                         @click="selectedImage = index">
                         <img :src="baseUrl + item.path"
                              alt="">
                         <p>{{ item.color }}</p>
@@ -108,9 +112,18 @@ export default defineComponent({
     },
     setup(props)
     {
+        let selectedImage = ref(0)
         const producStore = useproductStore()
         const product = computed(() => producStore.product)
-        return { product, getImageUrl: utilService.getImageUrl, baseUrl: utilService.baseUrl, formatePrice: utilService.formatePrice }
+        return {
+            product,
+            selectedImage,
+            getImageUrl: utilService.getImageUrl,
+            baseUrl: utilService.baseUrl,
+            formatePrice: utilService.formatePrice,
+            calculateDiscount: utilService.calculateDiscount
+
+        }
     },
 })
 </script>

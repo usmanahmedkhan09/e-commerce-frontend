@@ -98,6 +98,17 @@ class Util
         if (price)
             return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     }
+
+    calculateDiscount(originalPrice: number, discount: any)
+    {
+        if (originalPrice && discount)
+        {
+            const discountAmount = originalPrice * (discount / 100);
+            const discountedPrice = originalPrice - discountAmount;
+            return discountedPrice.toFixed(0)
+        }
+
+    }
 }
 
 export default new Util()
