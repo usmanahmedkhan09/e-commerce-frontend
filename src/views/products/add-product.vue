@@ -45,7 +45,7 @@ import utilService from '@/services/util.service';
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia';
 import { Field, useForm, Form } from 'vee-validate'
-import Product from '@/models/product.model';
+import { Product } from '@/models/product.model';
 
 export default defineComponent({
     components: { generalInfo, displayFeatures, memoryFeatures, cameraFeatures, connectivityFeatures, generalFeaturesVue, Form, Field },
@@ -62,7 +62,6 @@ export default defineComponent({
 
         const onSubmit = handleSubmit(values =>
         {
-            console.log(step.value)
             if (step.value < 6)
                 step.value++
             else

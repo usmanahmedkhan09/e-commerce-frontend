@@ -3,14 +3,13 @@
         <div class="card">
             <div class="card__header">
                 <h4>Manage Products</h4>
-
             </div>
         </div>
         <div class="categories__content">
             <div class="card">
                 <div class="card__header border-bottom">
                     <h4>All Products</h4>
-                    <button class="btn">Back To Products</button>
+                    <!-- <button class="btn">Back To Products</button> -->
                 </div>
                 <div class="card__body">
                     <table class="table">
@@ -31,7 +30,7 @@
                                 :key="index">
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ product.name }}</td>
-                                <td>{{ product.price }}</td>
+                                <td>{{ formatePrice(product.price) }}</td>
                                 <td>{{ product.category.name }}</td>
                                 <td>{{ product.brand.name }}</td>
                                 <td>{{ product.quantity }}</td>
@@ -79,7 +78,7 @@ export default defineComponent({
             await getProducts()
         })
 
-        return { products, moment, router, deleteProduct }
+        return { products, moment, router, deleteProduct, formatePrice: utilService.formatePrice }
     },
 })
 </script>

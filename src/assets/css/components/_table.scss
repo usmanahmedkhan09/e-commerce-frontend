@@ -71,6 +71,10 @@
         margin: 0px 5px;
         display: inline-block;
 
+        svg {
+          vertical-align: unset;
+        }
+
         &.success {
           background-image: linear-gradient(
             to right,

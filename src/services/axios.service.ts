@@ -3,6 +3,7 @@ import utilService from './util.service';
 import { TYPE } from 'vue-toastification'
 import storageService from './storage.service';
 import { useRouter } from 'vue-router'
+import router from '@/router';
 
 const baseURL = '/api'
 const instance = axios.create({
@@ -34,6 +35,7 @@ instance.interceptors.request.use(function (config: any)
 
 instance.interceptors.response.use(function (response)
 {
+
     if (response.data.isSuccess && response.data.message && (response.status == 201 || response.status == 200))
     {
         utilService.showToast(response.data.message);
@@ -47,7 +49,7 @@ instance.interceptors.response.use(function (response)
     let { response } = error
     if (!response.data.isSuccess)
     {
-        let { errorsData } = response.data
+        let { errorsData, status } = response.data
         if (errorsData && errorsData.length > 0)
         {
             errorsData.forEach((item: any) =>
@@ -58,14 +60,12 @@ instance.interceptors.response.use(function (response)
         else if (response.status == 401)
         {
             storageService.removeProperty('token')
-            useRouter().push('/login')
+            router.push('/login')
             return
         }
         utilService.showToast(response.data.message ?? response.message, TYPE.ERROR);
     } else
     {
-
-
         utilService.showToast(response.data.message, TYPE.ERROR);
     }
     return response.data

@@ -11,7 +11,7 @@
                                  alt="">
                         </div>
                         <p class="productFeatures__card--subTitle">{{ item.value ?? 'N/A' }}</p>
-                        <h4 class="productFeatures__card--title">{{ item.name }}</h4>
+                        <h4 class="productFeatures__card--title">{{ item.name ?? 'N/A' }}</h4>
                     </div>
                 </div>
             </div>
@@ -21,11 +21,11 @@
                 <generalFeatures />
                 <displayFeaturesVue />
                 <memoryFeaturesVue />
-                <Performance v-if="product.category && product.category.name.toLowerCase() != 'smart watches'" />
+                <Performance />
             </div>
             <div class="column__two">
                 <batteryFeatures />
-                <cameraFeaturesVue v-if="product.category && product.category.name.toLowerCase() != 'smart watches'" />
+                <cameraFeaturesVue />
                 <connectivityFeaturesVue />
             </div>
         </section>
@@ -49,7 +49,64 @@ export default defineComponent({
     {
         const productStore = useproductStore()
         const product = computed<any>(() => productStore.product)
-        const features = ref<any[]>([])
+        const features = computed(() =>
+        {
+            if (product.value.category)
+            {
+                if (product.value && product.value?.category && product.value.category.name.toLowerCase() == 'laptops')
+                {
+                    laptopfeatures.value.map((x: any) =>
+                    {
+                        if (x.apiValue == 'size')
+                            x.value = product.value.display.size
+                        if (x.apiValue == 'ram')
+                            x.value = product.value.memory.ram
+                        if (x.apiValue == 'processor')
+                            x.value = product.value.performance.processor
+                        if (x.apiValue == 'generation')
+                            x.value = product.value.performance.generation
+                        return x
+                    })
+
+                    return laptopfeatures.value
+                }
+                if (product.value && product.value?.category && product.value.category.name.toLowerCase() == 'mobiles' || product.value.category.name.toLowerCase() == 'tablets')
+                {
+                    mobileFeatures.value.map((x: any) =>
+                    {
+                        if (x.apiValue == 'size')
+                            x.value = product.value.display.size
+                        if (x.apiValue == 'ram')
+                            x.value = product.value.memory.ram
+                        if (x.apiValue == 'type')
+                            x.value = product.value.battery.type
+                        if (x.apiValue == 'backCamera')
+                            x.value = product.value.camera.backCamera
+                        return x
+                    })
+
+                    return mobileFeatures.value
+                }
+
+                if (product.value && product.value?.category && product.value.category.name.toLowerCase() == 'smart watches')
+                {
+                    smartWatchesfeatures.value.map((x: any) =>
+                    {
+                        if (x.apiValue == 'size')
+                            x.value = product.value.display.size
+                        if (x.apiValue == 'type')
+                            x.value = product.value.battery.type
+                        if (x.apiValue == 'ram')
+                            x.value = product.value.memory.ram
+
+                        return x
+                    })
+                    return smartWatchesfeatures.value
+                }
+
+            }
+            return []
+        })
 
 
         const mobileFeatures = ref([
@@ -76,58 +133,7 @@ export default defineComponent({
 
         const setInitialState = () =>
         {
-            if (product.value && product.value.category && product.value.category.name.toLowerCase() == 'laptops')
-            {
-                laptopfeatures.value.map((x: any) =>
-                {
-                    if (x.apiValue == 'size')
-                        x.value = product.value.display.size
-                    if (x.apiValue == 'ram')
-                        x.value = product.value.memory.ram
-                    if (x.apiValue == 'processor')
-                        x.value = product.value.performance.processor
-                    if (x.apiValue == 'generation')
-                        x.value = product.value.performance.generation
-                    return x
-                })
 
-                features.value = laptopfeatures.value
-            }
-
-            if (product.value && product.value.category && product.value.category.name.toLowerCase() == 'mobiles')
-            {
-                mobileFeatures.value.map((x: any) =>
-                {
-                    if (x.apiValue == 'size')
-                        x.value = product.value.display.size
-                    if (x.apiValue == 'ram')
-                        x.value = product.value.memory.ram
-                    if (x.apiValue == 'type')
-                        x.value = product.value.battery.type
-                    if (x.apiValue == 'backCamera')
-                        x.value = product.value.camera.backCamera
-                    return x
-                })
-
-                features.value = mobileFeatures.value
-            }
-
-            if (product.value && product.value.category && product.value.category.name.toLowerCase() == 'smart watches')
-            {
-                smartWatchesfeatures.value.map((x: any) =>
-                {
-                    if (x.apiValue == 'size')
-                        x.value = product.value.display.size
-                    if (x.apiValue == 'type')
-                        x.value = product.value.battery.type
-                    if (x.apiValue == 'ram')
-                        x.value = product.value.memory.ram
-
-                    return x
-                })
-
-                features.value = smartWatchesfeatures.value
-            }
         }
 
         const getImageByName = (name: any) => utilService.getImageUrl(name, 'svg')

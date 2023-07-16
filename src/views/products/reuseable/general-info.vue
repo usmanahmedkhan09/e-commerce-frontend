@@ -165,7 +165,7 @@ export default defineComponent({
         {
 
             let res: any = await utilService.uploadFileOnServer(event.target.files)
-            res.data["color"] = color
+            res.data["color"] = color.value
             product.value.productImages.push(res.data)
         }
 
