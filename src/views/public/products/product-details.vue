@@ -7,8 +7,9 @@
             </div>
 
         </div>
-        <ProductOverview />
-        <ProductServices class="product__services" />
+        <ProductOverview v-if="product.name" />
+        <ProductServices v-if="product.name"
+                         class="product__services" />
         <div class="navigation__header">
             <div class="links__container">
                 <div class="links"

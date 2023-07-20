@@ -71,8 +71,8 @@ class Product
     _id?: string | undefined
     name: string | undefined
     productImages: any[] = []
-    price: number | undefined
-    discount: number | undefined
+    price: number = 0
+    discount: number = 0
     description: string | undefined
     quantity: number | undefined
     model: string | undefined

@@ -38,9 +38,12 @@
             <div class="price__container">
                 <div>
                     <p class="title">Priceoye Price</p>
-                    <p class="price">Rs.{{ calculateDiscount(product.price!, product.discount) }} </p>
-                    <p class="discountedPrice"><span>Rs.{{ formatePrice(product.price) }}</span> <span>{{ product.discount
-                    }}% OFF</span>
+                    <p class="price">Rs.{{ product.discount > 0 ? calculateDiscount(product.price, product.discount) :
+                        formatePrice(product.price) }} </p>
+                    <p class="discountedPrice"
+                       v-show="product.discount > 0"><span>Rs.{{ formatePrice(product.price) }}</span> <span>{{
+                           product.discount
+                       }}% OFF</span>
                     </p>
                 </div>
                 <div>

@@ -21,9 +21,9 @@
              :class="{ 'active': showBrands }">
             <div class="brands"
                  v-for="(brand, index) in brands"
-                 :key="index">
-                <p class="brands__item"
-                   @click.exact.stop="selectedBrand = brand.name, goToCategoryPage()">{{ brand.name }}</p>
+                 :key="index"
+                 @click.exact.stop="selectedBrand = brand.name, goToCategoryPage()">
+                <p class="brands__item">{{ brand.name }}</p>
             </div>
             <div class="accordian__subSection">
                 <div class="accordian__subSection__header"
@@ -41,7 +41,8 @@
                      :class="{ 'active': showMore }">
                     <div class="brands"
                          v-for="(brand, index) in remaningBrands"
-                         :key="index">
+                         :key="index"
+                         @click.exact.stop="selectedBrand = brand.name, goToCategoryPage()">
                         <p class="brands__item">{{ brand.name }}</p>
                     </div>
                 </div>
@@ -83,7 +84,7 @@ export default defineComponent({
 
         const goToCategoryPage = () =>
         {
-
+            console.log('hererrerre')
             productStore.$patch((state) => state.filters = new ProductFilters())
             if (selectedBrand.value)
                 productStore.filters.brand.push(selectedBrand.value)
