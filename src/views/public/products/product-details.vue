@@ -14,13 +14,15 @@
             <div class="links__container">
                 <div class="links"
                      v-for="item in headerLinks"
-                     :key="item.value">
+                     :key="item.value"
+                     @click="scrollToSection(item.value)">
                     {{ item.name }}
                 </div>
             </div>
         </div>
-        <ProductFeaturesDetailsVue />
-        <Faqs />
+        <ProductFeaturesDetailsVue id="specifications"
+                                   v-if="product.name" />
+        <Faqs id="FAQs" />
         <Footer />
     </div>
 </template>
@@ -40,6 +42,8 @@ export default defineComponent({
     components: { ProductOverview, ProductServices, Footer, ProductFeaturesDetailsVue, Faqs },
     setup()
     {
+        const specifications = ref<HTMLElement>()
+        const FAQs = ref<HTMLElement>()
         const productStore = useproductStore()
         const { getProductByName, product } = productStore
 
@@ -67,7 +71,14 @@ export default defineComponent({
         onMounted(() => setInitialState())
 
         onUnmounted(() => productStore.$patch({ product: new Product() }))
-        return { route, productName, product, headerLinks }
+
+        const scrollToSection = (id: any) =>
+        {
+            let elem: any = document.getElementById(`${id}`)
+            elem.scrollIntoView({ behavior: 'smooth' })
+        }
+
+        return { route, productName, product, headerLinks, specifications, FAQs, scrollToSection }
     },
 })
 </script>

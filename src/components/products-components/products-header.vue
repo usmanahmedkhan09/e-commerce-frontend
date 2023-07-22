@@ -53,6 +53,13 @@ export default defineComponent({
             { name: 'hp', icon: 'hp.jpg' },
         ])
 
+        const watches__links = ref<any[]>([
+            { name: 'mibro', icon: 'mibro.jpg' },
+            { name: 'assorted', icon: 'assorted.jpg' },
+            { name: 'kieslect', icon: 'kieslect.jpg' },
+            { name: 'zero', icon: 'zero.jpg' },
+        ])
+
         watch(() => props.category, () =>
         {
             if (props.category == 'mobiles')
@@ -61,6 +68,8 @@ export default defineComponent({
                 links.value = tablets__links.value
             else if (props.category == 'laptops')
                 links.value = laptops__links.value
+            else if (props.category == 'smart watches')
+                links.value = watches__links.value
         }, { deep: true })
 
         const setInitialState = () =>
@@ -71,6 +80,8 @@ export default defineComponent({
                 links.value = tablets__links.value
             else if (props.category == 'laptops')
                 links.value = laptops__links.value
+            else if (props.category == 'smart watches')
+                links.value = watches__links.value
         }
 
         onMounted(() => setInitialState())

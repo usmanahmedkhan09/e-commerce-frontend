@@ -8,11 +8,11 @@
         <tbody class="productSpecTable__body">
             <tr>
                 <th>Front Camera</th>
-                <td>{{ product.camera.frontCamera }}</td>
+                <td>{{ product.camera.frontCamera ?? 'N/A' }}</td>
             </tr>
             <tr>
                 <th>Front Flash Light</th>
-                <td>{{ product.camera.frontflashlight }}</td>
+                <td>{{ product.camera.frontflashlight ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>Front Video Recording</th>
@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <th>Back Flash Light</th>
-                <td> {{ product.camera.frontflashlight }}</td>
+                <td> {{ product.camera.frontflashlight ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>Back Camera</th>
@@ -42,7 +42,9 @@ export default defineComponent({
     {
         const producStore = useproductStore()
         const product = computed(() => producStore.product)
-        return { product }
+
+        const categoryName = computed(() => product.value.category!.name)
+        return { product, categoryName }
     },
 })
 </script>

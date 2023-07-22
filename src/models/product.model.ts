@@ -8,6 +8,7 @@ class GeneralFeatures
     waterproof: boolean | undefined
     wearingType: string | undefined
     volumeControl: string | undefined
+    generation: string | undefined
 }
 
 class Display
@@ -16,6 +17,8 @@ class Display
     resolution: string | undefined
     type: string | undefined
     protection: string | undefined
+    touchScreen: string | undefined
+    backlitKeyboard: string | undefined
 }
 
 class Memory
@@ -31,6 +34,8 @@ class Performance
 {
     processor: string | undefined
     generation: string | undefined
+    processorSpeed: string | undefined
+    processorType: string | undefined
 }
 
 class Battery
@@ -65,6 +70,7 @@ class Connectivity
     bluetoothVersion: string | undefined
     bluetoothRange: string | undefined
     microPhone: string | undefined
+    fingerprintReader: string | undefined
 }
 class Product
 {
@@ -77,6 +83,7 @@ class Product
     quantity: number | undefined
     model: string | undefined
     categoryId: string | undefined
+    category?: any
     brandId: string | undefined
     seriesId: string | undefined
     productId?: string | undefined

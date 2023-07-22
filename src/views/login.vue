@@ -1,8 +1,10 @@
 <template>
     <div class="login__container">
         <div class="card">
-            <inline-svg class="svg__icon"
-                        :src="require('@/assets/svg/login-header-img.svg')"></inline-svg>
+            <img :src="getImageUrl('login-header-img.svg', 'svg')"
+                 alt="">
+            <!-- <inline-svg class="svg__icon"
+                        :src="require('@/assets/svg/login-header-img.svg')"></inline-svg> -->
             <div class="card__body">
                 <h4 class="title">Sign In</h4>
                 <p class="description">Enter your Email for a faster checkout, to track the status of your order and
@@ -38,6 +40,7 @@ import { defineComponent, ref } from 'vue'
 import { Field, useForm, ErrorMessage } from 'vee-validate'
 import { useAuthStore } from '@/stores/auth.store'
 import User from '@/models/user.model'
+import utilService from '@/services/util.service'
 
 export default defineComponent({
     components: { Field, ErrorMessage },
@@ -57,6 +60,7 @@ export default defineComponent({
             onSubmit,
             isSubmitting,
             user,
+            getImageUrl: utilService.getImageUrl
         }
     },
 })

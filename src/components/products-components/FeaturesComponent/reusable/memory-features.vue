@@ -14,7 +14,7 @@
                 <th>RAM</th>
                 <td>{{ product.memory.ram ?? 'N/A' }}</td>
             </tr>
-            <tr>
+            <tr v-if="categoryName == 'mobiles' || categoryName == 'tablets'">
                 <th>Card Slot</th>
                 <td> {{ product.memory.card ? 'Yes' : 'No' }}</td>
             </tr>
@@ -30,7 +30,9 @@ export default defineComponent({
     {
         const producStore = useproductStore()
         const product = computed(() => producStore.product)
-        return { product }
+
+        const categoryName = computed(() => product.value.category!.name)
+        return { product, categoryName }
     },
 })
 </script>

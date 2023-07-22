@@ -25,7 +25,7 @@
             </div>
             <div class="column__two">
                 <batteryFeatures />
-                <cameraFeaturesVue />
+                <cameraFeaturesVue v-if="categoryName == 'mobiles' || categoryName == 'tablets'" />
                 <connectivityFeaturesVue />
             </div>
         </section>
@@ -48,12 +48,14 @@ export default defineComponent({
     setup()
     {
         const productStore = useproductStore()
-        const product = computed<any>(() => productStore.product)
+        const product = computed(() => productStore.product)
+
+        const categoryName = computed(() => product.value.category.name)
         const features = computed(() =>
         {
             if (product.value.category)
             {
-                if (product.value && product.value?.category && product.value.category.name.toLowerCase() == 'laptops')
+                if (categoryName.value.toLowerCase() == 'laptops')
                 {
                     laptopfeatures.value.map((x: any) =>
                     {
@@ -70,7 +72,7 @@ export default defineComponent({
 
                     return laptopfeatures.value
                 }
-                if (product.value && product.value?.category && product.value.category.name.toLowerCase() == 'mobiles' || product.value.category.name.toLowerCase() == 'tablets')
+                if (categoryName.value.toLowerCase() == 'mobiles' || categoryName.value.toLowerCase() == 'tablets')
                 {
                     mobileFeatures.value.map((x: any) =>
                     {
@@ -88,7 +90,7 @@ export default defineComponent({
                     return mobileFeatures.value
                 }
 
-                if (product.value && product.value?.category && product.value.category.name.toLowerCase() == 'smart watches')
+                if (categoryName.value.toLowerCase() == 'smart watches')
                 {
                     smartWatchesfeatures.value.map((x: any) =>
                     {
@@ -129,17 +131,9 @@ export default defineComponent({
             { image: 'battery.svg', name: 'Battery', apiValue: 'type', value: '5000 mAh' },
         ])
 
-        watch(() => product.value, () => setInitialState(), { deep: true })
-
-        const setInitialState = () =>
-        {
-
-        }
-
         const getImageByName = (name: any) => utilService.getImageUrl(name, 'svg')
 
-        onMounted(() => setInitialState())
-        return { getImageByName, features, product, laptopfeatures }
+        return { getImageByName, features, product, laptopfeatures, categoryName }
     },
 })
 </script>

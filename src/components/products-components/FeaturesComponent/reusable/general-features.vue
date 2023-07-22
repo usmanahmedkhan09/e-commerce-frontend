@@ -10,7 +10,7 @@
                 <th>Release Date</th>
                 <td>{{ product.generalFeatures.releaseDate }}</td>
             </tr>
-            <tr>
+            <tr v-if="categoryName == 'mobiles' || categoryName == 'tablets'">
                 <th>Sim Supports</th>
                 <td>{{ product.generalFeatures.simSupport }}</td>
             </tr>
@@ -26,15 +26,15 @@
                 <th>Operating System</th>
                 <td>{{ product.generalFeatures.opertaingSystem }}</td>
             </tr>
-            <tr>
+            <tr v-if="categoryName == 'smart watches'">
                 <th>Volume Control</th>
                 <td>{{ product.generalFeatures.volumeControl ? 'Yes' : 'No' }}</td>
             </tr>
-            <tr>
+            <tr v-if="categoryName == 'smart watches'">
                 <th>Water Proof</th>
                 <td>{{ product.generalFeatures.waterproof ? 'Yes' : 'No' }}</td>
             </tr>
-            <tr>
+            <tr v-if="categoryName == 'smart watches'">
                 <th>Wearing Type</th>
                 <td>{{ product.generalFeatures.wearingType ?? 'N/A' }}</td>
             </tr>
@@ -50,7 +50,10 @@ export default defineComponent({
     {
         const producStore = useproductStore()
         const product = computed(() => producStore.product)
-        return { product }
+
+        const categoryName = computed(() => product.value.category!.name)
+
+        return { product, categoryName }
     },
 })
 </script>

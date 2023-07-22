@@ -14,11 +14,11 @@
                 <th>Screen Resolution</th>
                 <td>{{ product.display.resolution ?? 'N/A' }}</td>
             </tr>
-            <tr>
+            <tr v-if="categoryName == 'mobiles'">
                 <th>Screen Type</th>
                 <td> {{ product.display.type ?? 'N/A' }}</td>
             </tr>
-            <tr>
+            <tr v-if="categoryName == 'mobiles'">
                 <th>Screen Protection</th>
                 <td>{{ product.display.protection ?? 'N/A' }}</td>
             </tr>
@@ -33,7 +33,9 @@ export default defineComponent({
     {
         const producStore = useproductStore()
         const product = computed(() => producStore.product)
-        return { product }
+
+        const categoryName = computed(() => product.value.category!.name)
+        return { product, categoryName }
     },
 })
 </script>

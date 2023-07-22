@@ -70,9 +70,9 @@
                 <p class="title">Storage</p>
                 <div class="box__wrapper">
                     <div class="image__box"
-                         v-for="item in [32, 64, 128]"
-                         :key="item"
-                         :class="{ 'active': item == 3 }">
+                         v-for="(item, index) in [32, 64, 128]"
+                         :key="index"
+                         :class="{ 'active': index == 1 }">
                         {{ item }}
                     </div>
                 </div>
